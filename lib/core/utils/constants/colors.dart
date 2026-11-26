@@ -9,6 +9,16 @@ class AppColors {
   static const Color primarydark = Color(0xFFF4A0A4);
   static const Color secondary = Color(0xFF282828);
   static const Color accent = Color(0xFF89A7FF);
+  static const Color cta = Color(0xFFE04D38);
+
+  // ─── MILON design tokens (Figma "Cover & Design System") ───
+  static const Color ink = Color(0xFF111318);
+  static const Color muted = Color(0xFF6B6F76);
+  static const Color subtle = Color(0xFF9A9EA5);
+  static const Color line = Color(0xFFE7E8E4);
+  static const Color pearl = Color(0xFFF5F6F4);
+  static const Color peach = Color(0xFFFFE8E1);
+  static const Color coral = Color(0xFFFF654F);
 
   // ─── Status ────────────────────────────────────────────
   static const Color success = Color(0xFF22C55E);
