@@ -93,4 +93,57 @@ class IconPath {
   static const String nutRefresh = 'assets/icons/nutrition/refresh.svg';
   static const String nutCal = 'assets/icons/nutrition/cal.svg';
   static const String nutAlert = 'assets/icons/nutrition/alert.svg';
+
+  // ─── Progress & MILON Coach icons (Figma "4 · Progress & MILON Coach") ───
+  static const String pcDrop = 'assets/icons/progress_coach/drop.svg';
+  static const String pcRuler = 'assets/icons/progress_coach/ruler.svg';
+  static const String pcScale = 'assets/icons/progress_coach/scale.svg';
+  static const String pcBookmark = 'assets/icons/progress_coach/bookmark.svg';
+  static const String pcChat = 'assets/icons/progress_coach/chat.svg';
+  static const String pcZap = 'assets/icons/progress_coach/zap.svg';
+  static const String pcMoon = 'assets/icons/progress_coach/moon.svg';
+  static const String pcHeart = 'assets/icons/progress_coach/heart.svg';
+  static const String pcWeightChart =
+      'assets/icons/progress_coach/weight_chart.svg';
+  static const String pcReadiness0 =
+      'assets/icons/progress_coach/readiness.svg';
+  static const String pcReadiness1 =
+      'assets/icons/progress_coach/readiness1.svg';
+  static const String pcReadiness2 =
+      'assets/icons/progress_coach/readiness2.svg';
+  static const String pcReadiness3 =
+      'assets/icons/progress_coach/readiness3.svg';
+
+  // ─── Profile & Subscription icons (Figma "5 · Profile & Subscription") ───
+  static const String prSettings = 'assets/icons/profile/settings.svg';
+  static const String prGift = 'assets/icons/profile/gift.svg';
+  static const String prCopy = 'assets/icons/profile/copy.svg';
+  static const String prCard = 'assets/icons/profile/card.svg';
+  static const String prLogout = 'assets/icons/profile/logout.svg';
+  static const String prTrash = 'assets/icons/profile/trash.svg';
+  static const String prTag = 'assets/icons/profile/tag.svg';
+  static const String prActivity = 'assets/icons/profile/activity.svg';
+  static const String prDownload = 'assets/icons/profile/download.svg';
+  static const String prFile = 'assets/icons/profile/file.svg';
+  static const String prPhone = 'assets/icons/profile/phone.svg';
+  static const String prTablet = 'assets/icons/profile/tablet.svg';
+  static const String prStore = 'assets/icons/profile/store.svg';
+  static const String prLink = 'assets/icons/profile/link.svg';
+  static const String prGlobe = 'assets/icons/profile/globe1.svg';
+  static const String prSearch = 'assets/icons/profile/search.svg';
+  static const String prRun = 'assets/icons/profile/run.svg';
+  static const String prTrophy = 'assets/icons/profile/trophy.svg';
+
+  // ─── System States icons (Figma "6 · System States") ───
+  static const String sysChevL = 'assets/icons/system_states/chev_l.svg';
+  static const String sysChevR = 'assets/icons/system_states/chev_r.svg';
+  static const String sysWifi = 'assets/icons/system_states/wifi.svg';
+  static const String sysInfo = 'assets/icons/system_states/info.svg';
+  static const String sysDumbbellCoral =
+      'assets/icons/system_states/dumbbell_coral.svg';
+  static const String sysDumbbellWhite =
+      'assets/icons/system_states/dumbbell_white.svg';
+  static const String sysClose = 'assets/icons/system_states/close.svg';
+  static const String sysCheckEmerald =
+      'assets/icons/system_states/check_emerald.svg';
 }

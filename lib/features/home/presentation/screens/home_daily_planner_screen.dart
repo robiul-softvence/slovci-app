@@ -31,7 +31,7 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: controller.openFreePlanPreview,
+                          onTap: controller.openProfile,
                           child: Container(
                             width: 44.r,
                             height: 44.r,

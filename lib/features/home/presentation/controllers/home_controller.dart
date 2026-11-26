@@ -92,6 +92,8 @@ class HomeController extends GetxController {
 
   void openFreePlanPreview() => Get.toNamed(AppRoute.homeFreePlanScreen);
 
+  void openProfile() => Get.toNamed(AppRoute.profileMainScreen);
+
   void openPersonalizedPlan() =>
       Get.toNamed(AppRoute.onboardingProfileGoalsScreen);
 }

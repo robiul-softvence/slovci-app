@@ -13,6 +13,32 @@ import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutriti
 import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_photo_scan_screen.dart';
 import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_recipe_detail_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/bindings/onboarding_binding.dart';
+import 'package:flutter_tamplate/features/progress/bindings/progress_binding.dart';
+import 'package:flutter_tamplate/features/profile/bindings/profile_binding.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/paywall_pro_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/profile_main_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/profile_settings_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_account_security_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_connected_apps_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_diet_budget_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_edit_profile_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_help_support_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_injuries_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_invite_friends_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_notifications_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_privacy_data_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_privacy_policy_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_subscription_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_training_setup_screen.dart';
+import 'package:flutter_tamplate/features/profile/presentation/screens/settings_units_language_screen.dart';
+import 'package:flutter_tamplate/features/progress/presentation/screens/progress_body_weight_screen.dart';
+import 'package:flutter_tamplate/features/progress/presentation/screens/progress_week2_plan_screen.dart';
+import 'package:flutter_tamplate/features/progress/presentation/screens/progress_weekly_checkin_screen.dart';
+import 'package:flutter_tamplate/features/progress/presentation/screens/progress_weekly_review_screen.dart';
+import 'package:flutter_tamplate/features/system_states/presentation/screens/state_empty_screen.dart';
+import 'package:flutter_tamplate/features/system_states/presentation/screens/state_error_screen.dart';
+import 'package:flutter_tamplate/features/system_states/presentation/screens/state_loading_skeleton_screen.dart';
+import 'package:flutter_tamplate/features/system_states/presentation/screens/state_success_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_anything_to_report_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_environment_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_food_preferences_screen.dart';
@@ -87,6 +113,41 @@ class AppRoute {
   static const String nutritionPhotoScanScreen = "/nutritionPhotoScanScreen";
   static const String nutritionGroceryListScreen =
       "/nutritionGroceryListScreen";
+  static const String progressBodyWeightScreen = "/progressBodyWeightScreen";
+  static const String progressWeeklyReviewScreen =
+      "/progressWeeklyReviewScreen";
+  static const String progressWeeklyCheckinScreen =
+      "/progressWeeklyCheckinScreen";
+  static const String progressWeek2PlanScreen = "/progressWeek2PlanScreen";
+  static const String profileMainScreen = "/profileMainScreen";
+  static const String profileSettingsScreen = "/profileSettingsScreen";
+  static const String settingsEditProfileScreen = "/settingsEditProfileScreen";
+  static const String settingsAccountSecurityScreen =
+      "/settingsAccountSecurityScreen";
+  static const String settingsTrainingSetupScreen =
+      "/settingsTrainingSetupScreen";
+  static const String settingsInjuriesScreen = "/settingsInjuriesScreen";
+  static const String settingsDietBudgetScreen = "/settingsDietBudgetScreen";
+  static const String settingsNotificationsScreen =
+      "/settingsNotificationsScreen";
+  static const String settingsSubscriptionScreen =
+      "/settingsSubscriptionScreen";
+  static const String settingsConnectedAppsScreen =
+      "/settingsConnectedAppsScreen";
+  static const String settingsPrivacyDataScreen = "/settingsPrivacyDataScreen";
+  static const String settingsUnitsLanguageScreen =
+      "/settingsUnitsLanguageScreen";
+  static const String settingsHelpSupportScreen = "/settingsHelpSupportScreen";
+  static const String settingsInviteFriendsScreen =
+      "/settingsInviteFriendsScreen";
+  static const String settingsPrivacyPolicyScreen =
+      "/settingsPrivacyPolicyScreen";
+  static const String paywallProScreen = "/paywallProScreen";
+  static const String stateLoadingSkeletonScreen =
+      "/stateLoadingSkeletonScreen";
+  static const String stateErrorScreen = "/stateErrorScreen";
+  static const String stateEmptyScreen = "/stateEmptyScreen";
+  static const String stateSuccessScreen = "/stateSuccessScreen";
 
   static const String internetlost = "/internetlost";
   static const String communityScreen = "/communityScreen";
@@ -249,6 +310,122 @@ class AppRoute {
       name: nutritionGroceryListScreen,
       page: () => const NutritionGroceryListScreen(),
       binding: NutritionBinding(),
+    ),
+    GetPage(
+      name: progressBodyWeightScreen,
+      page: () => const ProgressBodyWeightScreen(),
+      binding: ProgressBinding(),
+    ),
+    GetPage(
+      name: progressWeeklyReviewScreen,
+      page: () => const ProgressWeeklyReviewScreen(),
+      binding: ProgressBinding(),
+    ),
+    GetPage(
+      name: progressWeeklyCheckinScreen,
+      page: () => const ProgressWeeklyCheckinScreen(),
+      binding: ProgressBinding(),
+    ),
+    GetPage(
+      name: progressWeek2PlanScreen,
+      page: () => const ProgressWeek2PlanScreen(),
+      binding: ProgressBinding(),
+    ),
+    GetPage(
+      name: profileMainScreen,
+      page: () => const ProfileMainScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: profileSettingsScreen,
+      page: () => const ProfileSettingsScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsEditProfileScreen,
+      page: () => const SettingsEditProfileScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsAccountSecurityScreen,
+      page: () => const SettingsAccountSecurityScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsTrainingSetupScreen,
+      page: () => const SettingsTrainingSetupScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsInjuriesScreen,
+      page: () => const SettingsInjuriesScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsDietBudgetScreen,
+      page: () => const SettingsDietBudgetScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsNotificationsScreen,
+      page: () => const SettingsNotificationsScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsSubscriptionScreen,
+      page: () => const SettingsSubscriptionScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsConnectedAppsScreen,
+      page: () => const SettingsConnectedAppsScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsPrivacyDataScreen,
+      page: () => const SettingsPrivacyDataScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsUnitsLanguageScreen,
+      page: () => const SettingsUnitsLanguageScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsHelpSupportScreen,
+      page: () => const SettingsHelpSupportScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsInviteFriendsScreen,
+      page: () => const SettingsInviteFriendsScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: settingsPrivacyPolicyScreen,
+      page: () => const SettingsPrivacyPolicyScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: paywallProScreen,
+      page: () => const PaywallProScreen(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: stateLoadingSkeletonScreen,
+      page: () => const StateLoadingSkeletonScreen(),
+    ),
+    GetPage(
+      name: stateErrorScreen,
+      page: () => const StateErrorScreen(),
+    ),
+    GetPage(
+      name: stateEmptyScreen,
+      page: () => const StateEmptyScreen(),
+    ),
+    GetPage(
+      name: stateSuccessScreen,
+      page: () => const StateSuccessScreen(),
     ),
   ];
 }
