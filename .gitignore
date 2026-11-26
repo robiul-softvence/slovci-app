@@ -83,3 +83,8 @@ temp_interactive_push.bat
 .gitignore
 config.bat
 node_modules
+
+# Android local build cache / machine-specific files
+android/.gradle/
+android/build/
+android/local.properties

@@ -1,4 +1,6 @@
+class ImagePath {
+  ImagePath._();
 
-class ImagePath{
-  static const  String logo='';
+  /// Placeholder (AI-generated) coach photo from Figma "00a · Welcome".
+  static const String coachMilon = 'assets/images/coach_milon.jpg';
 }

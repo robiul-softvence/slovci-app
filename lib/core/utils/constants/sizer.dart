@@ -7,8 +7,8 @@ export 'package:sizer/sizer.dart' show Sizer, Device, ScreenType;
 class AppSizer {
   AppSizer._();
 
-  static const double designWidth = 360;
-  static const double designHeight = 690;
+  static const double designWidth = 390;
+  static const double designHeight = 844;
 
   static const double mediumBreakpoint = 400;
   static const double largeBreakpoint = 600;

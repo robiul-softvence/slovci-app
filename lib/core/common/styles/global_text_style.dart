@@ -19,12 +19,17 @@ class AppTextStyle {
   static const double heading = 28;
   static const double display = 32;
 
+  // Font families (Google Fonts names)
+  static const String bodyFont = 'Plus Jakarta Sans';
+  static const String brandFont = 'Archivo Black';
+
   Color get _color => _context != null
       ? AppColors.textPrimary(_context)
       : AppColors.lightTextPrimary;
 
   TextStyle getTextStyle({
     required double fontSize,
+    String fontFamily = bodyFont,
     Color? color,
     FontWeight fontWeight = FontWeight.w400,
     FontStyle fontStyle = FontStyle.normal,
@@ -37,7 +42,8 @@ class AppTextStyle {
     double? decorationThickness,
     TextBaseline? textBaseline,
   }) {
-    return GoogleFonts.nunito(
+    return GoogleFonts.getFont(
+      fontFamily,
       fontSize: fontSize.sp,
       color: color ?? _color,
       fontWeight: fontWeight,
@@ -233,3 +239,4 @@ class AppTextStyle {
         decoration: decoration,
       );
 }
+
