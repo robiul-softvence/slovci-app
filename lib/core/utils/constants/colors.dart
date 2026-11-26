@@ -30,6 +30,7 @@ class AppColors {
   static const Color limeSoft = Color(0xFFF1F9D2);
   static const Color amber = Color(0xFFD68A25);
   static const Color mintRow = Color(0xFFE8F4EE);
+  static const Color carbsBlue = Color(0xFF3478C8);
 
   // ─── Status ────────────────────────────────────────────
   static const Color success = Color(0xFF22C55E);

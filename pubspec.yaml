@@ -89,8 +89,10 @@ flutter:
     - assets/icons/auth/
     - assets/icons/onboarding/
     - assets/icons/home_workout/
+    - assets/icons/nutrition/
     - assets/images/
     - assets/images/home_workout/
+    - assets/images/nutrition/
     - assets/jsons/
     
     

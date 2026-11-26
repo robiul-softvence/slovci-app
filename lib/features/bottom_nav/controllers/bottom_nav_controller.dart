@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 import 'package:flutter_tamplate/features/home/presentation/screens/home_daily_planner_screen.dart';
+import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_daily_dashboard_screen.dart';
 import 'package:flutter_tamplate/features/workout/presentation/screens/workout_session_overview_screen.dart';
 
 class MilonNavItem {
@@ -26,7 +27,7 @@ class BottomNavController extends GetxController {
   final List<Widget> screens = const [
     HomeDailyPlannerScreen(),
     WorkoutSessionOverviewScreen(),
-    _ComingSoonTab(title: 'Nutrition', subtitle: 'Daily macros & meal planner'),
+    NutritionDailyDashboardScreen(),
     _ComingSoonTab(title: 'Progress', subtitle: 'Weight, streaks & PRs'),
     _ComingSoonTab(title: 'MILON Coach', subtitle: 'Your personal AI coach'),
   ];

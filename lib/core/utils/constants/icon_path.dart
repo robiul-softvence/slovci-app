@@ -79,4 +79,18 @@ class IconPath {
   static const String hwSend = 'assets/icons/home_workout/send.svg';
   static const String hwClose = 'assets/icons/home_workout/x.svg';
   static const String hwCheck = 'assets/icons/home_workout/check.svg';
+
+  // ─── Nutrition icons (Figma "3 · Nutrition") ───
+  static const String nutCart = 'assets/icons/nutrition/cart.svg';
+  static const String nutCartGreen = 'assets/icons/nutrition/cart1.svg';
+  static const String nutBarcode = 'assets/icons/nutrition/barcode.svg';
+  static const String nutCamera = 'assets/icons/nutrition/camera.svg';
+  static const String nutImage = 'assets/icons/nutrition/image.svg';
+  static const String nutEdit = 'assets/icons/nutrition/edit.svg';
+  static const String nutMic = 'assets/icons/nutrition/mic.svg';
+  static const String nutLeaf = 'assets/icons/nutrition/leaf.svg';
+  static const String nutHeart = 'assets/icons/nutrition/heart.svg';
+  static const String nutRefresh = 'assets/icons/nutrition/refresh.svg';
+  static const String nutCal = 'assets/icons/nutrition/cal.svg';
+  static const String nutAlert = 'assets/icons/nutrition/alert.svg';
 }

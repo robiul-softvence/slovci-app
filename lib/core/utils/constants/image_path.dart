@@ -21,4 +21,16 @@ class ImagePath {
       'assets/images/home_workout/video_player.png';
   static const String exCircuitDemo =
       'assets/images/home_workout/current_exercise_demo.png';
+
+  // ─── Nutrition dish & scan photos (Figma "3 · Nutrition") ───
+  static const String nutYogurtBowl = 'assets/images/nutrition/dish_image.png';
+  static const String nutTofuSalad = 'assets/images/nutrition/dish_image1.png';
+  static const String nutAppleAlmond = 'assets/images/nutrition/dish_image2.png';
+  static const String nutChickenQuinoa =
+      'assets/images/nutrition/dish_image3.png';
+  static const String nutChickpeaBowl =
+      'assets/images/nutrition/dish_image4.png';
+  static const String nutRecipeHero = 'assets/images/nutrition/recipe_hero.png';
+  static const String nutPhotoScan =
+      'assets/images/nutrition/camera_capture.png';
 }

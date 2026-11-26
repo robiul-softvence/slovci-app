@@ -7,6 +7,11 @@ import 'package:flutter_tamplate/features/authentication/presentation/screens/si
 import 'package:flutter_tamplate/features/authentication/presentation/screens/verify_email_screen.dart';
 import 'package:flutter_tamplate/features/bottom_nav/presentaion/UI/bottom_nav_screen.dart';
 import 'package:flutter_tamplate/features/home/presentation/screens/home_free_plan_screen.dart';
+import 'package:flutter_tamplate/features/nutrition/bindings/nutrition_binding.dart';
+import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_grocery_list_screen.dart';
+import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_meal_planner_screen.dart';
+import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_photo_scan_screen.dart';
+import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_recipe_detail_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/bindings/onboarding_binding.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_anything_to_report_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_environment_screen.dart';
@@ -75,6 +80,13 @@ class AppRoute {
   static const String workoutEndFeedbackScreen = "/workoutEndFeedbackScreen";
   static const String workoutSessionSummaryScreen =
       "/workoutSessionSummaryScreen";
+  static const String nutritionMealPlannerScreen =
+      "/nutritionMealPlannerScreen";
+  static const String nutritionRecipeDetailScreen =
+      "/nutritionRecipeDetailScreen";
+  static const String nutritionPhotoScanScreen = "/nutritionPhotoScanScreen";
+  static const String nutritionGroceryListScreen =
+      "/nutritionGroceryListScreen";
 
   static const String internetlost = "/internetlost";
   static const String communityScreen = "/communityScreen";
@@ -217,6 +229,26 @@ class AppRoute {
       name: workoutSessionSummaryScreen,
       page: () => const WorkoutSessionSummaryScreen(),
       binding: WorkoutBinding(),
+    ),
+    GetPage(
+      name: nutritionMealPlannerScreen,
+      page: () => const NutritionMealPlannerScreen(),
+      binding: NutritionBinding(),
+    ),
+    GetPage(
+      name: nutritionRecipeDetailScreen,
+      page: () => const NutritionRecipeDetailScreen(),
+      binding: NutritionBinding(),
+    ),
+    GetPage(
+      name: nutritionPhotoScanScreen,
+      page: () => const NutritionPhotoScanScreen(),
+      binding: NutritionBinding(),
+    ),
+    GetPage(
+      name: nutritionGroceryListScreen,
+      page: () => const NutritionGroceryListScreen(),
+      binding: NutritionBinding(),
     ),
   ];
 }
