@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 import 'package:flutter_tamplate/features/bottom_nav/controllers/bottom_nav_controller.dart';
 import 'package:flutter_tamplate/features/home/presentation/controllers/home_controller.dart';
+import 'package:flutter_tamplate/features/nutrition/presentation/controllers/nutrition_controller.dart';
 import 'package:flutter_tamplate/features/workout/presentation/controllers/workout_controller.dart';
 
 /// Main app shell with the Figma-exact floating pill Bottom Navigation Bar:
@@ -21,6 +22,9 @@ class BottomNavScreen extends StatelessWidget {
     }
     if (!Get.isRegistered<WorkoutController>()) {
       Get.put(WorkoutController());
+    }
+    if (!Get.isRegistered<NutritionController>()) {
+      Get.put(NutritionController());
     }
     final controller = Get.isRegistered<BottomNavController>()
         ? Get.find<BottomNavController>()

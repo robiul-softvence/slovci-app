@@ -1,0 +1,422 @@
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:flutter_tamplate/core/core.dart';
+import 'package:flutter_tamplate/features/nutrition/presentation/controllers/nutrition_controller.dart';
+
+/// Figma "15 · Nutrition — Automated Grocery List".
+class NutritionGroceryListScreen extends GetView<NutritionController> {
+  const NutritionGroceryListScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final text = AppTextStyle(context);
+
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              // Header
+              Padding(
+                padding: EdgeInsets.fromLTRB(20.w, 8.h, 20.w, 8.h),
+                child: Row(
+                  children: [
+                    _TopCircleBtn(
+                      iconPath: IconPath.chevLeft,
+                      onTap: Get.back,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'My Grocery List',
+                        textAlign: TextAlign.center,
+                        style: text.boldTextStyle(
+                          fontSize: 18,
+                          color: AppColors.ink,
+                        ),
+                      ),
+                    ),
+                    _TopCircleBtn(
+                      iconPath: IconPath.hwShare,
+                      onTap: () => AppHelperFunctions.showSnackBar(
+                        'Grocery list copied to share!',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.fromLTRB(20.w, 10.h, 20.w, 24.h),
+                  child: Column(
+                    children: [
+                      // Dark Budget Summary Card
+                      Obx(() {
+                        final checked = controller.checkedGroceryCount;
+                        final checkedEur = controller.checkedGroceryEur;
+                        final progress = (checkedEur / 48.50).clamp(0.02, 1.0);
+
+                        return Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(18.r),
+                          decoration: BoxDecoration(
+                            color: AppColors.ink,
+                            borderRadius: BorderRadius.circular(24.r),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'WEEK OF NOV 16–22 · 14 MEALS',
+                                    style: text.boldTextStyle(
+                                      fontSize: 10.5,
+                                      letterSpacing: 0.6,
+                                      color: AppColors.white.withValues(
+                                        alpha: 0.72,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w,
+                                      vertical: 4.h,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.lime,
+                                      borderRadius: BorderRadius.circular(99.r),
+                                    ),
+                                    child: Text(
+                                      'Within budget',
+                                      style: text.boldTextStyle(
+                                        fontSize: 11,
+                                        color: AppColors.ink,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Gap(12),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.baseline,
+                                textBaseline: TextBaseline.alphabetic,
+                                children: [
+                                  Text(
+                                    '€${checkedEur.toStringAsFixed(2)}',
+                                    style: text.boldTextStyle(
+                                      fontSize: 32,
+                                      lineHeight: 36,
+                                      letterSpacing: -0.8,
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                                  Gap.h(8),
+                                  Text(
+                                    '/ €48.50 estimated',
+                                    style: text.regularTextStyle(
+                                      fontSize: 13.5,
+                                      color: AppColors.white.withValues(
+                                        alpha: 0.68,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Gap(12),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(99.r),
+                                child: LinearProgressIndicator(
+                                  value: progress,
+                                  minHeight: 6.h,
+                                  backgroundColor: AppColors.white.withValues(
+                                    alpha: 0.16,
+                                  ),
+                                  valueColor:
+                                      const AlwaysStoppedAnimation<Color>(
+                                        AppColors.coral,
+                                      ),
+                                ),
+                              ),
+                              Gap(12),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '$checked of 18 items checked',
+                                    style: text.regularTextStyle(
+                                      fontSize: 12,
+                                      color: AppColors.white.withValues(
+                                        alpha: 0.72,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Weekly budget €50',
+                                    style: text.mediumTextStyle(
+                                      fontSize: 12,
+                                      color: AppColors.white.withValues(
+                                        alpha: 0.78,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                      Gap(16),
+                      _GroceryCategoryCard(
+                        category: 'Produce',
+                        iconPath: IconPath.nutLeaf,
+                        controller: controller,
+                      ),
+                      Gap(14),
+                      _GroceryCategoryCard(
+                        category: 'Protein',
+                        iconPath: IconPath.hwFlame,
+                        controller: controller,
+                      ),
+                      Gap(14),
+                      _GroceryCategoryCard(
+                        category: 'Pantry & Dairy',
+                        iconPath: IconPath.hwFood,
+                        controller: controller,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // Bottom Share List outline button
+              Container(
+                color: AppColors.white,
+                padding: EdgeInsets.fromLTRB(
+                  20.w,
+                  10.h,
+                  20.w,
+                  math.max(MediaQuery.viewPaddingOf(context).bottom, 20.0),
+                ),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 52.h,
+                  child: Material(
+                    color: AppColors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.r),
+                      side: const BorderSide(color: AppColors.line),
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: InkWell(
+                      onTap: () => AppHelperFunctions.showSnackBar(
+                        'Grocery list ready to share!',
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Share List',
+                          style: text.boldTextStyle(
+                            fontSize: 15,
+                            color: AppColors.ink,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _TopCircleBtn extends StatelessWidget {
+  const _TopCircleBtn({required this.iconPath, required this.onTap});
+
+  final String iconPath;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.pearl,
+      shape: const CircleBorder(),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: SizedBox.square(
+          dimension: 40.r,
+          child: Center(
+            child: SvgPicture.asset(iconPath, width: 19.r, height: 19.r),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _GroceryCategoryCard extends StatelessWidget {
+  const _GroceryCategoryCard({
+    required this.category,
+    required this.iconPath,
+    required this.controller,
+  });
+
+  final String category;
+  final String iconPath;
+  final NutritionController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = AppTextStyle(context);
+
+    return Obx(() {
+      final indexedItems = controller.groceryItems
+          .asMap()
+          .entries
+          .where((e) => e.value.category == category)
+          .toList();
+
+      return Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(14.r),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(20.r),
+          border: Border.all(color: AppColors.line),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 34.r,
+                  height: 34.r,
+                  decoration: BoxDecoration(
+                    color: AppColors.peach,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Center(
+                    child: SvgPicture.asset(
+                      iconPath,
+                      width: 17.r,
+                      height: 17.r,
+                      colorFilter: const ColorFilter.mode(
+                        AppColors.cta,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                ),
+                Gap.h(10),
+                Text(
+                  category,
+                  style: text.boldTextStyle(fontSize: 15, color: AppColors.ink),
+                ),
+                const Spacer(),
+                Text(
+                  '${indexedItems.length} items',
+                  style: text.regularTextStyle(
+                    fontSize: 12.5,
+                    color: AppColors.muted,
+                  ),
+                ),
+              ],
+            ),
+            Gap(12),
+            ...indexedItems.map((entry) {
+              final idx = entry.key;
+              final item = entry.value;
+              return Padding(
+                padding: EdgeInsets.only(bottom: 12.h),
+                child: GestureDetector(
+                  onTap: () => controller.toggleGroceryItem(idx),
+                  behavior: HitTestBehavior.opaque,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 24.r,
+                        height: 24.r,
+                        decoration: BoxDecoration(
+                          color: item.checked
+                              ? AppColors.emerald
+                              : AppColors.white,
+                          borderRadius: BorderRadius.circular(7.r),
+                          border: Border.all(
+                            color: item.checked
+                                ? AppColors.emerald
+                                : AppColors.line,
+                            width: 1.5,
+                          ),
+                        ),
+                        child: item.checked
+                            ? Center(
+                                child: SvgPicture.asset(
+                                  IconPath.hwCheck,
+                                  width: 13.r,
+                                  height: 13.r,
+                                  colorFilter: const ColorFilter.mode(
+                                    AppColors.white,
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                              )
+                            : null,
+                      ),
+                      Gap.h(12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item.name,
+                              style: text.semiBoldTextStyle(
+                                fontSize: 14.5,
+                                color: item.checked
+                                    ? AppColors.muted
+                                    : AppColors.ink,
+                                decoration: item.checked
+                                    ? TextDecoration.lineThrough
+                                    : TextDecoration.none,
+                              ),
+                            ),
+                            Gap(2),
+                            Text(
+                              item.detail,
+                              style: text.regularTextStyle(
+                                fontSize: 12,
+                                color: AppColors.muted,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Text(
+                        '€${item.priceEur.toStringAsFixed(2)}',
+                        style: text.semiBoldTextStyle(
+                          fontSize: 14,
+                          color: AppColors.ink,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          ],
+        ),
+      );
+    });
+  }
+}
