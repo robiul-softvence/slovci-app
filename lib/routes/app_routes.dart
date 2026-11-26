@@ -6,6 +6,7 @@ import 'package:flutter_tamplate/features/authentication/presentation/screens/si
 import 'package:flutter_tamplate/features/authentication/presentation/screens/sign_up_screen.dart';
 import 'package:flutter_tamplate/features/authentication/presentation/screens/verify_email_screen.dart';
 import 'package:flutter_tamplate/features/bottom_nav/presentaion/UI/bottom_nav_screen.dart';
+import 'package:flutter_tamplate/features/home/presentation/screens/home_free_plan_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/bindings/onboarding_binding.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_anything_to_report_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_environment_screen.dart';
@@ -24,6 +25,13 @@ import 'package:flutter_tamplate/features/splash/bindings/splash_binding.dart';
 import 'package:flutter_tamplate/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flutter_tamplate/features/welcome/bindings/welcome_binding.dart';
 import 'package:flutter_tamplate/features/welcome/presentation/screens/welcome_screen.dart';
+import 'package:flutter_tamplate/features/workout/bindings/workout_binding.dart';
+import 'package:flutter_tamplate/features/workout/presentation/screens/workout_active_set_screen.dart';
+import 'package:flutter_tamplate/features/workout/presentation/screens/workout_end_feedback_screen.dart';
+import 'package:flutter_tamplate/features/workout/presentation/screens/workout_exercise_detail_screen.dart';
+import 'package:flutter_tamplate/features/workout/presentation/screens/workout_rest_countdown_screen.dart';
+import 'package:flutter_tamplate/features/workout/presentation/screens/workout_session_summary_screen.dart';
+import 'package:flutter_tamplate/features/workout/presentation/screens/workout_timed_circuit_screen.dart';
 
 class AppRoute {
   static const String splashScreen = "/splashScreen";
@@ -57,6 +65,16 @@ class AppRoute {
   static const String onboardingNotificationsScreen =
       "/onboardingNotificationsScreen";
   static const String bottomNavScreen = "/bottomNavScreen";
+  static const String homeFreePlanScreen = "/homeFreePlanScreen";
+  static const String workoutExerciseDetailScreen =
+      "/workoutExerciseDetailScreen";
+  static const String workoutActiveSetScreen = "/workoutActiveSetScreen";
+  static const String workoutTimedCircuitScreen = "/workoutTimedCircuitScreen";
+  static const String workoutRestCountdownScreen =
+      "/workoutRestCountdownScreen";
+  static const String workoutEndFeedbackScreen = "/workoutEndFeedbackScreen";
+  static const String workoutSessionSummaryScreen =
+      "/workoutSessionSummaryScreen";
 
   static const String internetlost = "/internetlost";
   static const String communityScreen = "/communityScreen";
@@ -169,5 +187,36 @@ class AppRoute {
       binding: OnboardingBinding(),
     ),
     GetPage(name: bottomNavScreen, page: () => const BottomNavScreen()),
+    GetPage(name: homeFreePlanScreen, page: () => const HomeFreePlanScreen()),
+    GetPage(
+      name: workoutExerciseDetailScreen,
+      page: () => const WorkoutExerciseDetailScreen(),
+      binding: WorkoutBinding(),
+    ),
+    GetPage(
+      name: workoutActiveSetScreen,
+      page: () => const WorkoutActiveSetScreen(),
+      binding: WorkoutBinding(),
+    ),
+    GetPage(
+      name: workoutTimedCircuitScreen,
+      page: () => const WorkoutTimedCircuitScreen(),
+      binding: WorkoutBinding(),
+    ),
+    GetPage(
+      name: workoutRestCountdownScreen,
+      page: () => const WorkoutRestCountdownScreen(),
+      binding: WorkoutBinding(),
+    ),
+    GetPage(
+      name: workoutEndFeedbackScreen,
+      page: () => const WorkoutEndFeedbackScreen(),
+      binding: WorkoutBinding(),
+    ),
+    GetPage(
+      name: workoutSessionSummaryScreen,
+      page: () => const WorkoutSessionSummaryScreen(),
+      binding: WorkoutBinding(),
+    ),
   ];
 }

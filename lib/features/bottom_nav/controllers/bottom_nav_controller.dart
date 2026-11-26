@@ -1,122 +1,82 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_tamplate/core/core.dart';
+import 'package:flutter_tamplate/features/home/presentation/screens/home_daily_planner_screen.dart';
+import 'package:flutter_tamplate/features/workout/presentation/screens/workout_session_overview_screen.dart';
 
-// ─── Placeholder screens ───────────────────────────────────────────────────
-// Replace these with your actual screen widgets.
-class BookingScreen extends StatelessWidget {
-  const BookingScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const _PlaceholderPage(label: 'Booking');
-}
+class MilonNavItem {
+  const MilonNavItem({required this.title, required this.iconPath});
 
-class CommunityScreen extends StatelessWidget {
-  const CommunityScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const _PlaceholderPage(label: 'Community');
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const _PlaceholderPage(label: 'Home');
-}
-
-class MessagesScreen extends StatelessWidget {
-  const MessagesScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const _PlaceholderPage(label: 'Messages');
-}
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const _PlaceholderPage(label: 'Profile');
-}
-
-class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage({required this.label});
-  final String label;
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Center(
-          child: Text(
-            label,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        ),
-      );
-}
-
-// ─── Nav Item Model ─────────────────────────────────────────────────────────
-
-class NavItem {
   final String title;
-  final IconData icon;
-  final IconData activeIcon; // filled variant for selected state
-  final int? badgeCount;    // optional notification badge
-
-  const NavItem({
-    required this.title,
-    required this.icon,
-    IconData? activeIcon,
-    this.badgeCount,
-  }) : activeIcon = activeIcon ?? icon;
+  final String iconPath;
 }
 
-// ─── Controller ─────────────────────────────────────────────────────────────
-
+/// Manages the 5-tab MILON floating pill bottom navigation bar.
 class BottomNavController extends GetxController {
-  final RxInt currentIndex = 2.obs; // default to Home (index 2)
+  final RxInt currentIndex = 0.obs;
 
-  // ── Nav items — add/remove/reorder freely ──────────────────────────────
-  final List<NavItem> items = const [
-    NavItem(
-      title: 'Booking',
-      icon: Icons.book_online_outlined,
-      activeIcon: Icons.book_online,
-    ),
-    NavItem(
-      title: 'Community',
-      icon: Icons.group_outlined,
-      activeIcon: Icons.group,
-    ),
-    NavItem(
-      title: 'Home',
-      icon: Icons.home_outlined,
-      activeIcon: Icons.home,
-    ),
-    NavItem(
-      title: 'Messages',
-      icon: Icons.chat_bubble_outline,
-      activeIcon: Icons.chat_bubble,
-      badgeCount: 3, // example badge
-    ),
-    NavItem(
-      title: 'Profile',
-      icon: Icons.person_outline,
-      activeIcon: Icons.person,
-    ),
+  final List<MilonNavItem> items = const [
+    MilonNavItem(title: 'Home', iconPath: IconPath.hwHome),
+    MilonNavItem(title: 'Workout', iconPath: IconPath.hwDumbbell),
+    MilonNavItem(title: 'Nutrition', iconPath: IconPath.hwFood),
+    MilonNavItem(title: 'Progress', iconPath: IconPath.hwChart),
+    MilonNavItem(title: 'Coach', iconPath: IconPath.hwSpark),
   ];
 
-  // ── Screens — keep in the same order as items ──────────────────────────
   final List<Widget> screens = const [
-    BookingScreen(),
-    CommunityScreen(),
-    HomeScreen(),
-    MessagesScreen(),
-    ProfileScreen(),
+    HomeDailyPlannerScreen(),
+    WorkoutSessionOverviewScreen(),
+    _ComingSoonTab(title: 'Nutrition', subtitle: 'Daily macros & meal planner'),
+    _ComingSoonTab(title: 'Progress', subtitle: 'Weight, streaks & PRs'),
+    _ComingSoonTab(title: 'MILON Coach', subtitle: 'Your personal AI coach'),
   ];
 
-  // ── Actions ────────────────────────────────────────────────────────────
   void changeIndex(int index) {
-    assert(index >= 0 && index < items.length, 'Index out of range');
+    if (index < 0 || index >= items.length) return;
     currentIndex.value = index;
   }
 
-  void goTo(String tabTitle) {
-    final idx = items.indexWhere(
-      (e) => e.title.toLowerCase() == tabTitle.toLowerCase(),
+  void goToWorkout() => changeIndex(1);
+  void goToNutrition() => changeIndex(2);
+  void goToHome() => changeIndex(0);
+}
+
+class _ComingSoonTab extends StatelessWidget {
+  const _ComingSoonTab({required this.title, required this.subtitle});
+
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = AppTextStyle(context);
+
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: text.boldTextStyle(
+                fontSize: 24,
+                lineHeight: 30,
+                color: AppColors.ink,
+              ),
+            ),
+            Gap(6),
+            Text(
+              subtitle,
+              style: text.regularTextStyle(
+                fontSize: 14,
+                lineHeight: 20,
+                color: AppColors.muted,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
-    if (idx != -1) changeIndex(idx);
   }
 }

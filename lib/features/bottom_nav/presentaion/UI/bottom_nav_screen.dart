@@ -1,135 +1,129 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:flutter_tamplate/features/bottom_nav/controllers/bottom_nav_controller.dart';
+import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:flutter_tamplate/core/core.dart';
+import 'package:flutter_tamplate/features/bottom_nav/controllers/bottom_nav_controller.dart';
+import 'package:flutter_tamplate/features/home/presentation/controllers/home_controller.dart';
+import 'package:flutter_tamplate/features/workout/presentation/controllers/workout_controller.dart';
+
+/// Main app shell with the Figma-exact floating pill Bottom Navigation Bar:
+/// active tab shows a coral CTA pill with white icon + label, inactive tabs
+/// show muted icons only.
 class BottomNavScreen extends StatelessWidget {
   const BottomNavScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(BottomNavController());
+    if (!Get.isRegistered<HomeController>()) {
+      Get.put(HomeController());
+    }
+    if (!Get.isRegistered<WorkoutController>()) {
+      Get.put(WorkoutController());
+    }
+    final controller = Get.isRegistered<BottomNavController>()
+        ? Get.find<BottomNavController>()
+        : Get.put(BottomNavController());
 
-    return Obx(() => Scaffold(
-          body: IndexedStack(
-            index: controller.currentIndex.value,
-            children: controller.screens,
-          ),
-          bottomNavigationBar: _AppBottomNavBar(controller: controller),
-        ));
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      extendBody: true,
+      body: Obx(
+        () => IndexedStack(
+          index: controller.currentIndex.value,
+          children: controller.screens,
+        ),
+      ),
+      bottomNavigationBar: MilonFloatingNavBar(controller: controller),
+    );
   }
 }
 
-class _AppBottomNavBar extends StatelessWidget {
-  const _AppBottomNavBar({required this.controller});
+/// Figma floating pill bottom nav bar (shared on Home, Free Plan, Workout).
+class MilonFloatingNavBar extends StatelessWidget {
+  const MilonFloatingNavBar({super.key, required this.controller});
 
   final BottomNavController controller;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        boxShadow: [
-          BoxShadow(
-            color: theme.shadowColor.withValues(alpha: 0.08),
-            blurRadius: 24,
-            offset: const Offset(0, -4),
-          ),
-        ],
-      ),
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          child: Obx(
-            () => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(
-                controller.items.length,
-                (index) => _NavBarItem(
-                  item: controller.items[index],
-                  isSelected: controller.currentIndex.value == index,
-                  onTap: () => controller.changeIndex(index),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+    final text = AppTextStyle(context);
+    final bottomInset = math.max(
+      MediaQuery.viewPaddingOf(context).bottom,
+      14.0,
     );
-  }
-}
 
-class _NavBarItem extends StatelessWidget {
-  const _NavBarItem({
-    required this.item,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final NavItem item;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final primaryColor = theme.colorScheme.primary;
-    final unselectedColor = theme.colorScheme.onSurface.withValues(alpha: 0.5);
-
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        behavior: HitTestBehavior.opaque,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          curve: Curves.easeInOut,
-          padding: const EdgeInsets.symmetric(vertical: 6),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Icon with animated pill background
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
-                curve: Curves.easeInOut,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: isSelected
-                      ? primaryColor.withValues(alpha: 0.12)
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Icon(
-                  isSelected ? item.activeIcon : item.icon,
-                  size: 24,
-                  color: isSelected ? primaryColor : unselectedColor,
-                ),
-              ),
-              const SizedBox(height: 4),
-              // Label
-              AnimatedDefaultTextStyle(
-                duration: const Duration(milliseconds: 250),
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight:
-                      isSelected ? FontWeight.w600 : FontWeight.w400,
-                  color: isSelected ? primaryColor : unselectedColor,
-                  letterSpacing: isSelected ? 0.2 : 0,
-                ),
-                child: Text(
-                  item.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, bottomInset),
+      child: Container(
+        height: 64.h,
+        padding: EdgeInsets.all(6.r),
+        decoration: BoxDecoration(
+          color: AppColors.pearl,
+          borderRadius: BorderRadius.circular(999.r),
+          border: Border.all(color: AppColors.line),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.ink.withValues(alpha: 0.08),
+              blurRadius: 20,
+              offset: const Offset(0, 6),
+            ),
+          ],
         ),
+        child: Obx(() {
+          final active = controller.currentIndex.value;
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(controller.items.length, (i) {
+              final item = controller.items[i];
+              final isSelected = i == active;
+
+              return GestureDetector(
+                onTap: () => controller.changeIndex(i),
+                behavior: HitTestBehavior.opaque,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 220),
+                  curve: Curves.easeOutCubic,
+                  height: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: isSelected ? 18.w : 14.w,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isSelected ? AppColors.cta : AppColors.transparent,
+                    borderRadius: BorderRadius.circular(999.r),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        item.iconPath,
+                        width: 21.r,
+                        height: 21.r,
+                        colorFilter: ColorFilter.mode(
+                          isSelected ? AppColors.white : AppColors.muted,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                      if (isSelected) ...[
+                        Gap.h(8),
+                        Text(
+                          item.title,
+                          style: text.boldTextStyle(
+                            fontSize: 13.5,
+                            lineHeight: 16,
+                            color: AppColors.white,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              );
+            }),
+          );
+        }),
       ),
     );
   }
