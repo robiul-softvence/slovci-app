@@ -41,3 +41,6 @@ enum MediaType { image, video, document, audio }
 enum UserRole { user, serviceProvider, admin, guest }
 
 enum MessageType { text, image, video, document }
+
+/// Languages the app ships with. `name` is the locale language code.
+enum AppLanguage { en, fr }

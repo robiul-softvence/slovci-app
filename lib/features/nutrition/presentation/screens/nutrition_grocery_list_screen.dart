@@ -34,7 +34,7 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                     ),
                     Expanded(
                       child: Text(
-                        'My Grocery List',
+                        'nutrition.grocery_list.title'.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 18,
@@ -45,7 +45,7 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                     _TopCircleBtn(
                       iconPath: IconPath.hwShare,
                       onTap: () => AppHelperFunctions.showSnackBar(
-                        'Grocery list copied to share!',
+                        'nutrition.grocery_list.snack_copied'.tr,
                       ),
                     ),
                   ],
@@ -77,7 +77,7 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'WEEK OF NOV 16–22 · 14 MEALS',
+                                    'nutrition.grocery_list.week_eyebrow'.tr,
                                     style: text.boldTextStyle(
                                       fontSize: 10.5,
                                       letterSpacing: 0.6,
@@ -96,7 +96,7 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                                       borderRadius: BorderRadius.circular(99.r),
                                     ),
                                     child: Text(
-                                      'Within budget',
+                                      'nutrition.grocery_list.within_budget'.tr,
                                       style: text.boldTextStyle(
                                         fontSize: 11,
                                         color: AppColors.ink,
@@ -111,7 +111,7 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                                 textBaseline: TextBaseline.alphabetic,
                                 children: [
                                   Text(
-                                    '€${checkedEur.toStringAsFixed(2)}',
+                                    controller.price(checkedEur),
                                     style: text.boldTextStyle(
                                       fontSize: 32,
                                       lineHeight: 36,
@@ -121,7 +121,9 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                                   ),
                                   Gap.h(8),
                                   Text(
-                                    '/ €48.50 estimated',
+                                    'nutrition.grocery_list.estimated'.trParams({
+                                      'price': controller.price(48.50),
+                                    }),
                                     style: text.regularTextStyle(
                                       fontSize: 13.5,
                                       color: AppColors.white.withValues(
@@ -152,7 +154,11 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    '$checked of 18 items checked',
+                                    'nutrition.grocery_list.items_checked'
+                                        .trParams({
+                                          'count': '$checked',
+                                          'total': '18',
+                                        }),
                                     style: text.regularTextStyle(
                                       fontSize: 12,
                                       color: AppColors.white.withValues(
@@ -161,7 +167,11 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                                     ),
                                   ),
                                   Text(
-                                    'Weekly budget €50',
+                                    'nutrition.grocery_list.weekly_budget'
+                                        .trParams({
+                                          'price': 'nutrition.common.price'
+                                              .trParams({'amount': '50'}),
+                                        }),
                                     style: text.mediumTextStyle(
                                       fontSize: 12,
                                       color: AppColors.white.withValues(
@@ -178,18 +188,21 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                       Gap(16),
                       _GroceryCategoryCard(
                         category: 'Produce',
+                        titleKey: 'nutrition.grocery_list.category_produce',
                         iconPath: IconPath.nutLeaf,
                         controller: controller,
                       ),
                       Gap(14),
                       _GroceryCategoryCard(
                         category: 'Protein',
+                        titleKey: 'nutrition.grocery_list.category_protein',
                         iconPath: IconPath.hwFlame,
                         controller: controller,
                       ),
                       Gap(14),
                       _GroceryCategoryCard(
                         category: 'Pantry & Dairy',
+                        titleKey: 'nutrition.grocery_list.category_pantry_dairy',
                         iconPath: IconPath.hwFood,
                         controller: controller,
                       ),
@@ -218,11 +231,11 @@ class NutritionGroceryListScreen extends GetView<NutritionController> {
                     clipBehavior: Clip.antiAlias,
                     child: InkWell(
                       onTap: () => AppHelperFunctions.showSnackBar(
-                        'Grocery list ready to share!',
+                        'nutrition.grocery_list.snack_ready'.tr,
                       ),
                       child: Center(
                         child: Text(
-                          'Share List',
+                          'nutrition.grocery_list.share_list'.tr,
                           style: text.boldTextStyle(
                             fontSize: 15,
                             color: AppColors.ink,
@@ -269,11 +282,16 @@ class _TopCircleBtn extends StatelessWidget {
 class _GroceryCategoryCard extends StatelessWidget {
   const _GroceryCategoryCard({
     required this.category,
+    required this.titleKey,
     required this.iconPath,
     required this.controller,
   });
 
+  /// Identifier matched against [GroceryItem.category] (not displayed).
   final String category;
+
+  /// Translation key of the displayed category title.
+  final String titleKey;
   final String iconPath;
   final NutritionController controller;
 
@@ -321,12 +339,14 @@ class _GroceryCategoryCard extends StatelessWidget {
                 ),
                 Gap.h(10),
                 Text(
-                  category,
+                  titleKey.tr,
                   style: text.boldTextStyle(fontSize: 15, color: AppColors.ink),
                 ),
                 const Spacer(),
                 Text(
-                  '${indexedItems.length} items',
+                  'nutrition.grocery_list.items_count'.trParams({
+                    'count': '${indexedItems.length}',
+                  }),
                   style: text.regularTextStyle(
                     fontSize: 12.5,
                     color: AppColors.muted,
@@ -380,7 +400,7 @@ class _GroceryCategoryCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              item.name,
+                              item.name.tr,
                               style: text.semiBoldTextStyle(
                                 fontSize: 14.5,
                                 color: item.checked
@@ -393,7 +413,7 @@ class _GroceryCategoryCard extends StatelessWidget {
                             ),
                             Gap(2),
                             Text(
-                              item.detail,
+                              item.detail.tr,
                               style: text.regularTextStyle(
                                 fontSize: 12,
                                 color: AppColors.muted,
@@ -403,7 +423,7 @@ class _GroceryCategoryCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '€${item.priceEur.toStringAsFixed(2)}',
+                        controller.price(item.priceEur),
                         style: text.semiBoldTextStyle(
                           fontSize: 14,
                           color: AppColors.ink,

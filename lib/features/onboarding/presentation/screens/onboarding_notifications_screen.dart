@@ -19,12 +19,12 @@ class OnboardingNotificationsScreen extends GetView<OnboardingController> {
 
     return OnboardingScaffold(
       showHeader: false,
-      eyebrow: 'ALMOST THERE',
-      title: 'Stay on track, gently',
-      subtitle: 'Helpful reminders, never spam. You choose the timing.',
+      eyebrow: 'onboarding.notifications.eyebrow'.tr,
+      title: 'onboarding.notifications.title'.tr,
+      subtitle: 'onboarding.notifications.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Turn On Notifications',
+          label: 'onboarding.notifications.cta'.tr,
           onPressed: controller.finishOnboarding,
         ),
         secondary: GestureDetector(
@@ -33,7 +33,7 @@ class OnboardingNotificationsScreen extends GetView<OnboardingController> {
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 6.h),
             child: Text(
-              'Not now',
+              'onboarding.notifications.not_now'.tr,
               style: text.semiBoldTextStyle(
                 fontSize: AppTextStyle.md,
                 lineHeight: 20,
@@ -59,14 +59,16 @@ class OnboardingNotificationsScreen extends GetView<OnboardingController> {
                 () => _NotificationPreviewCard(
                   title: 'MILON',
                   time: controller.reminderTimeLabel,
-                  body:
-                      'Your Full Body session is ready: ${controller.sessionLengthMinutes.value} min at ${controller.environmentLabel.toLowerCase()}. Let\'s go!',
+                  body: 'onboarding.notifications.preview_workout'.trParams({
+                    'minutes': '${controller.sessionLengthMinutes.value}',
+                    'place': controller.environmentPlaceLabel,
+                  }),
                 ),
               ),
               Gap(10),
-              const _NotificationPreviewCard(
-                title: 'MILON · Sunday',
-                body: '2-min weekly check-in: how was your week?',
+              _NotificationPreviewCard(
+                title: 'onboarding.notifications.preview_checkin_title'.tr,
+                body: 'onboarding.notifications.preview_checkin_body'.tr,
               ),
             ],
           ),
@@ -76,26 +78,26 @@ class OnboardingNotificationsScreen extends GetView<OnboardingController> {
         Obx(
           () => _ReminderRow(
             iconPath: IconPath.obDumbbellCoral,
-            title: 'Workout reminders',
+            title: 'onboarding.notifications.workout_reminders'.tr,
             subtitle:
                 '${controller.selectedDaysSummary} · ${controller.reminderTimeLabel}',
           ),
         ),
         Gap(14),
-        const _ReminderRow(
+        _ReminderRow(
           iconPath: IconPath.obFood,
-          title: 'Meal & water nudges',
-          subtitle: 'Lunch 12:15 PM · Dinner 7:00 PM',
+          title: 'onboarding.notifications.meal_nudges'.tr,
+          subtitle: 'onboarding.notifications.meal_nudges_subtitle'.tr,
         ),
         Gap(14),
-        const _ReminderRow(
+        _ReminderRow(
           iconPath: IconPath.obCalendar,
-          title: 'Weekly check-in',
-          subtitle: 'Sunday evening · 2 minutes',
+          title: 'onboarding.notifications.weekly_checkin'.tr,
+          subtitle: 'onboarding.notifications.weekly_checkin_subtitle'.tr,
         ),
         Gap(24),
-        const OnboardingSectionTitle(
-          title: 'Motivation messages from MILON Coach',
+        OnboardingSectionTitle(
+          title: 'onboarding.notifications.motivation_title'.tr,
         ),
         Gap(12),
         Obx(
@@ -106,20 +108,20 @@ class OnboardingNotificationsScreen extends GetView<OnboardingController> {
             labelBuilder: (f) {
               switch (f) {
                 case MotivationFrequency.daily:
-                  return 'Daily';
+                  return 'onboarding.notifications.frequency_daily'.tr;
                 case MotivationFrequency.threePerWeek:
-                  return '3× a week';
+                  return 'onboarding.notifications.frequency_three_per_week'.tr;
                 case MotivationFrequency.weekly:
-                  return 'Weekly';
+                  return 'onboarding.notifications.frequency_weekly'.tr;
                 case MotivationFrequency.off:
-                  return 'Off';
+                  return 'onboarding.notifications.frequency_off'.tr;
               }
             },
           ),
         ),
         Gap(10),
         Text(
-          'Short check-ins and encouragement. 3× a week is recommended.',
+          'onboarding.notifications.motivation_note'.tr,
           style: text.regularTextStyle(
             fontSize: AppTextStyle.sm,
             lineHeight: 17,
@@ -163,7 +165,7 @@ class OnboardingNotificationsScreen extends GetView<OnboardingController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Connect Apple Health',
+                      'onboarding.notifications.apple_health_title'.tr,
                       style: text.boldTextStyle(
                         fontSize: 14.5,
                         lineHeight: 19,
@@ -172,7 +174,7 @@ class OnboardingNotificationsScreen extends GetView<OnboardingController> {
                     ),
                     Gap(2),
                     Text(
-                      'Sync workouts, steps and weight automatically',
+                      'onboarding.notifications.apple_health_subtitle'.tr,
                       style: text.regularTextStyle(
                         fontSize: 12,
                         lineHeight: 16,
@@ -197,7 +199,9 @@ class OnboardingNotificationsScreen extends GetView<OnboardingController> {
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Text(
-                      connected ? 'Connected' : 'Connect',
+                      connected
+                          ? 'onboarding.notifications.connected'.tr
+                          : 'onboarding.notifications.connect'.tr,
                       style: text.semiBoldTextStyle(
                         fontSize: 13,
                         lineHeight: 16,

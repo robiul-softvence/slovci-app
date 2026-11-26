@@ -17,9 +17,9 @@ class CreatePasswordController extends GetxController {
   void updatePassword() {
     final password = passwordController.text;
     final error = password.length < 8
-        ? 'Password must be at least 8 characters.'
+        ? 'auth.validation.password_min_length'.tr
         : password != confirmController.text
-        ? 'Passwords do not match.'
+        ? 'auth.validation.passwords_mismatch'.tr
         : null;
     if (error != null) {
       AppHelperFunctions.showSnackBar(error);
@@ -28,9 +28,7 @@ class CreatePasswordController extends GetxController {
 
     // TODO(milon): call the reset-password use case once the auth API is ready.
     _goToSignIn();
-    AppHelperFunctions.showSnackBar(
-      'Password updated. Log in with your new password.',
-    );
+    AppHelperFunctions.showSnackBar('auth.create_password.updated'.tr);
   }
 
   void backToSignIn() => _goToSignIn();

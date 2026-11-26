@@ -18,7 +18,7 @@ class OnboardingWithMilonScreen extends GetView<OnboardingController> {
 
     return OnboardingScaffold(
       stepIndex: 2,
-      eyebrow: 'YOUR GOAL, MADE REAL',
+      eyebrow: 'onboarding.with_milon.eyebrow'.tr,
       titleWidget: Obx(
         () => RichText(
           text: TextSpan(
@@ -30,7 +30,9 @@ class OnboardingWithMilonScreen extends GetView<OnboardingController> {
             ),
             children: [
               TextSpan(
-                text: '${controller.firstName.value}, with MILON you can reach ',
+                text: 'onboarding.with_milon.title_prefix'.trParams({
+                  'name': controller.displayName,
+                }),
               ),
               TextSpan(
                 text: '${controller.targetWeightKg.value} kg',
@@ -41,14 +43,18 @@ class OnboardingWithMilonScreen extends GetView<OnboardingController> {
                   color: AppColors.cta,
                 ),
               ),
-              TextSpan(text: ' by ${controller.targetDateFormatted}'),
+              TextSpan(
+                text: 'onboarding.with_milon.title_suffix'.trParams({
+                  'date': controller.targetDateFormatted,
+                }),
+              ),
             ],
           ),
         ),
       ),
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: "Let's do it",
+          label: 'onboarding.with_milon.cta'.tr,
           onPressed: controller.goToHealthScreening,
         ),
       ),
@@ -70,7 +76,7 @@ class OnboardingWithMilonScreen extends GetView<OnboardingController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Today',
+                      'onboarding.common.today'.tr,
                       style: text.mediumTextStyle(
                         fontSize: 13,
                         lineHeight: 16,
@@ -123,10 +129,11 @@ class OnboardingWithMilonScreen extends GetView<OnboardingController> {
         ),
         Gap(16),
         Obx(() {
-          final pace = controller.weeklyPaceKg;
-          final weeks = controller.estimatedWeeks;
           return Text(
-            'A steady ${pace < 0 ? '−' : '+'}${pace.abs().toStringAsFixed(1)} kg per week, about $weeks weeks. Slow and safe, so the results last.',
+            'onboarding.with_milon.pace_note'.trParams({
+              'pace': controller.weeklyPaceLabel,
+              'weeks': '${controller.estimatedWeeks}',
+            }),
             style: text.regularTextStyle(
               fontSize: AppTextStyle.md,
               lineHeight: 21,
@@ -135,24 +142,26 @@ class OnboardingWithMilonScreen extends GetView<OnboardingController> {
           );
         }),
         Gap(26),
-        const OnboardingSectionTitle(title: 'With MILON, you get'),
+        OnboardingSectionTitle(
+          title: 'onboarding.with_milon.benefits_title'.tr,
+        ),
         Gap(16),
-        const _FeatureBenefitRow(
+        _FeatureBenefitRow(
           iconPath: IconPath.obDumbbellCoral,
-          title: 'Workouts built around you',
-          subtitle: 'Adapted to your body, injuries, equipment and schedule',
+          title: 'onboarding.with_milon.workouts_title'.tr,
+          subtitle: 'onboarding.with_milon.workouts_subtitle'.tr,
         ),
         Gap(16),
-        const _FeatureBenefitRow(
+        _FeatureBenefitRow(
           iconPath: IconPath.obForkKnife,
-          title: 'Meals that fit your budget',
-          subtitle: 'A weekly meal plan and grocery list, ready to go',
+          title: 'onboarding.with_milon.meals_title'.tr,
+          subtitle: 'onboarding.with_milon.meals_subtitle'.tr,
         ),
         Gap(16),
-        const _FeatureBenefitRow(
+        _FeatureBenefitRow(
           iconPath: IconPath.obChatBubble,
-          title: 'A coach by your side',
-          subtitle: 'MILON Coach checks in and adjusts your plan every week',
+          title: 'onboarding.with_milon.coach_title'.tr,
+          subtitle: 'onboarding.with_milon.coach_subtitle'.tr,
         ),
       ],
     );
@@ -185,11 +194,7 @@ class _FeatureBenefitRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(14.r),
           ),
           child: Center(
-            child: SvgPicture.asset(
-              iconPath,
-              width: 22.r,
-              height: 22.r,
-            ),
+            child: SvgPicture.asset(iconPath, width: 22.r, height: 22.r),
           ),
         ),
         Gap.h(14),

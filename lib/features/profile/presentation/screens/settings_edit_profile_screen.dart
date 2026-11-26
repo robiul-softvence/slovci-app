@@ -13,21 +13,31 @@ import 'package:flutter_tamplate/features/profile/presentation/widgets/settings_
 class SettingsEditProfileScreen extends GetView<ProfileController> {
   const SettingsEditProfileScreen({super.key});
 
-  static const _genders = ['Female', 'Male', 'Other'];
-  static const _goals = ['Lose Weight', 'Build Muscle', 'Stay Fit'];
+  static const _genderKeys = [
+    'profile.edit_profile.gender_female',
+    'profile.edit_profile.gender_male',
+    'profile.edit_profile.gender_other',
+  ];
+  static const _goalKeys = [
+    'profile.edit_profile.goal_lose_weight',
+    'profile.edit_profile.goal_build_muscle',
+    'profile.edit_profile.goal_stay_fit',
+  ];
 
   @override
   Widget build(BuildContext context) {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Edit Profile',
+      title: 'profile.edit_profile.title'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Save Changes',
+          label: 'profile.edit_profile.save_changes'.tr,
           onPressed: () {
             Get.back();
-            AppHelperFunctions.showSnackBar('Profile changes saved!');
+            AppHelperFunctions.showSnackBar(
+              'profile.edit_profile.changes_saved'.tr,
+            );
           },
         ),
       ),
@@ -71,7 +81,7 @@ class SettingsEditProfileScreen extends GetView<ProfileController> {
                     ),
                     Gap.h(6),
                     Text(
-                      'Change photo',
+                      'profile.edit_profile.change_photo'.tr,
                       style: text.semiBoldTextStyle(
                         fontSize: 13,
                         color: AppColors.ink,
@@ -84,19 +94,19 @@ class SettingsEditProfileScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('ABOUT YOU'),
+        SettingsSectionLabel('profile.edit_profile.section_about_you'.tr),
         Row(
           children: [
             Expanded(
               child: _LabeledInput(
-                label: 'First name',
+                label: 'profile.edit_profile.first_name'.tr,
                 controller: controller.firstNameController,
               ),
             ),
             Gap.h(12),
             Expanded(
               child: _LabeledInput(
-                label: 'Last name',
+                label: 'profile.edit_profile.last_name'.tr,
                 controller: controller.lastNameController,
               ),
             ),
@@ -104,12 +114,12 @@ class SettingsEditProfileScreen extends GetView<ProfileController> {
         ),
         Gap(12),
         _LabeledInput(
-          label: 'Date of birth',
+          label: 'profile.edit_profile.date_of_birth'.tr,
           controller: controller.dobController,
         ),
         Gap(12),
         Text(
-          'Gender',
+          'profile.edit_profile.gender'.tr,
           style: text.mediumTextStyle(fontSize: 12.5, color: AppColors.muted),
         ),
         Gap(6),
@@ -122,7 +132,7 @@ class SettingsEditProfileScreen extends GetView<ProfileController> {
               border: Border.all(color: AppColors.line),
             ),
             child: Row(
-              children: List.generate(_genders.length, (i) {
+              children: List.generate(_genderKeys.length, (i) {
                 final selected = controller.editGenderIndex.value == i;
                 return Expanded(
                   child: GestureDetector(
@@ -134,7 +144,7 @@ class SettingsEditProfileScreen extends GetView<ProfileController> {
                         borderRadius: BorderRadius.circular(11.r),
                       ),
                       child: Text(
-                        _genders[i],
+                        _genderKeys[i].tr,
                         textAlign: TextAlign.center,
                         style: text.semiBoldTextStyle(
                           fontSize: 13.5,
@@ -149,19 +159,19 @@ class SettingsEditProfileScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('BODY'),
+        SettingsSectionLabel('profile.edit_profile.section_body'.tr),
         Row(
           children: [
             Expanded(
               child: _LabeledInput(
-                label: 'Height',
+                label: 'profile.edit_profile.height'.tr,
                 controller: controller.heightController,
               ),
             ),
             Gap.h(12),
             Expanded(
               child: _LabeledInput(
-                label: 'Current weight',
+                label: 'profile.edit_profile.current_weight'.tr,
                 controller: controller.weightController,
               ),
             ),
@@ -169,17 +179,17 @@ class SettingsEditProfileScreen extends GetView<ProfileController> {
         ),
         Gap(12),
         _LabeledInput(
-          label: 'Target weight',
+          label: 'profile.edit_profile.target_weight'.tr,
           controller: controller.targetWeightController,
         ),
         Gap(22),
-        const SettingsSectionLabel('GOAL'),
+        SettingsSectionLabel('profile.edit_profile.section_goal'.tr),
         Obx(
           () => Wrap(
             spacing: 8.w,
-            children: List.generate(_goals.length, (i) {
+            children: List.generate(_goalKeys.length, (i) {
               return OnboardingTagChip(
-                label: _goals[i],
+                label: _goalKeys[i].tr,
                 selected: controller.editGoalIndex.value == i,
                 unselectedBg: AppColors.white,
                 onTap: () => controller.editGoalIndex.value = i,
@@ -188,11 +198,10 @@ class SettingsEditProfileScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(16),
-        const OnboardingInfoBanner(
+        OnboardingInfoBanner(
           backgroundColor: AppColors.infoSoft,
           textColor: AppColors.ink,
-          text:
-              "Changing your goal or body data regenerates next week's plan. This week stays as it is.",
+          text: 'profile.edit_profile.regenerate_info'.tr,
         ),
       ],
     );

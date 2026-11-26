@@ -3,6 +3,7 @@ import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 
 /// Figma "Hero Visual" (390 × 470) on "00a · Welcome": peach backdrop with
@@ -225,14 +226,14 @@ class _GlassPreviewCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "TODAY'S PLAN",
+                          'common.welcome.preview_title'.tr,
                           style: text.boldTextStyle(
                             fontSize: 11,
                             color: _inkSoft,
                           ),
                         ),
                         Text(
-                          'Full Body · 45 min · Home',
+                          'common.welcome.preview_session'.tr,
                           style: text.boldTextStyle(
                             fontSize: AppTextStyle.md,
                             color: AppColors.ink,
@@ -245,11 +246,20 @@ class _GlassPreviewCard extends StatelessWidget {
                 SizedBox(height: 12.w),
                 Row(
                   children: [
-                    const _StatTile(value: '1,485', label: 'kcal'),
+                    _StatTile(
+                      value: '1,485',
+                      label: 'common.welcome.stat_kcal'.tr,
+                    ),
                     SizedBox(width: 8.w),
-                    const _StatTile(value: '125g', label: 'protein'),
+                    _StatTile(
+                      value: '125g',
+                      label: 'common.welcome.stat_protein'.tr,
+                    ),
                     SizedBox(width: 8.w),
-                    const _StatTile(value: '2.0 L', label: 'water'),
+                    _StatTile(
+                      value: '2.0 L',
+                      label: 'common.welcome.stat_water'.tr,
+                    ),
                   ],
                 ),
               ],

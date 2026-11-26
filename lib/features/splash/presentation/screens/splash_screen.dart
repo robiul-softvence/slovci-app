@@ -52,7 +52,7 @@ class SplashScreen extends GetView<SplashController> {
                         ),
                         const Gap(12),
                         Text(
-                          AppText.appTagline,
+                          'common.app.tagline'.tr,
                           style: textStyle.mediumTextStyle(
                             fontSize: AppTextStyle.lg,
                             color: AppColors.white.withValues(alpha: 0.85),

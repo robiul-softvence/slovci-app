@@ -48,7 +48,7 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                     ),
                     Expanded(
                       child: Text(
-                        'Weekly Review',
+                        'progress_coach.weekly_review.title'.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 18,
@@ -67,7 +67,7 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'WEEK 12 · NOV 16–22',
+                        'progress_coach.weekly_review.eyebrow'.tr,
                         style: text.boldTextStyle(
                           fontSize: 11.5,
                           letterSpacing: 0.7,
@@ -76,7 +76,7 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                       ),
                       Gap(6),
                       Text(
-                        'Your week in review',
+                        'progress_coach.weekly_review.heading'.tr,
                         style: text.boldTextStyle(
                           fontSize: 28,
                           lineHeight: 34,
@@ -86,7 +86,9 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                       ),
                       Gap(6),
                       Text(
-                        "Great consistency, Solène. Here's how your week went.",
+                        'progress_coach.weekly_review.subheading'.trParams({
+                          'name': 'Solène',
+                        }),
                         style: text.regularTextStyle(
                           fontSize: 14,
                           lineHeight: 20,
@@ -106,7 +108,8 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'WORKOUTS',
+                              'progress_coach.weekly_review.workouts_eyebrow'
+                                  .tr,
                               style: text.boldTextStyle(
                                 fontSize: 11,
                                 letterSpacing: 0.7,
@@ -128,7 +131,8 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                                 ),
                                 Gap.h(10),
                                 Text(
-                                  'sessions done',
+                                  'progress_coach.weekly_review.sessions_done'
+                                      .tr,
                                   style: text.regularTextStyle(
                                     fontSize: 14,
                                     color: AppColors.white.withValues(
@@ -154,7 +158,8 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                             ),
                             Gap(10),
                             Text(
-                              '2 h 15 of training · 54 sets · 1,420 kcal burned',
+                              'progress_coach.weekly_review.workouts_summary'
+                                  .tr,
                               style: text.regularTextStyle(
                                 fontSize: 12.5,
                                 color: AppColors.white.withValues(alpha: 0.72),
@@ -166,11 +171,11 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                       Gap(12),
                       // 2x2 stat grid
                       Row(
-                        children: const [
+                        children: [
                           Expanded(
                             child: _ReviewMetricCard(
                               bg: AppColors.peach,
-                              title: 'Weight',
+                              title: 'progress_coach.weekly_review.weight'.tr,
                               value: '−0.5 kg',
                               subtitle: '62.4 → 61.9 kg',
                             ),
@@ -179,57 +184,68 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                           Expanded(
                             child: _ReviewMetricCard(
                               bg: AppColors.pearl,
-                              title: 'Nutrition',
+                              title:
+                                  'progress_coach.weekly_review.nutrition'.tr,
                               value: '5 / 7',
-                              subtitle: 'days on target',
+                              subtitle:
+                                  'progress_coach.weekly_review.days_on_target'
+                                      .tr,
                             ),
                           ),
                         ],
                       ),
                       Gap(12),
                       Row(
-                        children: const [
+                        children: [
                           Expanded(
                             child: _ReviewMetricCard(
                               bg: AppColors.pearl,
-                              title: 'Hydration',
+                              title:
+                                  'progress_coach.weekly_review.hydration'.tr,
                               value: '1.8 L',
-                              subtitle: 'average per day',
+                              subtitle:
+                                  'progress_coach.weekly_review.average_per_day'
+                                      .tr,
                             ),
                           ),
                           Gap.h(12),
                           Expanded(
                             child: _ReviewMetricCard(
                               bg: AppColors.peach,
-                              title: 'Streak',
-                              value: '5 days',
-                              subtitle: 'your best so far',
+                              title: 'progress_coach.weekly_review.streak'.tr,
+                              value: 'progress_coach.weekly_review.streak_days'
+                                  .trParams({'count': '5'}),
+                              subtitle:
+                                  'progress_coach.weekly_review.best_so_far'.tr,
                             ),
                           ),
                         ],
                       ),
                       Gap(22),
                       Text(
-                        'Highlights',
+                        'progress_coach.weekly_review.highlights'.tr,
                         style: text.boldTextStyle(
                           fontSize: 18,
                           color: AppColors.ink,
                         ),
                       ),
                       Gap(12),
-                      const _HighlightRow(
-                        title: 'New record',
-                        subtitle: 'Goblet Squat: 16 kg × 12 reps',
+                      _HighlightRow(
+                        title: 'progress_coach.weekly_review.new_record'.tr,
+                        subtitle:
+                            'progress_coach.weekly_review.new_record_detail'.tr,
                       ),
                       Gap(10),
-                      const _HighlightRow(
-                        title: 'Best day',
-                        subtitle: 'Wednesday, 100% of sets completed',
+                      _HighlightRow(
+                        title: 'progress_coach.weekly_review.best_day'.tr,
+                        subtitle:
+                            'progress_coach.weekly_review.best_day_detail'.tr,
                       ),
                       Gap(10),
-                      const _HighlightRow(
-                        title: 'Recovery',
-                        subtitle: 'Quads and glutes fully recovered',
+                      _HighlightRow(
+                        title: 'progress_coach.weekly_review.recovery'.tr,
+                        subtitle:
+                            'progress_coach.weekly_review.recovery_detail'.tr,
                       ),
                       Gap(16),
                       Container(
@@ -252,7 +268,7 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
                             ),
                             Gap(6),
                             Text(
-                              'Solid week! Next week we keep 3 sessions and add 1 kg on your squats. Try to drink one more glass of water a day.',
+                              'progress_coach.weekly_review.coach_message'.tr,
                               style: text.regularTextStyle(
                                 fontSize: 13.5,
                                 lineHeight: 20,
@@ -268,7 +284,7 @@ class ProgressWeeklyReviewScreen extends GetView<ProgressController> {
               ),
               BottomActionBar(
                 primary: AppPrimaryButton(
-                  label: 'Start my weekly check-in',
+                  label: 'progress_coach.weekly_review.cta'.tr,
                   onPressed: controller.openWeeklyCheckin,
                 ),
               ),
@@ -308,7 +324,10 @@ class _ReviewMetricCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: text.regularTextStyle(fontSize: 12.5, color: AppColors.muted),
+            style: text.regularTextStyle(
+              fontSize: 12.5,
+              color: AppColors.muted,
+            ),
           ),
           Gap(6),
           Text(

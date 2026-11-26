@@ -39,7 +39,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
             ),
             Gap.h(6),
             Text(
-              'PLAN READY',
+              'onboarding.plan_ready.badge'.tr,
               style: text.boldTextStyle(
                 fontSize: 11,
                 lineHeight: 14,
@@ -52,7 +52,9 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
       ),
       titleWidget: Obx(
         () => Text(
-          "${controller.firstName.value}, here's your first week",
+          'onboarding.plan_ready.title'.trParams({
+            'name': controller.displayName,
+          }),
           style: text.boldTextStyle(
             fontSize: 28,
             lineHeight: 34,
@@ -63,7 +65,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
       ),
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Start My 7-Day Free Trial',
+          label: 'onboarding.plan_ready.cta'.tr,
           onPressed: controller.goToNotifications,
         ),
         secondary: GestureDetector(
@@ -72,7 +74,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 6.h),
             child: Text(
-              'Review plan details',
+              'onboarding.plan_ready.review'.tr,
               style: text.semiBoldTextStyle(
                 fontSize: AppTextStyle.md,
                 lineHeight: 20,
@@ -100,7 +102,9 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'YOUR GOAL · ${controller.goalLabel.toUpperCase()}',
+                      'onboarding.plan_ready.goal_eyebrow'.trParams({
+                        'goal': controller.goalLabel.toUpperCase(),
+                      }),
                       style: text.boldTextStyle(
                         fontSize: 11,
                         lineHeight: 14,
@@ -117,7 +121,9 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                         ),
                         Gap.h(5),
                         Text(
-                          '~${controller.estimatedWeeks} weeks',
+                          'onboarding.common.weeks_approx'.trParams({
+                            'weeks': '${controller.estimatedWeeks}',
+                          }),
                           style: text.boldTextStyle(
                             fontSize: 12,
                             lineHeight: 15,
@@ -135,7 +141,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Today',
+                          'onboarding.common.today'.tr,
                           style: text.regularTextStyle(
                             fontSize: 12,
                             color: AppColors.white.withValues(alpha: 0.65),
@@ -165,7 +171,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Target',
+                          'onboarding.plan_ready.target'.tr,
                           style: text.regularTextStyle(
                             fontSize: 12,
                             color: AppColors.white.withValues(alpha: 0.65),
@@ -187,7 +193,9 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                 ),
                 Gap(12),
                 Text(
-                  'About ${controller.weeklyPaceKg < 0 ? '−' : '+'}${controller.weeklyPaceKg.abs().toStringAsFixed(1)} kg per week. This is an estimate, not a guarantee. We adjust every week with your check-in.',
+                  'onboarding.plan_ready.pace_note'.trParams({
+                    'pace': controller.weeklyPaceLabel,
+                  }),
                   style: text.regularTextStyle(
                     fontSize: 12,
                     lineHeight: 17,
@@ -235,7 +243,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       ),
                       Gap(12),
                       Text(
-                        'TRAINING',
+                        'onboarding.plan_ready.training'.tr,
                         style: text.boldTextStyle(
                           fontSize: 11,
                           letterSpacing: 0.6,
@@ -244,7 +252,10 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       ),
                       Gap(6),
                       Text(
-                        '${controller.selectedDayIndices.length} × ${controller.sessionLengthMinutes.value} min / week',
+                        'onboarding.plan_ready.sessions_per_week'.trParams({
+                          'count': '${controller.selectedDayIndices.length}',
+                          'length': '${controller.sessionLengthMinutes.value}',
+                        }),
                         style: text.boldTextStyle(
                           fontSize: 16,
                           lineHeight: 21,
@@ -253,7 +264,9 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       ),
                       Gap(8),
                       Text(
-                        'Full Body · ${controller.environmentLabel}',
+                        'onboarding.plan_ready.full_body_env'.trParams({
+                          'environment': controller.environmentLabel,
+                        }),
                         style: text.regularTextStyle(
                           fontSize: 12,
                           lineHeight: 16,
@@ -263,8 +276,8 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       Gap(4),
                       Text(
                         controller.selectedInjuries.isEmpty
-                            ? 'Tailored to your level'
-                            : 'Wrist-safe moves only',
+                            ? 'onboarding.plan_ready.tailored'.tr
+                            : 'onboarding.plan_ready.wrist_safe'.tr,
                         style: text.regularTextStyle(
                           fontSize: 12,
                           lineHeight: 16,
@@ -307,7 +320,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       ),
                       Gap(12),
                       Text(
-                        'NUTRITION',
+                        'onboarding.plan_ready.nutrition'.tr,
                         style: text.boldTextStyle(
                           fontSize: 11,
                           letterSpacing: 0.6,
@@ -316,7 +329,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       ),
                       Gap(6),
                       Text(
-                        '1,485 kcal / day',
+                        'onboarding.plan_ready.kcal_per_day'.tr,
                         style: text.boldTextStyle(
                           fontSize: 16,
                           lineHeight: 21,
@@ -325,7 +338,7 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       ),
                       Gap(8),
                       Text(
-                        'P 125g · C 145g · F 45g',
+                        'onboarding.plan_ready.macros'.tr,
                         style: text.regularTextStyle(
                           fontSize: 12,
                           lineHeight: 16,
@@ -334,7 +347,13 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
                       ),
                       Gap(4),
                       Text(
-                        '${controller.mealsPerWeek.value} meals · ≈ €${(controller.weeklyBudgetEur.value - 1.5).toStringAsFixed(2)} / wk',
+                        'onboarding.plan_ready.meals_cost'.trParams({
+                          'count': '${controller.mealsPerWeek.value}',
+                          'cost': OnboardingController.formatDecimal(
+                            controller.weeklyBudgetEur.value - 1.5,
+                            2,
+                          ),
+                        }),
                         style: text.regularTextStyle(
                           fontSize: 12,
                           lineHeight: 16,
@@ -353,9 +372,11 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const OnboardingSectionTitle(title: 'Week 1 · Nov 16–22'),
+            OnboardingSectionTitle(
+              title: 'onboarding.plan_ready.week_title'.tr,
+            ),
             Text(
-              'Rest days included',
+              'onboarding.plan_ready.rest_included'.tr,
               style: text.regularTextStyle(
                 fontSize: 12,
                 color: AppColors.muted,
@@ -426,16 +447,21 @@ class OnboardingPlanReadyScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(18),
-        const OnboardingSectionTitle(title: 'Adapted for you'),
+        OnboardingSectionTitle(title: 'onboarding.plan_ready.adapted_title'.tr),
         Gap(12),
         Obx(() {
           final tags = <(String, bool)>[
             ...controller.selectedInjuries.values.map(
-              (inj) => ('${inj.zone.split(' ').first} · ${inj.condition}', true),
+              (inj) => (
+                '${OnboardingController.zoneShortLabel(inj.zone)} · ${OnboardingController.optionLabel(inj.condition)}',
+                true,
+              ),
             ),
-            ...controller.selectedDiets.map((d) => (d, false)),
+            ...controller.selectedDiets.map(
+              (d) => (OnboardingController.optionLabel(d), false),
+            ),
             (
-              '${controller.environmentLabel} · ${controller.selectedEquipment.take(3).join(', ')}',
+              '${controller.environmentLabel} · ${controller.selectedEquipment.take(3).map(OnboardingController.optionLabel).join(', ')}',
               false,
             ),
           ];

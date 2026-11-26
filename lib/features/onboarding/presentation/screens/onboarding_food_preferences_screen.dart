@@ -18,13 +18,13 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
 
     return OnboardingScaffold(
       stepIndex: 6,
-      eyebrow: 'STEP 6 · FOOD PREFERENCES',
-      title: 'What do you like to eat?',
-      subtitle:
-          "Tell us what you love and what you'd rather avoid. MILON will adapt your meals.",
+      eyebrow: 'onboarding.food_prefs.eyebrow'.tr,
+      title: 'onboarding.food_prefs.title'.tr,
+      subtitle: 'onboarding.food_prefs.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Continue', onPressed: controller.goToNutritionBudget,
+          label: 'onboarding.common.continue'.tr,
+          onPressed: controller.goToNutritionBudget,
         ),
       ),
       children: [
@@ -37,16 +37,12 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
             color: AppColors.ink,
           ),
           decoration: InputDecoration(
-            hintText: 'Search a food or ingredient',
+            hintText: 'onboarding.food_prefs.search_hint'.tr,
             hintStyle: text.regularTextStyle(
               fontSize: AppTextStyle.md,
               color: AppColors.subtle,
             ),
-            prefixIcon: Icon(
-              Icons.search,
-              size: 18.r,
-              color: AppColors.subtle,
-            ),
+            prefixIcon: Icon(Icons.search, size: 18.r, color: AppColors.subtle),
             filled: true,
             fillColor: AppColors.pearl,
             contentPadding: EdgeInsets.symmetric(
@@ -63,7 +59,11 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
         Obx(() {
           final query = controller.foodSearchQuery.value;
           final entries = controller.foodPreferences.entries.where(
-            (e) => query.isEmpty || e.key.toLowerCase().contains(query),
+            (e) =>
+                query.isEmpty ||
+                OnboardingController.optionLabel(
+                  e.key,
+                ).toLowerCase().contains(query),
           );
 
           final loved = entries
@@ -83,8 +83,8 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _PreferenceHeader(
-                title: 'I love',
-                badge: '👍 ${loved.length} selected',
+                title: 'onboarding.food_prefs.love_title'.tr,
+                badge: '👍 ${_selectedCount(loved.length)}',
               ),
               Gap(12),
               Wrap(
@@ -92,7 +92,7 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
                 runSpacing: 8.h,
                 children: loved.map((food) {
                   return OnboardingTagChip(
-                    label: food,
+                    label: OnboardingController.optionLabel(food),
                     selected: true,
                     selectedBg: AppColors.ink,
                     selectedText: AppColors.white,
@@ -102,8 +102,8 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
               ),
               Gap(22),
               _PreferenceHeader(
-                title: "I don't like",
-                badge: '👎 ${disliked.length} selected',
+                title: 'onboarding.food_prefs.dislike_title'.tr,
+                badge: '👎 ${_selectedCount(disliked.length)}',
               ),
               Gap(12),
               Wrap(
@@ -111,7 +111,7 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
                 runSpacing: 8.h,
                 children: disliked.map((food) {
                   return OnboardingTagChip(
-                    label: food,
+                    label: OnboardingController.optionLabel(food),
                     selected: true,
                     selectedBg: AppColors.coralSoft,
                     selectedText: AppColors.dangerDark,
@@ -120,14 +120,16 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
                 }).toList(),
               ),
               Gap(22),
-              const OnboardingSectionTitle(title: 'Tap to add'),
+              OnboardingSectionTitle(
+                title: 'onboarding.food_prefs.tap_to_add'.tr,
+              ),
               Gap(12),
               Wrap(
                 spacing: 8.w,
                 runSpacing: 8.h,
                 children: neutral.map((food) {
                   return OnboardingTagChip(
-                    label: food,
+                    label: OnboardingController.optionLabel(food),
                     selected: false,
                     onTap: () => controller.cycleFoodPreference(food),
                   );
@@ -139,6 +141,12 @@ class OnboardingFoodPreferencesScreen extends GetView<OnboardingController> {
       ],
     );
   }
+
+  String _selectedCount(int count) =>
+      (count == 1
+              ? 'onboarding.food_prefs.selected_one'
+              : 'onboarding.food_prefs.selected_other')
+          .trParams({'count': '$count'});
 }
 
 class _PreferenceHeader extends StatelessWidget {

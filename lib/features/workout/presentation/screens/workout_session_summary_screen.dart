@@ -49,7 +49,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                     ),
                     Expanded(
                       child: Text(
-                        'Session Summary',
+                        'home_workout.summary.title'.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 18,
@@ -64,7 +64,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                       clipBehavior: Clip.antiAlias,
                       child: InkWell(
                         onTap: () => AppHelperFunctions.showSnackBar(
-                          'Session summary shared!',
+                          'home_workout.summary.shared'.tr,
                         ),
                         child: SizedBox.square(
                           dimension: 40.r,
@@ -101,7 +101,9 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'FULL BODY STRENGTH · TODAY',
+                                    'home_workout.summary.eyebrow'.trParams({
+                                      'workout': 'FULL BODY STRENGTH',
+                                    }),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: text.boldTextStyle(
@@ -137,7 +139,8 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                                       ),
                                       Gap.h(4),
                                       Text(
-                                        'SESSION SCORE',
+                                        'home_workout.summary.session_score'
+                                            .tr,
                                         style: text.boldTextStyle(
                                           fontSize: 10,
                                           letterSpacing: 0.5,
@@ -187,7 +190,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                             ),
                             Gap(18),
                             Text(
-                              'Outstanding session!',
+                              'home_workout.summary.outstanding'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 22,
                                 lineHeight: 26,
@@ -196,7 +199,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                             ),
                             Gap(4),
                             Text(
-                              'Top 5% of your sessions this month',
+                              'home_workout.summary.top_percent'.tr,
                               style: text.regularTextStyle(
                                 fontSize: 13,
                                 color: AppColors.white.withValues(alpha: 0.65),
@@ -211,13 +214,22 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
-                                _HeroMetric(value: '44:12', label: 'duration'),
-                                _HeroMetric(value: '18/18', label: 'sets'),
+                                _HeroMetric(
+                                  value: '44:12',
+                                  labelKey: 'home_workout.summary.duration',
+                                ),
+                                _HeroMetric(
+                                  value: '18/18',
+                                  labelKey: 'home_workout.common.sets',
+                                ),
                                 _HeroMetric(
                                   value: '3,240',
-                                  label: 'kg volume',
+                                  labelKey: 'home_workout.summary.kg_volume',
                                 ),
-                                _HeroMetric(value: '318', label: 'kcal'),
+                                _HeroMetric(
+                                  value: '318',
+                                  labelKey: 'home_workout.common.kcal',
+                                ),
                               ],
                             ),
                           ],
@@ -259,7 +271,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'NEW PERSONAL RECORD',
+                                    'home_workout.summary.new_record'.tr,
                                     style: text.boldTextStyle(
                                       fontSize: 11,
                                       letterSpacing: 0.6,
@@ -322,7 +334,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                                       ),
                                     ),
                                     Text(
-                                      'Analysis · just now',
+                                      'home_workout.summary.analysis_time'.tr,
                                       style: text.regularTextStyle(
                                         fontSize: 12,
                                         color: AppColors.muted,
@@ -366,7 +378,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            item.title,
+                                            item.title.tr,
                                             style: text.boldTextStyle(
                                               fontSize: 14,
                                               color: AppColors.ink,
@@ -374,7 +386,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                                           ),
                                           Gap(2),
                                           Text(
-                                            item.body,
+                                            item.body.tr,
                                             style: text.regularTextStyle(
                                               fontSize: 13,
                                               lineHeight: 18,
@@ -420,7 +432,7 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
                             color: AppColors.ink,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'Reply to your coach...',
+                            hintText: 'home_workout.summary.reply_hint'.tr,
                             hintStyle: text.regularTextStyle(
                               fontSize: 14,
                               color: AppColors.subtle,
@@ -468,10 +480,12 @@ class WorkoutSessionSummaryScreen extends GetView<WorkoutController> {
 }
 
 class _HeroMetric extends StatelessWidget {
-  const _HeroMetric({required this.value, required this.label});
+  const _HeroMetric({required this.value, required this.labelKey});
 
   final String value;
-  final String label;
+
+  /// Translation key, resolved at build time.
+  final String labelKey;
 
   @override
   Widget build(BuildContext context) {
@@ -488,7 +502,7 @@ class _HeroMetric extends StatelessWidget {
         ),
         Gap(2),
         Text(
-          label,
+          labelKey.tr,
           style: text.regularTextStyle(
             fontSize: 11.5,
             color: AppColors.white.withValues(alpha: 0.65),

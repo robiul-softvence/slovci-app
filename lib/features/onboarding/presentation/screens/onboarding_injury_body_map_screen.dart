@@ -28,13 +28,12 @@ class OnboardingInjuryBodyMapScreen extends GetView<OnboardingController> {
 
     return OnboardingScaffold(
       stepIndex: 3,
-      eyebrow: 'STEP 3 · SENSITIVE AREAS',
-      title: 'Any injuries or sensitive areas?',
-      subtitle:
-          'Tap a zone on the body. MILON will automatically adapt every exercise to protect it.',
+      eyebrow: 'onboarding.body_map.eyebrow'.tr,
+      title: 'onboarding.body_map.title'.tr,
+      subtitle: 'onboarding.body_map.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Continue',
+          label: 'onboarding.common.continue'.tr,
           onPressed: controller.goToEnvironment,
         ),
       ),
@@ -62,7 +61,7 @@ class OnboardingInjuryBodyMapScreen extends GetView<OnboardingController> {
             ),
             Gap.h(6),
             Text(
-              'Selected',
+              'onboarding.body_map.legend_selected'.tr,
               style: text.mediumTextStyle(
                 fontSize: AppTextStyle.sm,
                 color: AppColors.muted,
@@ -80,7 +79,7 @@ class OnboardingInjuryBodyMapScreen extends GetView<OnboardingController> {
             ),
             Gap.h(6),
             Text(
-              'Tap to flag',
+              'onboarding.body_map.legend_tap'.tr,
               style: text.mediumTextStyle(
                 fontSize: AppTextStyle.sm,
                 color: AppColors.muted,
@@ -89,7 +88,7 @@ class OnboardingInjuryBodyMapScreen extends GetView<OnboardingController> {
           ],
         ),
         Gap(20),
-        const OnboardingSectionTitle(title: 'Or choose from the list'),
+        OnboardingSectionTitle(title: 'onboarding.body_map.list_title'.tr),
         Gap(12),
         Obx(
           () => Wrap(
@@ -98,7 +97,7 @@ class OnboardingInjuryBodyMapScreen extends GetView<OnboardingController> {
             children: OnboardingController.injuryZones.map((zone) {
               final isSelected = controller.selectedInjuries.containsKey(zone);
               return OnboardingTagChip(
-                label: zone,
+                label: OnboardingController.optionLabel(zone),
                 selected: isSelected,
                 onTap: () => _openZoneSheet(context, zone),
               );
@@ -106,9 +105,7 @@ class OnboardingInjuryBodyMapScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(18),
-        const OnboardingInfoBanner(
-          text: 'No injuries? Skip this step. You can add them later in Profile.',
-        ),
+        OnboardingInfoBanner(text: 'onboarding.body_map.skip_banner'.tr),
       ],
     );
   }

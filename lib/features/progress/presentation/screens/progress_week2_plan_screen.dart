@@ -48,7 +48,7 @@ class ProgressWeek2PlanScreen extends GetView<ProgressController> {
                     ),
                     Expanded(
                       child: Text(
-                        'Your Week 2 Plan',
+                        'progress_coach.week2_plan.title'.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 18,
@@ -78,7 +78,7 @@ class ProgressWeek2PlanScreen extends GetView<ProgressController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'WEEK 1 RECAP',
+                              'progress_coach.week2_plan.recap_eyebrow'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 11,
                                 letterSpacing: 0.7,
@@ -87,7 +87,7 @@ class ProgressWeek2PlanScreen extends GetView<ProgressController> {
                             ),
                             Gap(6),
                             Text(
-                              'Solid first week!',
+                              'progress_coach.week2_plan.recap_heading'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 24,
                                 lineHeight: 28,
@@ -96,25 +96,31 @@ class ProgressWeek2PlanScreen extends GetView<ProgressController> {
                             ),
                             Gap(14),
                             Row(
-                              children: const [
+                              children: [
                                 Expanded(
                                   child: _DarkRecapTile(
                                     value: '3/4',
-                                    label: 'workouts',
+                                    label:
+                                        'progress_coach.week2_plan.recap_workouts'
+                                            .tr,
                                   ),
                                 ),
                                 Gap.h(8),
                                 Expanded(
                                   child: _DarkRecapTile(
                                     value: '−0.4 kg',
-                                    label: 'weight',
+                                    label:
+                                        'progress_coach.week2_plan.recap_weight'
+                                            .tr,
                                   ),
                                 ),
                                 Gap.h(8),
                                 Expanded(
                                   child: _DarkRecapTile(
                                     value: '79%',
-                                    label: 'meals followed',
+                                    label:
+                                        'progress_coach.week2_plan.recap_meals_followed'
+                                            .tr,
                                   ),
                                 ),
                               ],
@@ -124,53 +130,55 @@ class ProgressWeek2PlanScreen extends GetView<ProgressController> {
                       ),
                       Gap(20),
                       Text(
-                        'What changes next week',
+                        'progress_coach.week2_plan.changes_title'.tr,
                         style: text.boldTextStyle(
                           fontSize: 18,
                           color: AppColors.ink,
                         ),
                       ),
                       Gap(12),
-                      const _AdjustmentCard(
+                      _AdjustmentCard(
                         iconPath: IconPath.hwDumbbell,
                         iconBg: AppColors.peach,
                         iconColor: AppColors.cta,
-                        category: 'TRAINING',
-                        headline: 'Goblet Squat 15 → 17 kg · RDL stays 20 kg',
-                        reason:
-                            'Workouts felt "just right" and you finished all sets, so we add a small, steady progression.',
+                        category:
+                            'progress_coach.week2_plan.training_category'.tr,
+                        headline:
+                            'progress_coach.week2_plan.training_headline'.tr,
+                        reason: 'progress_coach.week2_plan.training_reason'.tr,
                       ),
                       Gap(12),
-                      const _AdjustmentCard(
+                      _AdjustmentCard(
                         iconPath: IconPath.hwFood,
                         iconBg: AppColors.mintSoft,
                         iconColor: AppColors.emerald,
-                        category: 'NUTRITION',
+                        category:
+                            'progress_coach.week2_plan.nutrition_category'.tr,
                         headline:
-                            '+1 high-fibre snack on training days (+120 kcal)',
-                        reason:
-                            'You felt hungry often. Daily average stays ≈1,485 kcal, so your −0.4 kg/week pace is unchanged.',
+                            'progress_coach.week2_plan.nutrition_headline'.tr,
+                        reason: 'progress_coach.week2_plan.nutrition_reason'.tr,
                       ),
                       Gap(12),
-                      const _AdjustmentCard(
+                      _AdjustmentCard(
                         iconPath: IconPath.nutCal,
                         iconBg: AppColors.infoSoft,
                         iconColor: AppColors.carbsBlue,
-                        category: 'SCHEDULE',
+                        category:
+                            'progress_coach.week2_plan.schedule_category'.tr,
                         headline:
-                            'Saturday cardio → 30 min, or move it to Sunday',
-                        reason:
-                            "You missed 1 session, that's normal. A shorter option makes it easier to fit in.",
+                            'progress_coach.week2_plan.schedule_headline'.tr,
+                        reason: 'progress_coach.week2_plan.schedule_reason'.tr,
                       ),
                       Gap(12),
-                      const _AdjustmentCard(
+                      _AdjustmentCard(
                         iconPath: IconPath.pcMoon,
                         iconBg: AppColors.pearl,
                         iconColor: AppColors.ink,
-                        category: 'RECOVERY',
-                        headline: 'No change · sleep 7h10 is on track',
-                        reason:
-                            'Keep your evening routine; recovery is supporting your progress.',
+                        category:
+                            'progress_coach.week2_plan.recovery_category'.tr,
+                        headline:
+                            'progress_coach.week2_plan.recovery_headline'.tr,
+                        reason: 'progress_coach.week2_plan.recovery_reason'.tr,
                       ),
                     ],
                   ),
@@ -178,7 +186,7 @@ class ProgressWeek2PlanScreen extends GetView<ProgressController> {
               ),
               BottomActionBar(
                 primary: AppPrimaryButton(
-                  label: 'Accept Week 2 Plan',
+                  label: 'progress_coach.week2_plan.accept'.tr,
                   onPressed: controller.acceptWeek2Plan,
                 ),
                 secondary: GestureDetector(
@@ -196,7 +204,7 @@ class ProgressWeek2PlanScreen extends GetView<ProgressController> {
                         ),
                         Gap.h(6),
                         Text(
-                          'Discuss with Coach',
+                          'progress_coach.week2_plan.discuss'.tr,
                           style: text.semiBoldTextStyle(
                             fontSize: 14,
                             color: AppColors.ink,

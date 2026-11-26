@@ -22,20 +22,20 @@ class OnboardingScheduleScreen extends GetView<OnboardingController> {
 
     return OnboardingScaffold(
       stepIndex: 5,
-      eyebrow: 'STEP 5 · AVAILABILITY',
-      title: 'When can you train?',
-      subtitle: "We'll fit your program into your real week, with rest days built in.",
+      eyebrow: 'onboarding.schedule.eyebrow'.tr,
+      title: 'onboarding.schedule.title'.tr,
+      subtitle: 'onboarding.schedule.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Continue',
+          label: 'onboarding.common.continue'.tr,
           onPressed: controller.goToFoodPreferences,
         ),
       ),
       children: [
         Gap(22),
-        const OnboardingSectionTitle(
-          title: 'Sessions per week',
-          accent: '3 recommended',
+        OnboardingSectionTitle(
+          title: 'onboarding.schedule.sessions_title'.tr,
+          accent: 'onboarding.schedule.sessions_accent'.tr,
         ),
         Gap(12),
         Obx(
@@ -47,7 +47,7 @@ class OnboardingScheduleScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(22),
-        const OnboardingSectionTitle(title: 'Preferred days'),
+        OnboardingSectionTitle(title: 'onboarding.schedule.days_title'.tr),
         Gap(12),
         Obx(
           () => Row(
@@ -66,7 +66,7 @@ class OnboardingScheduleScreen extends GetView<OnboardingController> {
                     color: selected ? AppColors.ink : AppColors.pearl,
                   ),
                   child: Text(
-                    OnboardingController.weekDayLetters[i],
+                    OnboardingController.weekDayLetterKeys[i].tr,
                     style: text.boldTextStyle(
                       fontSize: 14,
                       lineHeight: 18,
@@ -80,7 +80,7 @@ class OnboardingScheduleScreen extends GetView<OnboardingController> {
         ),
         Gap(10),
         Text(
-          'Tip: avoid back-to-back days for the same muscles.',
+          'onboarding.schedule.tip'.tr,
           style: text.regularTextStyle(
             fontSize: AppTextStyle.sm,
             lineHeight: 16,
@@ -88,9 +88,9 @@ class OnboardingScheduleScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(22),
-        const OnboardingSectionTitle(
-          title: 'Session length',
-          accent: '30 min recommended',
+        OnboardingSectionTitle(
+          title: 'onboarding.schedule.length_title'.tr,
+          accent: 'onboarding.schedule.length_accent'.tr,
         ),
         Gap(12),
         Obx(
@@ -128,15 +128,15 @@ class OnboardingScheduleScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(22),
-        const OnboardingSectionTitle(title: 'Preferred time'),
+        OnboardingSectionTitle(title: 'onboarding.schedule.time_title'.tr),
         Gap(12),
         Obx(
           () => Row(
             children: [
               Expanded(
                 child: _TimeSlotCard(
-                  title: 'Morning',
-                  range: '6–10 AM',
+                  title: 'onboarding.schedule.morning'.tr,
+                  range: 'onboarding.schedule.morning_range'.tr,
                   iconPath: IconPath.obSun,
                   selected:
                       controller.preferredTime.value ==
@@ -148,8 +148,8 @@ class OnboardingScheduleScreen extends GetView<OnboardingController> {
               Gap.h(10),
               Expanded(
                 child: _TimeSlotCard(
-                  title: 'Lunch break',
-                  range: '12–2 PM',
+                  title: 'onboarding.schedule.lunch'.tr,
+                  range: 'onboarding.schedule.lunch_range'.tr,
                   iconPath: IconPath.obCoffee,
                   selected:
                       controller.preferredTime.value ==
@@ -161,8 +161,8 @@ class OnboardingScheduleScreen extends GetView<OnboardingController> {
               Gap.h(10),
               Expanded(
                 child: _TimeSlotCard(
-                  title: 'Evening',
-                  range: '6–9 PM',
+                  title: 'onboarding.schedule.evening'.tr,
+                  range: 'onboarding.schedule.evening_range'.tr,
                   iconPath: IconPath.obMoon,
                   selected:
                       controller.preferredTime.value ==

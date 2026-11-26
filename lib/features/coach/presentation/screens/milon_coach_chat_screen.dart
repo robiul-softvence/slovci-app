@@ -69,7 +69,7 @@ class MilonCoachChatScreen extends GetView<CoachController> {
                                 ),
                                 Gap.h(6),
                                 Text(
-                                  'Fitness · Recovery · Nutrition',
+                                  'progress_coach.coach.subtitle'.tr,
                                   style: text.regularTextStyle(
                                     fontSize: 12,
                                     color: AppColors.muted,
@@ -127,7 +127,7 @@ class MilonCoachChatScreen extends GetView<CoachController> {
                       Gap.h(6),
                       Flexible(
                         child: Text(
-                          'I only answer fitness, recovery & nutrition questions',
+                          'progress_coach.coach.guardrail'.tr,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: text.regularTextStyle(
@@ -151,7 +151,9 @@ class MilonCoachChatScreen extends GetView<CoachController> {
                             padding: EdgeInsets.only(bottom: 14.h),
                             child: Center(
                               child: Text(
-                                'Today · 7:42 AM',
+                                'progress_coach.coach.timestamp_today'.trParams(
+                                  {'time': '7:42 AM'},
+                                ),
                                 style: text.regularTextStyle(
                                   fontSize: 11.5,
                                   color: AppColors.subtle,
@@ -252,7 +254,7 @@ class MilonCoachChatScreen extends GetView<CoachController> {
                     itemCount: controller.quickPrompts.length,
                     separatorBuilder: (_, _) => Gap.h(8),
                     itemBuilder: (context, i) {
-                      final prompt = controller.quickPrompts[i];
+                      final prompt = controller.quickPrompts[i].tr;
                       return GestureDetector(
                         onTap: () => controller.sendMessage(prompt),
                         child: Container(
@@ -320,7 +322,7 @@ class MilonCoachChatScreen extends GetView<CoachController> {
                               color: AppColors.ink,
                             ),
                             decoration: InputDecoration(
-                              hintText: 'Ask your coach...',
+                              hintText: 'progress_coach.coach.input_hint'.tr,
                               hintStyle: text.regularTextStyle(
                                 fontSize: 14,
                                 color: AppColors.subtle,
@@ -403,7 +405,7 @@ class _ActionableWorkoutCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Full Body Gym · Wrist-Safe',
+                      'progress_coach.coach.workout_title'.tr,
                       style: text.boldTextStyle(
                         fontSize: 14,
                         color: AppColors.ink,
@@ -411,7 +413,7 @@ class _ActionableWorkoutCard extends StatelessWidget {
                     ),
                     Gap(2),
                     Text(
-                      '45 min · 5 exercises · Gym',
+                      'progress_coach.coach.workout_meta'.tr,
                       style: text.regularTextStyle(
                         fontSize: 12,
                         color: AppColors.muted,
@@ -491,7 +493,7 @@ class _ActionableWorkoutCard extends StatelessWidget {
                           ),
                           Gap.h(6),
                           Text(
-                            'Start Session',
+                            'progress_coach.coach.start_session'.tr,
                             style: text.boldTextStyle(
                               fontSize: 14,
                               color: AppColors.white,

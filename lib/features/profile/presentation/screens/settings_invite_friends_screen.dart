@@ -17,10 +17,10 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Invite Friends',
+      title: 'profile.invite_friends.title'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Invite a Friend',
+          label: 'profile.invite_friends.invite_friend'.tr,
           onPressed: controller.copyReferralCode,
         ),
       ),
@@ -56,7 +56,7 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
               ),
               Gap(14),
               Text(
-                'Get 30 days free for every friend',
+                'profile.invite_friends.hero_title'.tr,
                 textAlign: TextAlign.center,
                 style: text.boldTextStyle(
                   fontSize: 22,
@@ -66,7 +66,7 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
               ),
               Gap(8),
               Text(
-                'Your friend gets a 14-day free trial. You earn 30 days of Pro when they subscribe, up to 90 days.',
+                'profile.invite_friends.hero_subtitle'.tr,
                 textAlign: TextAlign.center,
                 style: text.regularTextStyle(
                   fontSize: 13.5,
@@ -91,14 +91,14 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '1 of 3 friends joined',
+                    'profile.invite_friends.friends_joined'.tr,
                     style: text.mediumTextStyle(
                       fontSize: 12,
                       color: AppColors.ink,
                     ),
                   ),
                   Text(
-                    '30 / 90 days',
+                    'profile.invite_friends.days_progress'.tr,
                     style: text.boldTextStyle(
                       fontSize: 12,
                       color: AppColors.cta,
@@ -110,7 +110,7 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('SHARE YOUR CODE'),
+        SettingsSectionLabel('profile.invite_friends.section_share_code'.tr),
         Container(
           padding: EdgeInsets.fromLTRB(14.w, 10.h, 8.w, 10.h),
           decoration: BoxDecoration(
@@ -125,7 +125,7 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'YOUR CODE',
+                      'profile.invite_friends.your_code'.tr,
                       style: text.boldTextStyle(
                         fontSize: 10,
                         letterSpacing: 0.6,
@@ -167,7 +167,7 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
                         ),
                         Gap.h(6),
                         Text(
-                          'Copy',
+                          'profile.invite_friends.copy'.tr,
                           style: text.semiBoldTextStyle(
                             fontSize: 13,
                             color: AppColors.white,
@@ -187,7 +187,7 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
             Expanded(
               child: _ShareChannelBtn(
                 iconPath: IconPath.hwSend,
-                label: 'Message',
+                label: 'profile.invite_friends.share_message'.tr,
                 onTap: controller.copyReferralCode,
               ),
             ),
@@ -195,7 +195,7 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
             Expanded(
               child: _ShareChannelBtn(
                 iconPath: IconPath.prLink,
-                label: 'Copy link',
+                label: 'profile.invite_friends.share_copy_link'.tr,
                 onTap: controller.copyReferralCode,
               ),
             ),
@@ -203,52 +203,52 @@ class SettingsInviteFriendsScreen extends GetView<ProfileController> {
             Expanded(
               child: _ShareChannelBtn(
                 iconPath: IconPath.hwShare,
-                label: 'More',
+                label: 'profile.invite_friends.share_more'.tr,
                 onTap: controller.copyReferralCode,
               ),
             ),
           ],
         ),
         Gap(22),
-        const SettingsSectionLabel('HOW IT WORKS'),
+        SettingsSectionLabel('profile.invite_friends.section_how_it_works'.tr),
         SettingsCardGroup(
-          children: const [
+          children: [
             _HowStepRow(
               num: '1',
-              title: 'Share your code',
-              subtitle: 'Send it by message or link',
+              title: 'profile.invite_friends.step1_title'.tr,
+              subtitle: 'profile.invite_friends.step1_subtitle'.tr,
             ),
             _HowStepRow(
               num: '2',
-              title: 'Your friend starts a free trial',
-              subtitle: '14 days of MILON Pro, free',
+              title: 'profile.invite_friends.step2_title'.tr,
+              subtitle: 'profile.invite_friends.step2_subtitle'.tr,
             ),
             _HowStepRow(
               num: '3',
-              title: 'You both win',
-              subtitle: 'You get 30 free days when they subscribe',
+              title: 'profile.invite_friends.step3_title'.tr,
+              subtitle: 'profile.invite_friends.step3_subtitle'.tr,
             ),
           ],
         ),
         Gap(22),
-        const SettingsSectionLabel('YOUR INVITES'),
+        SettingsSectionLabel('profile.invite_friends.section_your_invites'.tr),
         SettingsCardGroup(
-          children: const [
+          children: [
             _InviteRow(
               name: 'Emma D.',
-              meta: 'Joined Nov 10 · Annual',
-              badge: '+30 days',
+              meta: 'profile.invite_friends.invite_emma_meta'.tr,
+              badge: 'profile.invite_friends.badge_days_earned'.tr,
               earned: true,
             ),
             _InviteRow(
               name: 'Lucas B.',
-              meta: 'Invited Nov 14',
-              badge: 'Pending',
+              meta: 'profile.invite_friends.invite_lucas_meta'.tr,
+              badge: 'profile.invite_friends.badge_pending'.tr,
             ),
             _InviteRow(
               name: 'Chloé M.',
-              meta: 'Invited Nov 17',
-              badge: 'Pending',
+              meta: 'profile.invite_friends.invite_chloe_meta'.tr,
+              badge: 'profile.invite_friends.badge_pending'.tr,
             ),
           ],
         ),
@@ -293,10 +293,9 @@ class _ShareChannelBtn extends StatelessWidget {
             Gap(6),
             Text(
               label,
-              style: AppTextStyle(context).mediumTextStyle(
-                fontSize: 12.5,
-                color: AppColors.ink,
-              ),
+              style: AppTextStyle(
+                context,
+              ).mediumTextStyle(fontSize: 12.5, color: AppColors.ink),
             ),
           ],
         ),
@@ -389,7 +388,10 @@ class _InviteRow extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: text.boldTextStyle(fontSize: 14.5, color: AppColors.ink),
+                  style: text.boldTextStyle(
+                    fontSize: 14.5,
+                    color: AppColors.ink,
+                  ),
                 ),
                 Gap(2),
                 Text(

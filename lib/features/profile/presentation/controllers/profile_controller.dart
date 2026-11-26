@@ -6,8 +6,10 @@ import 'package:flutter_tamplate/routes/app_routes.dart';
 
 class ProfileController extends GetxController {
   // ─── 19 · Profile Main ───
-  final RxBool motivatingStyle = true.obs; // false = Supportive, true = Motivating
-  final RxString appLanguage = 'EN'.obs;
+  final RxBool motivatingStyle =
+      true.obs; // false = Supportive, true = Motivating
+  Rx<AppLanguage> get appLanguage => LocaleController.to.language;
+  void setLanguage(AppLanguage value) => LocaleController.to.setLanguage(value);
   final String referralCode = 'SOLENE30';
 
   // ─── 19d · Delete Account ───
@@ -23,7 +25,8 @@ class ProfileController extends GetxController {
     text: '58.0 kg · Recommended pace (−0.4 kg/wk)',
   );
   final RxInt editGenderIndex = 0.obs; // 0 Female, 1 Male, 2 Other
-  final RxInt editGoalIndex = 0.obs; // 0 Lose Weight, 1 Build Muscle, 2 Stay Fit
+  final RxInt editGoalIndex =
+      0.obs; // 0 Lose Weight, 1 Build Muscle, 2 Stay Fit
 
   // ─── 19f · Account & Security ───
   final RxBool twoStepEnabled = false.obs;
@@ -94,7 +97,9 @@ class ProfileController extends GetxController {
   // ─── Actions ───
   void copyReferralCode() {
     Clipboard.setData(ClipboardData(text: referralCode));
-    AppHelperFunctions.showSnackBar('Referral code $referralCode copied!');
+    AppHelperFunctions.showSnackBar(
+      'profile.controller.referral_copied'.trParams({'code': referralCode}),
+    );
   }
 
   void toggleEquipment(String item) {
@@ -130,7 +135,7 @@ class ProfileController extends GetxController {
 
   void performDeleteAccount() {
     if (deleteConfirmController.text.trim().toUpperCase() != 'DELETE') {
-      AppHelperFunctions.showSnackBar('Type DELETE to confirm.');
+      AppHelperFunctions.showSnackBar('profile.controller.type_delete'.tr);
       return;
     }
     Get.back();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 
 /// Figma "Checkbox/On" + "I agree to the Terms of Use and Privacy Policy."
@@ -40,7 +41,7 @@ class TermsCheckbox extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              'I agree to the Terms of Use and Privacy Policy.',
+              'auth.sign_up.terms'.tr,
               style: AppTextStyle(context).regularTextStyle(
                 fontSize: AppTextStyle.md,
                 lineHeight: 20,

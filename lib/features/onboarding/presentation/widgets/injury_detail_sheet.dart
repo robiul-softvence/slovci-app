@@ -20,18 +20,19 @@ class InjuryDetailSheet extends StatelessWidget {
     );
   }
 
-  static const _avoidItems = [
-    'Push-ups on palms',
-    'Burpees',
-    'Barbell front squat',
-    'High plank holds',
+  // Translation keys; `.tr` is applied in build.
+  static const _avoidItemKeys = [
+    'onboarding.injury_sheet.avoid_push_ups',
+    'onboarding.injury_sheet.avoid_burpees',
+    'onboarding.injury_sheet.avoid_front_squat',
+    'onboarding.injury_sheet.avoid_high_plank',
   ];
 
-  static const _includeItems = [
-    'Forearm plank',
-    'Neutral-grip DB press',
-    'Machine chest press',
-    'Leg press',
+  static const _includeItemKeys = [
+    'onboarding.injury_sheet.include_forearm_plank',
+    'onboarding.injury_sheet.include_neutral_press',
+    'onboarding.injury_sheet.include_machine_press',
+    'onboarding.injury_sheet.include_leg_press',
   ];
 
   @override
@@ -44,9 +45,7 @@ class InjuryDetailSheet extends StatelessWidget {
         color: AppColors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
       ),
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.viewInsetsOf(context).bottom,
-      ),
+      padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
       child: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(20.w, 10.h, 20.w, 28.h),
         child: Column(
@@ -90,7 +89,9 @@ class InjuryDetailSheet extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          controller.activeInjuryZone.value,
+                          OnboardingController.optionLabel(
+                            controller.activeInjuryZone.value,
+                          ),
                           style: text.boldTextStyle(
                             fontSize: 20,
                             lineHeight: 24,
@@ -99,7 +100,9 @@ class InjuryDetailSheet extends StatelessWidget {
                         ),
                         Gap(2),
                         Text(
-                          controller.activeInjuryViewLabel.value,
+                          OnboardingController.optionLabel(
+                            controller.activeInjuryViewLabel.value,
+                          ),
                           style: text.regularTextStyle(
                             fontSize: 13,
                             lineHeight: 16,
@@ -131,7 +134,9 @@ class InjuryDetailSheet extends StatelessWidget {
               ],
             ),
             Gap(20),
-            const OnboardingSectionTitle(title: "What's the condition?"),
+            OnboardingSectionTitle(
+              title: 'onboarding.injury_sheet.condition_title'.tr,
+            ),
             Gap(12),
             Obx(
               () => Wrap(
@@ -139,7 +144,7 @@ class InjuryDetailSheet extends StatelessWidget {
                 runSpacing: 8.h,
                 children: OnboardingController.injuryConditions.map((cond) {
                   return OnboardingTagChip(
-                    label: cond,
+                    label: OnboardingController.optionLabel(cond),
                     selected: controller.draftCondition.value == cond,
                     onTap: () => controller.draftCondition.value = cond,
                   );
@@ -147,7 +152,9 @@ class InjuryDetailSheet extends StatelessWidget {
               ),
             ),
             Gap(20),
-            const OnboardingSectionTitle(title: 'How severe is it?'),
+            OnboardingSectionTitle(
+              title: 'onboarding.injury_sheet.severity_title'.tr,
+            ),
             Gap(12),
             Obx(
               () => OnboardingSegmentedControl<InjurySeverity>(
@@ -158,11 +165,11 @@ class InjuryDetailSheet extends StatelessWidget {
                 labelBuilder: (s) {
                   switch (s) {
                     case InjurySeverity.mild:
-                      return 'Mild';
+                      return 'onboarding.injury_sheet.severity_mild'.tr;
                     case InjurySeverity.moderate:
-                      return 'Moderate';
+                      return 'onboarding.injury_sheet.severity_moderate'.tr;
                     case InjurySeverity.severe:
-                      return 'Severe';
+                      return 'onboarding.injury_sheet.severity_severe'.tr;
                   }
                 },
               ),
@@ -175,7 +182,7 @@ class InjuryDetailSheet extends StatelessWidget {
                 color: AppColors.ink,
               ),
               decoration: InputDecoration(
-                hintText: 'Anything else to add? (optional)',
+                hintText: 'onboarding.injury_sheet.notes_hint'.tr,
                 hintStyle: text.regularTextStyle(
                   fontSize: AppTextStyle.md,
                   color: AppColors.subtle,
@@ -230,7 +237,7 @@ class InjuryDetailSheet extends StatelessWidget {
                       ),
                       Gap.h(10),
                       Text(
-                        'MILON will adapt your plan',
+                        'onboarding.injury_sheet.adapt_title'.tr,
                         style: text.semiBoldTextStyle(
                           fontSize: 15,
                           lineHeight: 20,
@@ -248,7 +255,7 @@ class InjuryDetailSheet extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'AVOID',
+                              'onboarding.injury_sheet.avoid'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 11,
                                 lineHeight: 14,
@@ -257,7 +264,7 @@ class InjuryDetailSheet extends StatelessWidget {
                               ),
                             ),
                             Gap(10),
-                            ..._avoidItems.map(
+                            ..._avoidItemKeys.map(
                               (item) => Padding(
                                 padding: EdgeInsets.only(bottom: 10.h),
                                 child: Row(
@@ -281,7 +288,7 @@ class InjuryDetailSheet extends StatelessWidget {
                                     Gap.h(8),
                                     Expanded(
                                       child: Text(
-                                        item,
+                                        item.tr,
                                         style: text.regularTextStyle(
                                           fontSize: 13,
                                           lineHeight: 17,
@@ -302,7 +309,7 @@ class InjuryDetailSheet extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'INCLUDE',
+                              'onboarding.injury_sheet.include'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 11,
                                 lineHeight: 14,
@@ -311,7 +318,7 @@ class InjuryDetailSheet extends StatelessWidget {
                               ),
                             ),
                             Gap(10),
-                            ..._includeItems.map(
+                            ..._includeItemKeys.map(
                               (item) => Padding(
                                 padding: EdgeInsets.only(bottom: 10.h),
                                 child: Row(
@@ -339,7 +346,7 @@ class InjuryDetailSheet extends StatelessWidget {
                                     Gap.h(8),
                                     Expanded(
                                       child: Text(
-                                        item,
+                                        item.tr,
                                         style: text.regularTextStyle(
                                           fontSize: 13,
                                           lineHeight: 17,
@@ -375,7 +382,7 @@ class InjuryDetailSheet extends StatelessWidget {
                 Gap.h(8),
                 Expanded(
                   child: Text(
-                    "MILON isn't a medical device. If pain persists or gets worse, stop and see a health professional.",
+                    'onboarding.injury_sheet.disclaimer'.tr,
                     style: text.regularTextStyle(
                       fontSize: 12,
                       lineHeight: 16,
@@ -387,7 +394,7 @@ class InjuryDetailSheet extends StatelessWidget {
             ),
             Gap(18),
             AppPrimaryButton(
-              label: 'Confirm & Save',
+              label: 'onboarding.injury_sheet.confirm'.tr,
               onPressed: () {
                 controller.saveActiveInjury();
                 Get.back();

@@ -16,7 +16,7 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Connected Apps',
+      title: 'profile.connected_apps.title'.tr,
       children: [
         SettingsCardGroup(
           children: [
@@ -49,7 +49,7 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Apple Health',
+                          'profile.connected_apps.apple_health'.tr,
                           style: text.boldTextStyle(
                             fontSize: 16,
                             color: AppColors.ink,
@@ -58,8 +58,9 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
                         Obx(
                           () => Text(
                             controller.appleHealthConnected.value
-                                ? 'Connected · last sync 2 min ago'
-                                : 'Disconnected',
+                                ? 'profile.connected_apps.status_connected'.tr
+                                : 'profile.connected_apps.status_disconnected'
+                                      .tr,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: text.mediumTextStyle(
@@ -79,8 +80,8 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
                       onTap: () => controller.appleHealthConnected.toggle(),
                       child: Text(
                         controller.appleHealthConnected.value
-                            ? 'Disconnect'
-                            : 'Connect',
+                            ? 'profile.connected_apps.disconnect'.tr
+                            : 'profile.connected_apps.connect'.tr,
                         style: text.semiBoldTextStyle(
                           fontSize: 13.5,
                           color: AppColors.cta,
@@ -94,8 +95,8 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.prRun,
-                title: 'Workouts',
-                subtitle: 'MILON writes your sessions',
+                title: 'profile.connected_apps.workouts'.tr,
+                subtitle: 'profile.connected_apps.workouts_subtitle'.tr,
                 value: controller.syncWorkouts.value,
                 onChanged: (v) => controller.syncWorkouts.value = v,
               ),
@@ -103,8 +104,8 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.hwFlame,
-                title: 'Active energy',
-                subtitle: 'Read · used for calorie targets',
+                title: 'profile.connected_apps.active_energy'.tr,
+                subtitle: 'profile.connected_apps.active_energy_subtitle'.tr,
                 value: controller.syncActiveEnergy.value,
                 onChanged: (v) => controller.syncActiveEnergy.value = v,
               ),
@@ -112,8 +113,8 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.prActivity,
-                title: 'Steps',
-                subtitle: 'Read · activity level',
+                title: 'profile.connected_apps.steps'.tr,
+                subtitle: 'profile.connected_apps.steps_subtitle'.tr,
                 value: controller.syncSteps.value,
                 onChanged: (v) => controller.syncSteps.value = v,
               ),
@@ -121,8 +122,8 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.pcScale,
-                title: 'Weight',
-                subtitle: 'Read & write · weekly trend',
+                title: 'profile.connected_apps.weight'.tr,
+                subtitle: 'profile.connected_apps.weight_subtitle'.tr,
                 value: controller.syncWeight.value,
                 onChanged: (v) => controller.syncWeight.value = v,
               ),
@@ -130,8 +131,8 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.pcMoon,
-                title: 'Sleep',
-                subtitle: 'Read · recovery readiness',
+                title: 'profile.connected_apps.sleep'.tr,
+                subtitle: 'profile.connected_apps.sleep_subtitle'.tr,
                 value: controller.syncSleep.value,
                 onChanged: (v) => controller.syncSleep.value = v,
               ),
@@ -139,8 +140,8 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.pcHeart,
-                title: 'Heart rate',
-                subtitle: 'Read · workout intensity',
+                title: 'profile.connected_apps.heart_rate'.tr,
+                subtitle: 'profile.connected_apps.heart_rate_subtitle'.tr,
                 value: controller.syncHeartRate.value,
                 onChanged: (v) => controller.syncHeartRate.value = v,
               ),
@@ -148,29 +149,28 @@ class SettingsConnectedAppsScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(22),
-        const SettingsSectionLabel('MORE CONNECTIONS'),
+        SettingsSectionLabel('profile.connected_apps.section_more'.tr),
         SettingsCardGroup(
           children: [
             _ConnectionRow(
-              title: 'Smart scale',
-              subtitle: 'Sync weight from Withings & others',
+              title: 'profile.connected_apps.smart_scale'.tr,
+              subtitle: 'profile.connected_apps.smart_scale_subtitle'.tr,
             ),
             _ConnectionRow(
               title: 'Strava',
-              subtitle: 'Import runs and rides',
+              subtitle: 'profile.connected_apps.strava_subtitle'.tr,
             ),
             _ConnectionRow(
               title: 'Google Calendar',
-              subtitle: 'Add sessions to your calendar',
+              subtitle: 'profile.connected_apps.google_calendar_subtitle'.tr,
             ),
           ],
         ),
         Gap(16),
-        const OnboardingInfoBanner(
+        OnboardingInfoBanner(
           backgroundColor: AppColors.infoSoft,
           textColor: AppColors.ink,
-          text:
-              'MILON only reads the data you allow and never sells it. You can revoke access anytime in iOS Settings › Health.',
+          text: 'profile.connected_apps.privacy_info'.tr,
         ),
       ],
     );
@@ -197,7 +197,10 @@ class _ConnectionRow extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: text.boldTextStyle(fontSize: 14.5, color: AppColors.ink),
+                  style: text.boldTextStyle(
+                    fontSize: 14.5,
+                    color: AppColors.ink,
+                  ),
                 ),
                 Gap(2),
                 Text(
@@ -213,7 +216,7 @@ class _ConnectionRow extends StatelessWidget {
           Gap.h(10),
           OutlinedButton(
             onPressed: () => AppHelperFunctions.showSnackBar(
-              'Connecting $title...',
+              'profile.connected_apps.connecting'.trParams({'name': title}),
             ),
             style: OutlinedButton.styleFrom(
               side: const BorderSide(color: AppColors.line),
@@ -223,7 +226,7 @@ class _ConnectionRow extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
             ),
             child: Text(
-              'Connect',
+              'profile.connected_apps.connect'.tr,
               style: text.semiBoldTextStyle(fontSize: 13, color: AppColors.ink),
             ),
           ),

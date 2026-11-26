@@ -37,9 +37,7 @@ class WeightRulerPicker extends StatelessWidget {
           SizedBox(
             height: 44.h,
             width: double.infinity,
-            child: CustomPaint(
-              painter: _RulerTicksPainter(),
-            ),
+            child: CustomPaint(painter: _RulerTicksPainter()),
           ),
           Gap(8),
           Row(
@@ -105,10 +103,7 @@ class _RulerTicksPainter extends CustomPainter {
 
 /// Weight trajectory curve chart for "01b · Target Weight & Pace".
 class WeightProjectionChart extends StatelessWidget {
-  const WeightProjectionChart({
-    super.key,
-    required this.isLosingWeight,
-  });
+  const WeightProjectionChart({super.key, required this.isLosingWeight});
 
   final bool isLosingWeight;
 

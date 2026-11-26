@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:flutter_tamplate/features/bottom_nav/bindings/bottom_nav_binding.dart';
+import 'package:flutter_tamplate/features/home/bindings/home_binding.dart';
 import 'package:flutter_tamplate/features/authentication/bindings/auth_bindings.dart';
 import 'package:flutter_tamplate/features/authentication/presentation/screens/create_password_screen.dart';
 import 'package:flutter_tamplate/features/authentication/presentation/screens/forgot_password_screen.dart';
@@ -259,8 +261,16 @@ class AppRoute {
       page: () => const OnboardingNotificationsScreen(),
       binding: OnboardingBinding(),
     ),
-    GetPage(name: bottomNavScreen, page: () => const BottomNavScreen()),
-    GetPage(name: homeFreePlanScreen, page: () => const HomeFreePlanScreen()),
+    GetPage(
+      name: bottomNavScreen,
+      page: () => const BottomNavScreen(),
+      binding: BottomNavBinding(),
+    ),
+    GetPage(
+      name: homeFreePlanScreen,
+      page: () => const HomeFreePlanScreen(),
+      binding: HomeBinding(),
+    ),
     GetPage(
       name: workoutExerciseDetailScreen,
       page: () => const WorkoutExerciseDetailScreen(),

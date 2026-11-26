@@ -11,9 +11,11 @@ import 'package:flutter_tamplate/features/bottom_nav/presentaion/UI/bottom_nav_s
 /// Figma "S1 · State — Loading (Skeleton)".
 /// Reusable skeleton placeholder matching the Home Daily Planner layout.
 class StateLoadingSkeletonScreen extends StatelessWidget {
+  /// String defaults are translation keys; every text is resolved with `.tr`
+  /// at build time (plain strings passed by callers are shown unchanged).
   const StateLoadingSkeletonScreen({
     super.key,
-    this.message = 'Loading your day…',
+    this.message = 'system_states.loading.message',
     this.showBottomNav = true,
   });
 
@@ -100,7 +102,7 @@ class StateLoadingSkeletonScreen extends StatelessWidget {
                 // Loading caption
                 Center(
                   child: Text(
-                    message,
+                    message.tr,
                     style: text.mediumTextStyle(
                       fontSize: 12,
                       lineHeight: 16,
@@ -158,11 +160,11 @@ class _SystemStateNavBar extends StatelessWidget {
       14.0,
     );
     const tabs = [
-      (IconPath.hwHome, 'Home'),
-      (IconPath.hwDumbbell, 'Workout'),
-      (IconPath.hwFood, 'Nutrition'),
-      (IconPath.hwChart, 'Progress'),
-      (IconPath.hwSpark, 'AI Coach'),
+      (IconPath.hwHome, 'system_states.nav.home'),
+      (IconPath.hwDumbbell, 'system_states.nav.workout'),
+      (IconPath.hwFood, 'system_states.nav.nutrition'),
+      (IconPath.hwChart, 'system_states.nav.progress'),
+      (IconPath.hwSpark, 'system_states.nav.ai_coach'),
     ];
 
     return Padding(
@@ -210,7 +212,7 @@ class _SystemStateNavBar extends StatelessWidget {
                   if (isSelected) ...[
                     Gap.h(6),
                     Text(
-                      tabs[i].$2,
+                      tabs[i].$2.tr,
                       style: text.boldTextStyle(
                         fontSize: 13,
                         lineHeight: 16,

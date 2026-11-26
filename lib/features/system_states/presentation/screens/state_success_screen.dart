@@ -9,18 +9,20 @@ import 'package:flutter_tamplate/core/core.dart';
 /// Figma "S4 · State — Success".
 /// Reusable full-screen success confirmation state (e.g. meal logged).
 class StateSuccessScreen extends StatelessWidget {
+  /// String defaults are translation keys; every text is resolved with `.tr`
+  /// at build time (plain strings passed by callers are shown unchanged).
   const StateSuccessScreen({
     super.key,
-    this.title = 'Lunch logged!',
-    this.subtitle = 'Grilled Tofu & Egg Salad · 423 kcal',
-    this.remainingLabel = 'Remaining today',
+    this.title = 'system_states.success.title',
+    this.subtitle = 'system_states.success.subtitle',
+    this.remainingLabel = 'system_states.success.remaining_label',
     this.remainingValue = '1,062 kcal',
     this.progress = 0.28,
-    this.proteinText = 'P 32 / 125g',
-    this.carbsText = 'C 28 / 145g',
-    this.fatText = 'F 19 / 45g',
-    this.primaryLabel = 'Done',
-    this.secondaryLabel = 'Undo',
+    this.proteinText = 'system_states.success.protein',
+    this.carbsText = 'system_states.success.carbs',
+    this.fatText = 'system_states.success.fat',
+    this.primaryLabel = 'system_states.success.done',
+    this.secondaryLabel = 'system_states.success.undo',
     this.onClose,
     this.onDone,
     this.onUndo,
@@ -109,7 +111,7 @@ class StateSuccessScreen extends StatelessWidget {
                       ),
                       Gap(16),
                       Text(
-                        title,
+                        title.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 22,
@@ -119,7 +121,7 @@ class StateSuccessScreen extends StatelessWidget {
                       ),
                       Gap(16),
                       Text(
-                        subtitle,
+                        subtitle.tr,
                         textAlign: TextAlign.center,
                         style: text.regularTextStyle(
                           fontSize: 14,
@@ -143,7 +145,7 @@ class StateSuccessScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  remainingLabel,
+                                  remainingLabel.tr,
                                   style: text.mediumTextStyle(
                                     fontSize: 12,
                                     lineHeight: 16,
@@ -185,7 +187,7 @@ class StateSuccessScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  proteinText,
+                                  proteinText.tr,
                                   style: text.mediumTextStyle(
                                     fontSize: 12,
                                     lineHeight: 16,
@@ -193,7 +195,7 @@ class StateSuccessScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  carbsText,
+                                  carbsText.tr,
                                   style: text.mediumTextStyle(
                                     fontSize: 12,
                                     lineHeight: 16,
@@ -201,7 +203,7 @@ class StateSuccessScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  fatText,
+                                  fatText.tr,
                                   style: text.mediumTextStyle(
                                     fontSize: 12,
                                     lineHeight: 16,
@@ -239,7 +241,7 @@ class StateSuccessScreen extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                primaryLabel,
+                                primaryLabel.tr,
                                 style: text.boldTextStyle(
                                   fontSize: 16,
                                   lineHeight: 20,
@@ -261,7 +263,7 @@ class StateSuccessScreen extends StatelessWidget {
                           vertical: 4.h,
                         ),
                         child: Text(
-                          secondaryLabel,
+                          secondaryLabel.tr,
                           style: text.semiBoldTextStyle(
                             fontSize: 14,
                             lineHeight: 20,

@@ -56,7 +56,7 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                     ),
                     Expanded(
                       child: Text(
-                        'Body & Weight',
+                        'progress_coach.body_weight.title'.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 18,
@@ -109,7 +109,7 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'CURRENT',
+                                  'progress_coach.body_weight.current'.tr,
                                   style: text.boldTextStyle(
                                     fontSize: 11,
                                     letterSpacing: 0.7,
@@ -146,7 +146,7 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                                 ),
                                 Gap(4),
                                 Text(
-                                  '−0.4 kg since Nov 16',
+                                  'progress_coach.body_weight.change_since'.tr,
                                   style: text.semiBoldTextStyle(
                                     fontSize: 12.5,
                                     color: AppColors.emerald,
@@ -187,7 +187,7 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                                           ),
                                         ),
                                         child: Text(
-                                          ProgressController.weightRanges[i],
+                                          ProgressController.weightRanges[i].tr,
                                           style: text.boldTextStyle(
                                             fontSize: 12,
                                             color: selected
@@ -216,18 +216,19 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                       Gap(12),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           _ChartLegend(
                             color: AppColors.coral,
-                            label: 'Daily weigh-ins',
+                            label: 'progress_coach.body_weight.legend_daily'.tr,
                           ),
                           _ChartLegend(
                             color: AppColors.coral,
-                            label: 'Projected trend',
+                            label: 'progress_coach.body_weight.legend_trend'.tr,
                           ),
                           _ChartLegend(
                             color: AppColors.emerald,
-                            label: 'Goal 58 kg',
+                            label: 'progress_coach.body_weight.goal_value'
+                                .trParams({'weight': '58 kg'}),
                           ),
                         ],
                       ),
@@ -250,21 +251,25 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Start 62.0 kg',
+                            'progress_coach.body_weight.start_value'.trParams({
+                              'weight': '62.0 kg',
+                            }),
                             style: text.regularTextStyle(
                               fontSize: 12.5,
                               color: AppColors.muted,
                             ),
                           ),
                           Text(
-                            '10% to goal',
+                            'progress_coach.body_weight.to_goal'.tr,
                             style: text.boldTextStyle(
                               fontSize: 13,
                               color: AppColors.ink,
                             ),
                           ),
                           Text(
-                            'Goal 58.0 kg',
+                            'progress_coach.body_weight.goal_value'.trParams({
+                              'weight': '58.0 kg',
+                            }),
                             style: text.regularTextStyle(
                               fontSize: 12.5,
                               color: AppColors.muted,
@@ -286,7 +291,7 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                       ),
                       Gap(10),
                       Text(
-                        'On pace for about −0.4 kg / week · est. late January',
+                        'progress_coach.body_weight.pace'.tr,
                         style: text.regularTextStyle(
                           fontSize: 12,
                           color: AppColors.muted,
@@ -297,18 +302,15 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                 ),
                 Gap(22),
                 Text(
-                  'Measurements',
-                  style: text.boldTextStyle(
-                    fontSize: 18,
-                    color: AppColors.ink,
-                  ),
+                  'progress_coach.body_weight.measurements'.tr,
+                  style: text.boldTextStyle(fontSize: 18, color: AppColors.ink),
                 ),
                 Gap(12),
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
                       child: _MeasurementTile(
-                        label: 'Waist',
+                        label: 'progress_coach.body_weight.waist'.tr,
                         value: '74 cm',
                         delta: '−1 cm',
                         deltaColor: AppColors.emerald,
@@ -317,7 +319,7 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                     Gap.h(10),
                     Expanded(
                       child: _MeasurementTile(
-                        label: 'Hips',
+                        label: 'progress_coach.body_weight.hips'.tr,
                         value: '96 cm',
                         delta: '±0',
                         deltaColor: AppColors.muted,
@@ -326,24 +328,23 @@ class ProgressBodyWeightScreen extends GetView<ProgressController> {
                     Gap.h(10),
                     Expanded(
                       child: _MeasurementTile(
-                        label: 'Body fat',
+                        label: 'progress_coach.body_weight.body_fat'.tr,
                         value: '—',
-                        delta: 'Optional',
+                        delta: 'progress_coach.body_weight.optional'.tr,
                         deltaColor: AppColors.muted,
                       ),
                     ),
                   ],
                 ),
                 Gap(16),
-                const OnboardingInfoBanner(
+                OnboardingInfoBanner(
                   backgroundColor: AppColors.infoSoft,
                   textColor: AppColors.ink,
-                  text:
-                      'Weight naturally moves ±1 kg from day to day. MILON looks at your weekly trend, not single weigh-ins.',
+                  text: 'progress_coach.body_weight.info_banner'.tr,
                 ),
                 Gap(18),
                 AppPrimaryButton(
-                  label: "Log Today's Weight",
+                  label: 'progress_coach.body_weight.log_button'.tr,
                   onPressed: controller.logTodayWeight,
                 ),
               ],
@@ -377,10 +378,9 @@ class _ChartLegend extends StatelessWidget {
         Gap.h(5),
         Text(
           label,
-          style: AppTextStyle(context).regularTextStyle(
-            fontSize: 11,
-            color: AppColors.muted,
-          ),
+          style: AppTextStyle(
+            context,
+          ).regularTextStyle(fontSize: 11, color: AppColors.muted),
         ),
       ],
     );

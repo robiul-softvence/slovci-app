@@ -16,7 +16,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Profile',
+      title: 'profile.main.title'.tr,
       backgroundColor: AppColors.white,
       trailing: Material(
         color: AppColors.pearl,
@@ -115,7 +115,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                 ),
                 Gap(4),
                 Text(
-                  'Member since Sep 2026 · Lose Weight',
+                  'profile.main.member_since'.tr,
                   style: text.regularTextStyle(
                     fontSize: 12.5,
                     color: AppColors.muted,
@@ -123,17 +123,26 @@ class ProfileMainScreen extends GetView<ProfileController> {
                 ),
                 Gap(16),
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
-                      child: _ProfileStatTile(value: '48', label: 'sessions'),
+                      child: _ProfileStatTile(
+                        value: '48',
+                        label: 'profile.main.stat_sessions'.tr,
+                      ),
                     ),
-                    Gap.h(10),
+                    const Gap.h(10),
                     Expanded(
-                      child: _ProfileStatTile(value: '12', label: 'weeks'),
+                      child: _ProfileStatTile(
+                        value: '12',
+                        label: 'profile.main.stat_weeks'.tr,
+                      ),
                     ),
-                    Gap.h(10),
+                    const Gap.h(10),
                     Expanded(
-                      child: _ProfileStatTile(value: '5', label: 'day streak'),
+                      child: _ProfileStatTile(
+                        value: '5',
+                        label: 'profile.main.stat_day_streak'.tr,
+                      ),
                     ),
                   ],
                 ),
@@ -143,7 +152,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
         ),
         Gap(22),
         Text(
-          'Coaching style',
+          'profile.main.coaching_style'.tr,
           style: text.boldTextStyle(fontSize: 17, color: AppColors.ink),
         ),
         Gap(12),
@@ -153,8 +162,8 @@ class ProfileMainScreen extends GetView<ProfileController> {
               Expanded(
                 child: _StyleCard(
                   iconPath: IconPath.pcHeart,
-                  title: 'Supportive',
-                  subtitle: 'Gentle & kind',
+                  title: 'profile.main.style_supportive'.tr,
+                  subtitle: 'profile.main.style_supportive_subtitle'.tr,
                   selected: !controller.motivatingStyle.value,
                   onTap: () => controller.motivatingStyle.value = false,
                 ),
@@ -163,8 +172,8 @@ class ProfileMainScreen extends GetView<ProfileController> {
               Expanded(
                 child: _StyleCard(
                   iconPath: IconPath.hwFlame,
-                  title: 'Motivating',
-                  subtitle: 'High energy',
+                  title: 'profile.main.style_motivating'.tr,
+                  subtitle: 'profile.main.style_motivating_subtitle'.tr,
                   selected: controller.motivatingStyle.value,
                   onTap: () => controller.motivatingStyle.value = true,
                 ),
@@ -217,7 +226,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Invite a Friend & Get 30 Days Free',
+                            'profile.main.referral_title'.tr,
                             style: text.boldTextStyle(
                               fontSize: 14.5,
                               color: AppColors.white,
@@ -225,7 +234,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                           ),
                           Gap(2),
                           Text(
-                            'Friend gets a 14-day trial · you get 30 days each (max 90)',
+                            'profile.main.referral_subtitle'.tr,
                             style: text.regularTextStyle(
                               fontSize: 12,
                               lineHeight: 16,
@@ -251,7 +260,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'YOUR CODE',
+                              'profile.main.your_code'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 10,
                                 letterSpacing: 0.6,
@@ -293,7 +302,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                                 ),
                                 Gap.h(6),
                                 Text(
-                                  'Copy',
+                                  'profile.main.copy'.tr,
                                   style: text.semiBoldTextStyle(
                                     fontSize: 13,
                                     color: AppColors.white,
@@ -312,14 +321,14 @@ class ProfileMainScreen extends GetView<ProfileController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '1 of 3 friends joined',
+                      'profile.main.friends_joined'.tr,
                       style: text.mediumTextStyle(
                         fontSize: 12,
                         color: AppColors.white,
                       ),
                     ),
                     Text(
-                      '30 / 90 days earned',
+                      'profile.main.days_earned'.tr,
                       style: text.mediumTextStyle(
                         fontSize: 12,
                         color: AppColors.white,
@@ -367,7 +376,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
         ),
         Gap(22),
         Text(
-          'Training & nutrition',
+          'profile.main.training_nutrition'.tr,
           style: text.boldTextStyle(fontSize: 17, color: AppColors.ink),
         ),
         Gap(12),
@@ -375,38 +384,38 @@ class ProfileMainScreen extends GetView<ProfileController> {
           children: [
             SettingsNavRow(
               iconPath: IconPath.hwDumbbell,
-              title: 'Equipment',
-              subtitle: 'Dumbbells · Resistance Bands · Bench',
+              title: 'profile.main.equipment'.tr,
+              subtitle: 'profile.main.equipment_subtitle'.tr,
               onTap: controller.openTrainingSetup,
             ),
             SettingsNavRow(
               iconPath: IconPath.hwShield,
-              title: 'Injuries & sensitive areas',
-              subtitle: 'Wrists & Hands · Carpal Tunnel',
+              title: 'profile.main.injuries'.tr,
+              subtitle: 'profile.main.injuries_subtitle'.tr,
               onTap: controller.openInjuries,
             ),
             SettingsNavRow(
               iconPath: IconPath.hwHome,
-              title: 'Training environment',
-              subtitle: 'Home · 4 sessions / week',
+              title: 'profile.main.training_environment'.tr,
+              subtitle: 'profile.main.training_environment_subtitle'.tr,
               onTap: controller.openTrainingSetup,
             ),
             SettingsNavRow(
               iconPath: IconPath.hwFood,
-              title: 'Diet & grocery budget',
-              subtitle: 'Flexitarian · Lactose-Free · €50 / week',
+              title: 'profile.main.diet_budget'.tr,
+              subtitle: 'profile.main.diet_budget_subtitle'.tr,
               onTap: controller.openDietBudget,
             ),
             SettingsNavRow(
               iconPath: IconPath.hwBell,
-              title: 'Notifications',
-              subtitle: 'Workout & meal reminders',
+              title: 'profile.main.notifications'.tr,
+              subtitle: 'profile.main.notifications_subtitle'.tr,
               onTap: controller.openNotifications,
             ),
             SettingsNavRow(
               iconPath: IconPath.prGlobe,
-              title: 'Language',
-              subtitle: 'App & coach language',
+              title: 'profile.main.language'.tr,
+              subtitle: 'profile.main.language_subtitle'.tr,
               onTap: controller.openUnitsLanguage,
               trailing: Obx(
                 () => Container(
@@ -417,10 +426,10 @@ class ProfileMainScreen extends GetView<ProfileController> {
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: ['EN', 'FR'].map((lang) {
+                    children: AppLanguage.values.map((lang) {
                       final active = controller.appLanguage.value == lang;
                       return GestureDetector(
-                        onTap: () => controller.appLanguage.value = lang,
+                        onTap: () => controller.setLanguage(lang),
                         child: Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 10.w,
@@ -433,7 +442,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                             borderRadius: BorderRadius.circular(99.r),
                           ),
                           child: Text(
-                            lang,
+                            lang.name.toUpperCase(),
                             style: text.boldTextStyle(
                               fontSize: 11.5,
                               color: active ? AppColors.white : AppColors.muted,
@@ -486,7 +495,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'MILON Pro · Annual',
+                        'profile.main.pro_annual'.tr,
                         style: text.boldTextStyle(
                           fontSize: 14.5,
                           color: AppColors.ink,
@@ -494,7 +503,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                       ),
                       Gap(2),
                       Text(
-                        'Renews Sep 12, 2027 · €214.90',
+                        'profile.main.pro_renews'.tr,
                         style: text.regularTextStyle(
                           fontSize: 12,
                           color: AppColors.ink.withValues(alpha: 0.78),
@@ -503,7 +512,11 @@ class ProfileMainScreen extends GetView<ProfileController> {
                     ],
                   ),
                 ),
-                SvgPicture.asset(IconPath.hwChevRight, width: 16.r, height: 16.r),
+                SvgPicture.asset(
+                  IconPath.hwChevRight,
+                  width: 16.r,
+                  height: 16.r,
+                ),
               ],
             ),
           ),
@@ -529,7 +542,7 @@ class ProfileMainScreen extends GetView<ProfileController> {
                   ),
                   Gap.h(8),
                   Text(
-                    'Log out',
+                    'profile.main.log_out'.tr,
                     style: text.semiBoldTextStyle(
                       fontSize: 14.5,
                       color: AppColors.cta,
@@ -570,7 +583,10 @@ class _ProfileStatTile extends StatelessWidget {
           Gap(2),
           Text(
             label,
-            style: text.regularTextStyle(fontSize: 11.5, color: AppColors.muted),
+            style: text.regularTextStyle(
+              fontSize: 11.5,
+              color: AppColors.muted,
+            ),
           ),
         ],
       ),
@@ -642,4 +658,3 @@ class _StyleCard extends StatelessWidget {
     );
   }
 }
-

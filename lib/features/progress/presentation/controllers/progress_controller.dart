@@ -5,7 +5,12 @@ import 'package:flutter_tamplate/routes/app_routes.dart';
 
 class ProgressController extends GetxController {
   // ─── 16 · Progress Main ───
-  static const List<String> periodTabs = ['Week', 'Month', 'Year'];
+  // Translation keys; translated with `.tr` at display time.
+  static const List<String> periodTabs = [
+    'progress_coach.dashboard.period_week',
+    'progress_coach.dashboard.period_month',
+    'progress_coach.dashboard.period_year',
+  ];
   final RxInt selectedPeriod = 1.obs; // Month
 
   // Hydration: 0..8 glasses (250 ml each = 2.0 L)
@@ -26,7 +31,12 @@ class ProgressController extends GetxController {
   ];
 
   // ─── 16b · Body & Weight ───
-  static const List<String> weightRanges = ['1W', '1M', '3M'];
+  // Translation keys; translated with `.tr` at display time.
+  static const List<String> weightRanges = [
+    'progress_coach.body_weight.range_1w',
+    'progress_coach.body_weight.range_1m',
+    'progress_coach.body_weight.range_3m',
+  ];
   final RxInt selectedWeightRange = 0.obs; // 1W
   final RxDouble currentWeight = 61.6.obs;
 
@@ -35,7 +45,8 @@ class ProgressController extends GetxController {
   final RxInt hungerRating = 4.obs;
   final RxInt sleepRating = 4.obs;
   final RxInt stressRating = 3.obs;
-  final RxInt workoutFeelIndex = 1.obs; // 0: Too easy, 1: Just right, 2: Too hard
+  final RxInt workoutFeelIndex =
+      1.obs; // 0: Too easy, 1: Just right, 2: Too hard
 
   // ─── Actions ───
   void drinkWater() {
@@ -52,7 +63,9 @@ class ProgressController extends GetxController {
 
   void logTodayWeight() {
     AppHelperFunctions.showSnackBar(
-      'Logged ${currentWeight.value.toStringAsFixed(1)} kg for today!',
+      'progress_coach.body_weight.logged_snackbar'.trParams({
+        'weight': currentWeight.value.toStringAsFixed(1),
+      }),
     );
   }
 
@@ -63,7 +76,9 @@ class ProgressController extends GetxController {
 
   void acceptWeek2Plan() {
     Get.offAllNamed(AppRoute.bottomNavScreen);
-    AppHelperFunctions.showSnackBar('Week 2 Plan accepted!');
+    AppHelperFunctions.showSnackBar(
+      'progress_coach.week2_plan.accepted_snackbar'.tr,
+    );
   }
 
   void discussWithCoach() {

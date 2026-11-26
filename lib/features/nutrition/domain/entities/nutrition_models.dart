@@ -1,4 +1,7 @@
 /// Pure Dart domain models for the MILON Nutrition feature.
+///
+/// Display strings (labels, titles, tags…) hold translation keys for the mock
+/// data; the UI resolves them with `.tr` at build time.
 class NutritionMeal {
   const NutritionMeal({
     required this.id,
@@ -10,7 +13,8 @@ class NutritionMeal {
     required this.proteinG,
     required this.carbsG,
     required this.fatsG,
-    required this.prepLabel,
+    required this.prepMin,
+    this.cookMin,
     required this.costEur,
     required this.dietTags,
     this.eaten = false,
@@ -25,7 +29,8 @@ class NutritionMeal {
   final int proteinG;
   final int carbsG;
   final int fatsG;
-  final String prepLabel;
+  final int prepMin;
+  final int? cookMin;
   final double costEur;
   final String dietTags;
   final bool eaten;
@@ -37,7 +42,8 @@ class NutritionMeal {
     int? proteinG,
     int? carbsG,
     int? fatsG,
-    String? prepLabel,
+    int? prepMin,
+    int? Function()? cookMin,
     double? costEur,
     bool? eaten,
   }) {
@@ -51,7 +57,8 @@ class NutritionMeal {
       proteinG: proteinG ?? this.proteinG,
       carbsG: carbsG ?? this.carbsG,
       fatsG: fatsG ?? this.fatsG,
-      prepLabel: prepLabel ?? this.prepLabel,
+      prepMin: prepMin ?? this.prepMin,
+      cookMin: cookMin != null ? cookMin() : this.cookMin,
       costEur: costEur ?? this.costEur,
       dietTags: dietTags,
       eaten: eaten ?? this.eaten,
@@ -73,7 +80,7 @@ class RecipeAlternative {
 
   final String title;
   final String imagePath;
-  final String prepMin;
+  final int prepMin;
   final double costEur;
   final int kcal;
   final int proteinG;

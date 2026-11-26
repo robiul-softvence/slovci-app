@@ -14,16 +14,16 @@ class CreatePasswordScreen extends GetView<CreatePasswordController> {
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
-      title: 'Create a new password',
-      subtitle: 'Choose a password you don’t use anywhere else.',
+      title: 'auth.create_password.title'.tr,
+      subtitle: 'auth.create_password.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Update Password',
+          label: 'auth.create_password.button'.tr,
           onPressed: controller.updatePassword,
         ),
         secondary: AuthFooterLink(
-          prompt: 'Back to',
-          action: 'Log in',
+          prompt: 'auth.create_password.back_prompt'.tr,
+          action: 'auth.create_password.back_link'.tr,
           onTap: controller.backToSignIn,
         ),
       ),
@@ -31,8 +31,8 @@ class CreatePasswordScreen extends GetView<CreatePasswordController> {
         const SizedBox(height: 20),
         Obx(
           () => AuthTextField(
-            label: 'New password',
-            hint: 'At least 8 characters',
+            label: 'auth.create_password.new_label'.tr,
+            hint: 'auth.common.password_hint'.tr,
             icon: IconPath.lock,
             controller: controller.passwordController,
             obscureText: controller.obscurePassword.value,
@@ -44,8 +44,8 @@ class CreatePasswordScreen extends GetView<CreatePasswordController> {
         const SizedBox(height: 16),
         Obx(
           () => AuthTextField(
-            label: 'Confirm new password',
-            hint: 'Re-enter password',
+            label: 'auth.create_password.confirm_label'.tr,
+            hint: 'auth.create_password.confirm_hint'.tr,
             icon: IconPath.lock,
             controller: controller.confirmController,
             obscureText: controller.obscureConfirm.value,

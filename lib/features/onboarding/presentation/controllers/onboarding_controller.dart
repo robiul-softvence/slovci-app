@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_tamplate/features/onboarding/domain/entities/onboarding_models.dart';
 import 'package:flutter_tamplate/routes/app_routes.dart';
 
@@ -37,9 +36,34 @@ class OnboardingController extends GetxController {
     return (diff / pace).ceil().clamp(2, 52);
   }
 
+  /// Short target date ("Nov 26" / "26 nov."), localized at call time.
   String get targetDateFormatted {
     final target = DateTime.now().add(Duration(days: estimatedWeeks * 7));
-    return DateFormat('MMM d').format(target);
+    return 'onboarding.common.date_short'.trParams({
+      'month': _monthKeys[target.month - 1].tr,
+      'day': '${target.day}',
+    });
+  }
+
+  static const List<String> _monthKeys = [
+    'onboarding.month.jan',
+    'onboarding.month.feb',
+    'onboarding.month.mar',
+    'onboarding.month.apr',
+    'onboarding.month.may',
+    'onboarding.month.jun',
+    'onboarding.month.jul',
+    'onboarding.month.aug',
+    'onboarding.month.sep',
+    'onboarding.month.oct',
+    'onboarding.month.nov',
+    'onboarding.month.dec',
+  ];
+
+  /// Signed weekly pace ("−0.4" / "−0,4"), localized at call time.
+  String get weeklyPaceLabel {
+    final pace = weeklyPaceKg;
+    return '${pace < 0 ? '−' : '+'}${formatDecimal(pace.abs(), 1)}';
   }
 
   String get healthyRangeText {
@@ -50,19 +74,22 @@ class OnboardingController extends GetxController {
   }
 
   // ─── 01d · Health Screening ───
-  static const List<String> healthConditionLabels = [
-    'Heart condition or chest pain during effort',
-    'Uncontrolled high blood pressure',
-    'Kidney disease',
-    'Recent surgery or injury',
-    'Diabetes',
-    'Pregnant or breastfeeding',
-    'Eating disorder, current or past',
-    'Ongoing medical treatment',
+  /// Translation keys; call `.tr` where they are shown.
+  static const List<String> healthConditionKeys = [
+    'onboarding.health.condition_heart',
+    'onboarding.health.condition_blood_pressure',
+    'onboarding.health.condition_kidney',
+    'onboarding.health.condition_surgery',
+    'onboarding.health.condition_diabetes',
+    'onboarding.health.condition_pregnant',
+    'onboarding.health.condition_eating_disorder',
+    'onboarding.health.condition_treatment',
   ];
 
-  final RxList<bool> healthFlags =
-      List<bool>.filled(healthConditionLabels.length, false).obs;
+  final RxList<bool> healthFlags = List<bool>.filled(
+    healthConditionKeys.length,
+    false,
+  ).obs;
   final RxBool healthConsent = true.obs;
 
   // ─── 02a / 02 / 02b · Injuries & Sensitive Areas ───
@@ -131,20 +158,29 @@ class OnboardingController extends GetxController {
 
   // ─── 03b · Schedule & Availability ───
   final RxInt sessionsPerWeek = 3.obs;
-  static const List<String> weekDayLetters = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-  static const List<String> weekDayNames = [
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat',
-    'Sun',
+
+  /// Translation keys; call `.tr` where they are shown.
+  static const List<String> weekDayLetterKeys = [
+    'onboarding.day_letter.mon',
+    'onboarding.day_letter.tue',
+    'onboarding.day_letter.wed',
+    'onboarding.day_letter.thu',
+    'onboarding.day_letter.fri',
+    'onboarding.day_letter.sat',
+    'onboarding.day_letter.sun',
+  ];
+  static const List<String> weekDayNameKeys = [
+    'onboarding.day.mon',
+    'onboarding.day.tue',
+    'onboarding.day.wed',
+    'onboarding.day.thu',
+    'onboarding.day.fri',
+    'onboarding.day.sat',
+    'onboarding.day.sun',
   ];
   final RxSet<int> selectedDayIndices = <int>{0, 2, 4}.obs;
   final RxInt sessionLengthMinutes = 30.obs;
-  final Rx<PreferredTimeOption> preferredTime =
-      PreferredTimeOption.morning.obs;
+  final Rx<PreferredTimeOption> preferredTime = PreferredTimeOption.morning.obs;
 
   // ─── 04a · Food Preferences ───
   final foodSearchController = TextEditingController();
@@ -207,8 +243,7 @@ class OnboardingController extends GetxController {
   void onInit() {
     super.onInit();
     nameController.addListener(() {
-      final trimmed = nameController.text.trim();
-      firstName.value = trimmed.isEmpty ? 'Friend' : trimmed;
+      firstName.value = nameController.text.trim();
     });
     foodSearchController.addListener(() {
       foodSearchQuery.value = foodSearchController.text.trim().toLowerCase();
@@ -220,7 +255,10 @@ class OnboardingController extends GetxController {
     healthFlags[index] = !healthFlags[index];
   }
 
-  void prepareInjurySheet(String zone, {String viewLabel = 'Front view · Both sides'}) {
+  void prepareInjurySheet(
+    String zone, {
+    String viewLabel = 'Front view · Both sides',
+  }) {
     activeInjuryZone.value = zone;
     activeInjuryViewLabel.value = viewLabel;
     final existing = selectedInjuries[zone];
@@ -334,42 +372,60 @@ class OnboardingController extends GetxController {
   }
 
   // ─── Derived display helpers ───
+  // These getters run at build time, so `.tr` always uses the current locale.
+
+  /// First name for display; falls back to a friendly placeholder when empty.
+  String get displayName =>
+      firstName.value.isEmpty ? 'onboarding.common.friend'.tr : firstName.value;
+
   String get goalLabel {
     switch (primaryGoal.value) {
       case PrimaryGoalOption.loseWeight:
-        return 'Lose Weight';
+        return 'onboarding.goal.lose_weight'.tr;
       case PrimaryGoalOption.buildMuscle:
-        return 'Build Muscle';
+        return 'onboarding.goal.build_muscle'.tr;
       case PrimaryGoalOption.stayFit:
-        return 'Stay Fit';
+        return 'onboarding.goal.stay_fit'.tr;
     }
   }
 
   String get environmentLabel {
     switch (trainingEnvironment.value) {
       case TrainingEnvironmentOption.gym:
-        return 'Gym';
+        return 'onboarding.env.gym'.tr;
       case TrainingEnvironmentOption.home:
-        return 'Home';
+        return 'onboarding.env.home'.tr;
       case TrainingEnvironmentOption.hybrid:
-        return 'Hybrid';
+        return 'onboarding.env.hybrid'.tr;
+    }
+  }
+
+  /// Where the session happens, phrased for the notification preview.
+  String get environmentPlaceLabel {
+    switch (trainingEnvironment.value) {
+      case TrainingEnvironmentOption.gym:
+        return 'onboarding.notifications.place_gym'.tr;
+      case TrainingEnvironmentOption.home:
+        return 'onboarding.notifications.place_home'.tr;
+      case TrainingEnvironmentOption.hybrid:
+        return 'onboarding.notifications.place_hybrid'.tr;
     }
   }
 
   String get reminderTimeLabel {
     switch (preferredTime.value) {
       case PreferredTimeOption.morning:
-        return '7:00 AM';
+        return 'onboarding.time.morning_reminder'.tr;
       case PreferredTimeOption.lunchBreak:
-        return '12:15 PM';
+        return 'onboarding.time.lunch_reminder'.tr;
       case PreferredTimeOption.evening:
-        return '6:30 PM';
+        return 'onboarding.time.evening_reminder'.tr;
     }
   }
 
   String get selectedDaysSummary {
     final sorted = selectedDayIndices.toList()..sort();
-    return sorted.map((i) => weekDayNames[i]).join(', ');
+    return sorted.map((i) => weekDayNameKeys[i].tr).join(', ');
   }
 
   String get scheduleBannerSummary {
@@ -380,24 +436,30 @@ class OnboardingController extends GetxController {
     final durStr = hrs > 0
         ? (mins > 0 ? '${hrs}h ${mins.toString().padLeft(2, '0')}' : '${hrs}h')
         : '$mins min';
-    return '$count × ${sessionLengthMinutes.value} min = $durStr / week · $selectedDaysSummary · Reminders at $reminderTimeLabel';
+    return 'onboarding.schedule.banner'.trParams({
+      'count': '$count',
+      'length': '${sessionLengthMinutes.value}',
+      'duration': durStr,
+      'days': selectedDaysSummary,
+      'time': reminderTimeLabel,
+    });
   }
 
   List<WeekDayPlan> get weekOnePlan {
     final dur = '${sessionLengthMinutes.value} min';
-    final workouts = [
-      'Full Body A',
-      'Full Body B',
-      'Lower + Core',
-      'Cardio circuit',
-      'Upper Body',
-      'Mobility & Core',
+    const workoutKeys = [
+      'onboarding.workout.full_body_a',
+      'onboarding.workout.full_body_b',
+      'onboarding.workout.lower_core',
+      'onboarding.workout.cardio_circuit',
+      'onboarding.workout.upper_body',
+      'onboarding.workout.mobility_core',
     ];
     int workoutIdx = 0;
     return List.generate(7, (i) {
-      final day = weekDayNames[i];
+      final day = weekDayNameKeys[i].tr;
       if (selectedDayIndices.contains(i)) {
-        final title = workouts[workoutIdx % workouts.length];
+        final title = workoutKeys[workoutIdx % workoutKeys.length].tr;
         workoutIdx++;
         return WeekDayPlan(
           dayShort: day,
@@ -409,19 +471,125 @@ class OnboardingController extends GetxController {
       if (i == 3) {
         return WeekDayPlan(
           dayShort: day,
-          title: 'Active walk',
+          title: 'onboarding.workout.active_walk'.tr,
           durationLabel: '30 min',
           type: DayPlanType.activeRecovery,
         );
       }
       return WeekDayPlan(
         dayShort: day,
-        title: 'Rest',
+        title: 'onboarding.workout.rest'.tr,
         durationLabel: '—',
         type: DayPlanType.rest,
       );
     });
   }
+
+  /// Fixed-digit decimal with the current locale's separator ("3.57" / "3,57").
+  static String formatDecimal(double value, int digits) => value
+      .toStringAsFixed(digits)
+      .replaceAll('.', 'onboarding.common.decimal_separator'.tr);
+
+  /// Display label for an option id (zone, view, condition, equipment, diet,
+  /// food). Ids stay in English because they are used as identifiers.
+  static String optionLabel(String id) {
+    final key = _optionLabelKeys[id];
+    return key == null ? id : key.tr;
+  }
+
+  /// Short zone label for compact tags ("Wrists" for "Wrists & Hands").
+  static String zoneShortLabel(String zone) {
+    final key = _zoneShortKeys[zone];
+    return key == null ? zone.split(' ').first : key.tr;
+  }
+
+  static const Map<String, String> _zoneShortKeys = {
+    'Neck': 'onboarding.zone_short.neck',
+    'Shoulders': 'onboarding.zone_short.shoulders',
+    'Chest': 'onboarding.zone_short.chest',
+    'Back': 'onboarding.zone_short.back',
+    'Elbows': 'onboarding.zone_short.elbows',
+    'Wrists & Hands': 'onboarding.zone_short.wrists_hands',
+    'Abdomen': 'onboarding.zone_short.abdomen',
+    'Hips & Glutes': 'onboarding.zone_short.hips_glutes',
+    'Thighs & Calves': 'onboarding.zone_short.thighs_calves',
+    'Knees': 'onboarding.zone_short.knees',
+    'Ankles & Feet': 'onboarding.zone_short.ankles_feet',
+    'Pregnancy / Postpartum': 'onboarding.zone_short.pregnancy',
+    'Surgery or fracture': 'onboarding.zone_short.surgery',
+    'Other': 'onboarding.common.other',
+  };
+
+  static const Map<String, String> _optionLabelKeys = {
+    // Shared
+    'Other': 'onboarding.common.other',
+    // Injury zones
+    'Neck': 'onboarding.zone.neck',
+    'Shoulders': 'onboarding.zone.shoulders',
+    'Chest': 'onboarding.zone.chest',
+    'Back': 'onboarding.zone.back',
+    'Elbows': 'onboarding.zone.elbows',
+    'Wrists & Hands': 'onboarding.zone.wrists_hands',
+    'Abdomen': 'onboarding.zone.abdomen',
+    'Hips & Glutes': 'onboarding.zone.hips_glutes',
+    'Thighs & Calves': 'onboarding.zone.thighs_calves',
+    'Knees': 'onboarding.zone.knees',
+    'Ankles & Feet': 'onboarding.zone.ankles_feet',
+    'Pregnancy / Postpartum': 'onboarding.zone.pregnancy',
+    'Surgery or fracture': 'onboarding.zone.surgery',
+    // Body map views
+    'Front view · Left side': 'onboarding.view.front_left',
+    'Front view · Right side': 'onboarding.view.front_right',
+    'Front view · Both sides': 'onboarding.view.front_both',
+    'Back view · Left side': 'onboarding.view.back_left',
+    'Back view · Right side': 'onboarding.view.back_right',
+    'Back view · Upper back': 'onboarding.view.back_upper',
+    'Back view · Lower back': 'onboarding.view.back_lower',
+    'Back view · Both sides': 'onboarding.view.back_both',
+    // Injury conditions
+    'Carpal Tunnel': 'onboarding.condition.carpal_tunnel',
+    'Tendinitis': 'onboarding.condition.tendinitis',
+    'Sprain': 'onboarding.condition.sprain',
+    'Arthritis': 'onboarding.condition.arthritis',
+    'Post-surgery': 'onboarding.condition.post_surgery',
+    // Equipment
+    'Bodyweight Only': 'onboarding.equipment.bodyweight_only',
+    'Dumbbells': 'onboarding.equipment.dumbbells',
+    'Kettlebells': 'onboarding.equipment.kettlebells',
+    'Resistance Bands': 'onboarding.equipment.resistance_bands',
+    'Pull-up Bar': 'onboarding.equipment.pull_up_bar',
+    'Bench': 'onboarding.equipment.bench',
+    // Diets
+    'Classic': 'onboarding.diet.classic',
+    'Flexitarian': 'onboarding.diet.flexitarian',
+    'Vegetarian': 'onboarding.diet.vegetarian',
+    'Vegan': 'onboarding.diet.vegan',
+    'Halal': 'onboarding.diet.halal',
+    'Gluten-Free': 'onboarding.diet.gluten_free',
+    'Lactose-Free': 'onboarding.diet.lactose_free',
+    // Foods
+    'Chicken': 'onboarding.food.chicken',
+    'Salmon': 'onboarding.food.salmon',
+    'Avocado': 'onboarding.food.avocado',
+    'Pasta': 'onboarding.food.pasta',
+    'Greek yogurt': 'onboarding.food.greek_yogurt',
+    'Berries': 'onboarding.food.berries',
+    'Mushrooms': 'onboarding.food.mushrooms',
+    'Tuna': 'onboarding.food.tuna',
+    'Coriander': 'onboarding.food.coriander',
+    'Eggs': 'onboarding.food.eggs',
+    'Tofu': 'onboarding.food.tofu',
+    'Lentils': 'onboarding.food.lentils',
+    'Quinoa': 'onboarding.food.quinoa',
+    'Broccoli': 'onboarding.food.broccoli',
+    'Sweet potato': 'onboarding.food.sweet_potato',
+    'Beef': 'onboarding.food.beef',
+    'Shrimp': 'onboarding.food.shrimp',
+    'Oats': 'onboarding.food.oats',
+    'Chickpeas': 'onboarding.food.chickpeas',
+    'Spinach': 'onboarding.food.spinach',
+    'Cottage cheese': 'onboarding.food.cottage_cheese',
+  };
 
   // ─── Navigation helpers ───
   void goToTargetWeight() => Get.toNamed(AppRoute.onboardingTargetWeightScreen);

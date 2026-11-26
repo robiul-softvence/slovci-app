@@ -34,7 +34,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Nutrition',
+                      'nutrition.dashboard.title'.tr,
                       style: text.boldTextStyle(
                         fontSize: 28,
                         lineHeight: 34,
@@ -79,7 +79,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                       ),
                       Obx(
                         () => Text(
-                          controller.dateLabels[controller.dateIndex.value],
+                          controller.dateLabels[controller.dateIndex.value].tr,
                           style: text.semiBoldTextStyle(
                             fontSize: 14,
                             lineHeight: 18,
@@ -143,7 +143,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                                 ),
                                 Gap(2),
                                 Text(
-                                  'eaten',
+                                  'nutrition.dashboard.eaten'.tr,
                                   style: text.regularTextStyle(
                                     fontSize: 12,
                                     color: AppColors.muted,
@@ -177,7 +177,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                                       ),
                                       Gap(2),
                                       Text(
-                                        'kcal remaining',
+                                        'nutrition.dashboard.kcal_remaining'.tr,
                                         style: text.regularTextStyle(
                                           fontSize: 12.5,
                                           color: AppColors.muted,
@@ -215,7 +215,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                                 ),
                                 Gap(2),
                                 Text(
-                                  'burned',
+                                  'nutrition.dashboard.burned'.tr,
                                   style: text.regularTextStyle(
                                     fontSize: 12,
                                     color: AppColors.muted,
@@ -227,21 +227,21 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                         ),
                         Gap(22),
                         _MacroProgressBar(
-                          label: 'Protein',
+                          label: 'nutrition.common.protein'.tr,
                           current: controller.eatenProtein,
                           target: NutritionController.targetProtein,
                           color: AppColors.coral,
                         ),
                         Gap(14),
                         _MacroProgressBar(
-                          label: 'Carbs',
+                          label: 'nutrition.common.carbs'.tr,
                           current: controller.eatenCarbs,
                           target: NutritionController.targetCarbs,
                           color: AppColors.carbsBlue,
                         ),
                         Gap(14),
                         _MacroProgressBar(
-                          label: 'Fats',
+                          label: 'nutrition.common.fats'.tr,
                           current: controller.eatenFats,
                           target: NutritionController.targetFats,
                           color: AppColors.amber,
@@ -288,7 +288,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'ASK MILON COACH',
+                                'nutrition.dashboard.ask_coach_eyebrow'.tr,
                                 style: text.boldTextStyle(
                                   fontSize: 10.5,
                                   letterSpacing: 0.6,
@@ -298,7 +298,12 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                               Gap(3),
                               Obx(
                                 () => Text(
-                                  '"I have ${numFmt.format(controller.remainingKcal)} kcal left, what should I eat?"',
+                                  'nutrition.dashboard.ask_coach_prompt'
+                                      .trParams({
+                                        'kcal': numFmt.format(
+                                          controller.remainingKcal,
+                                        ),
+                                      }),
                                   style: text.boldTextStyle(
                                     fontSize: 14,
                                     lineHeight: 19,
@@ -325,7 +330,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Today's plan",
+                      'nutrition.dashboard.todays_plan'.tr,
                       style: text.boldTextStyle(
                         fontSize: 18,
                         lineHeight: 22,
@@ -335,7 +340,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                     GestureDetector(
                       onTap: () => controller.openMealPlanner(slotIndex: 1),
                       child: Text(
-                        'See all',
+                        'nutrition.dashboard.see_all'.tr,
                         style: text.semiBoldTextStyle(
                           fontSize: 14,
                           color: AppColors.cta,
@@ -371,7 +376,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      meal.slotLabel,
+                                      meal.slotLabel.tr,
                                       style: text.boldTextStyle(
                                         fontSize: 10.5,
                                         letterSpacing: 0.5,
@@ -380,7 +385,7 @@ class NutritionDailyDashboardScreen extends GetView<NutritionController> {
                                     ),
                                     Gap(3),
                                     Text(
-                                      meal.title,
+                                      meal.title.tr,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: text.semiBoldTextStyle(
@@ -475,7 +480,7 @@ class _MacroProgressBar extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '$current / ${target}g',
+              '$current / $target${'nutrition.common.unit_g'.tr}',
               style: text.mediumTextStyle(fontSize: 13, color: AppColors.muted),
             ),
           ],

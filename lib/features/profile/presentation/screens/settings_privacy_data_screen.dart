@@ -16,16 +16,16 @@ class SettingsPrivacyDataScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Privacy & Data',
+      title: 'profile.privacy_data.title'.tr,
       children: [
-        const SettingsSectionLabel('HEALTH DATA'),
+        SettingsSectionLabel('profile.privacy_data.section_health_data'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.hwShield,
-                title: 'Health data consent',
-                subtitle: 'Granted Nov 16, 2026 · injuries, weight, sleep',
+                title: 'profile.privacy_data.health_consent'.tr,
+                subtitle: 'profile.privacy_data.health_consent_subtitle'.tr,
                 value: controller.healthConsent.value,
                 onChanged: (v) => controller.healthConsent.value = v,
               ),
@@ -33,21 +33,20 @@ class SettingsPrivacyDataScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(12),
-        const OnboardingInfoBanner(
+        OnboardingInfoBanner(
           backgroundColor: AppColors.amberSoft,
           textColor: AppColors.ink,
-          text:
-              'Turning this off pauses personalization: your plan stops adapting to injuries and weight.',
+          text: 'profile.privacy_data.consent_off_info'.tr,
         ),
         Gap(22),
-        const SettingsSectionLabel('USAGE'),
+        SettingsSectionLabel('profile.privacy_data.section_usage'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.hwChart,
-                title: 'Product analytics',
-                subtitle: 'Anonymous usage to improve MILON',
+                title: 'profile.privacy_data.product_analytics'.tr,
+                subtitle: 'profile.privacy_data.product_analytics_subtitle'.tr,
                 value: controller.productAnalytics.value,
                 onChanged: (v) => controller.productAnalytics.value = v,
               ),
@@ -55,37 +54,38 @@ class SettingsPrivacyDataScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.prTag,
-                title: 'Personalized offers',
-                subtitle: 'Promotions based on your activity',
+                title: 'profile.privacy_data.personalized_offers'.tr,
+                subtitle:
+                    'profile.privacy_data.personalized_offers_subtitle'.tr,
                 value: controller.personalizedOffers.value,
                 onChanged: (v) => controller.personalizedOffers.value = v,
               ),
             ),
             SettingsNavRow(
               iconPath: IconPath.pcChat,
-              title: 'MILON Coach chat history',
-              subtitle: 'Kept for 90 days',
+              title: 'profile.privacy_data.chat_history'.tr,
+              subtitle: 'profile.privacy_data.chat_history_subtitle'.tr,
               onTap: () => AppHelperFunctions.showSnackBar(
-                'Chat history retention: 90 days.',
+                'profile.privacy_data.chat_history_retention'.tr,
               ),
             ),
           ],
         ),
         Gap(22),
-        const SettingsSectionLabel('YOUR DATA'),
+        SettingsSectionLabel('profile.privacy_data.section_your_data'.tr),
         SettingsCardGroup(
           children: [
             SettingsNavRow(
               iconPath: IconPath.prDownload,
-              title: 'Download my data',
-              subtitle: 'Get a copy of everything (JSON + PDF). Ready within 48 h.',
+              title: 'profile.privacy_data.download_data'.tr,
+              subtitle: 'profile.privacy_data.download_data_subtitle'.tr,
               trailing: Material(
                 color: AppColors.ink,
                 borderRadius: BorderRadius.circular(11.r),
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   onTap: () => AppHelperFunctions.showSnackBar(
-                    'Data export requested! Ready within 48h.',
+                    'profile.privacy_data.export_requested'.tr,
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
@@ -93,7 +93,7 @@ class SettingsPrivacyDataScreen extends GetView<ProfileController> {
                       vertical: 8.h,
                     ),
                     child: Text(
-                      'Request',
+                      'profile.privacy_data.request'.tr,
                       style: text.semiBoldTextStyle(
                         fontSize: 13,
                         color: AppColors.white,
@@ -105,8 +105,8 @@ class SettingsPrivacyDataScreen extends GetView<ProfileController> {
             ),
             SettingsNavRow(
               iconPath: IconPath.prTrash,
-              title: 'Delete my account',
-              subtitle: 'Permanently erase your data',
+              title: 'profile.privacy_data.delete_account'.tr,
+              subtitle: 'profile.privacy_data.delete_account_subtitle'.tr,
               isDanger: true,
               onTap: () => DeleteAccountConfirmSheet.show(context),
             ),
@@ -119,7 +119,7 @@ class SettingsPrivacyDataScreen extends GetView<ProfileController> {
             GestureDetector(
               onTap: controller.openPrivacyPolicy,
               child: Text(
-                'Privacy Policy',
+                'profile.privacy_data.privacy_policy'.tr,
                 style: text.semiBoldTextStyle(
                   fontSize: 13.5,
                   color: AppColors.cta,
@@ -130,7 +130,7 @@ class SettingsPrivacyDataScreen extends GetView<ProfileController> {
             GestureDetector(
               onTap: controller.openPrivacyPolicy,
               child: Text(
-                'Terms of Use',
+                'profile.privacy_data.terms_of_use'.tr,
                 style: text.semiBoldTextStyle(
                   fontSize: 13.5,
                   color: AppColors.cta,

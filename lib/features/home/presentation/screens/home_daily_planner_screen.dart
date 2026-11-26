@@ -63,7 +63,7 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  controller.todayDateLabel.value,
+                                  controller.todayDateLabel.value.tr,
                                   style: text.regularTextStyle(
                                     fontSize: 13,
                                     lineHeight: 16,
@@ -72,7 +72,9 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                                 ),
                                 Gap(2),
                                 Text(
-                                  'Hello, ${controller.userName.value}',
+                                  'home_workout.home.hello'.trParams({
+                                    'name': controller.userName.value,
+                                  }),
                                   style: text.boldTextStyle(
                                     fontSize: 22,
                                     lineHeight: 26,
@@ -111,7 +113,7 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                       children: [
                         Obx(
                           () => Text(
-                            controller.monthLabel.value,
+                            controller.monthLabel.value.tr,
                             style: text.semiBoldTextStyle(
                               fontSize: 15,
                               lineHeight: 20,
@@ -143,7 +145,9 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                               Gap.h(5),
                               Obx(
                                 () => Text(
-                                  '${controller.streakDays.value}-day streak',
+                                  'home_workout.home.streak'.trParams({
+                                    'count': '${controller.streakDays.value}',
+                                  }),
                                   style: text.boldTextStyle(
                                     fontSize: 12,
                                     lineHeight: 15,
@@ -188,7 +192,8 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                                 child: Column(
                                   children: [
                                     Text(
-                                      day.weekday,
+                                      'home_workout.home.weekday_${day.weekday.toLowerCase()}'
+                                          .tr,
                                       style: text.mediumTextStyle(
                                         fontSize: 11.5,
                                         lineHeight: 14,
@@ -252,7 +257,7 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                               ),
                               Gap.h(8),
                               Text(
-                                'Generate My Personalized Plan',
+                                'home_workout.home.generate_plan'.tr,
                                 style: text.boldTextStyle(
                                   fontSize: 14.5,
                                   lineHeight: 18,
@@ -294,7 +299,7 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Today's meals",
+                          'home_workout.home.todays_meals'.tr,
                           style: text.boldTextStyle(
                             fontSize: 18,
                             lineHeight: 22,
@@ -303,7 +308,10 @@ class HomeDailyPlannerScreen extends GetView<HomeController> {
                         ),
                         Obx(
                           () => Text(
-                            '${controller.loggedPlannedCount} / ${controller.plannedCount} planned logged',
+                            'home_workout.home.planned_logged'.trParams({
+                              'logged': '${controller.loggedPlannedCount}',
+                              'planned': '${controller.plannedCount}',
+                            }),
                             style: text.regularTextStyle(
                               fontSize: 12.5,
                               lineHeight: 16,
@@ -420,7 +428,7 @@ class _TodayWorkoutCard extends StatelessWidget {
                 ),
               ),
               Text(
-                'NEW',
+                'home_workout.home.new_badge'.tr,
                 style: text.boldTextStyle(
                   fontSize: 11,
                   lineHeight: 14,
@@ -432,7 +440,7 @@ class _TodayWorkoutCard extends StatelessWidget {
           ),
           Gap(12),
           Text(
-            "TODAY'S WORKOUT",
+            'home_workout.home.todays_workout'.tr,
             style: text.boldTextStyle(
               fontSize: 10.5,
               lineHeight: 14,
@@ -451,7 +459,7 @@ class _TodayWorkoutCard extends StatelessWidget {
           ),
           Gap(3),
           Text(
-            '45 min · Home',
+            'home_workout.home.workout_meta'.tr,
             style: text.regularTextStyle(
               fontSize: 12.5,
               lineHeight: 16,
@@ -473,7 +481,10 @@ class _TodayWorkoutCard extends StatelessWidget {
               Gap.h(4),
               Expanded(
                 child: Text(
-                  '~320 kcal · 6 moves',
+                  'home_workout.home.workout_kcal_moves'.trParams({
+                    'kcal': '320',
+                    'count': '6',
+                  }),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: text.mediumTextStyle(
@@ -497,7 +508,7 @@ class _TodayWorkoutCard extends StatelessWidget {
                 onTap: onStart,
                 child: Center(
                   child: Text(
-                    'Start',
+                    'home_workout.home.start'.tr,
                     style: text.boldTextStyle(
                       fontSize: 14,
                       lineHeight: 18,
@@ -533,6 +544,7 @@ class _TodayNutritionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = AppTextStyle(context);
     final progress = (loggedProtein / targetProtein).clamp(0.03, 1.0);
+    final gramsSuffix = 'home_workout.common.grams_suffix'.tr;
 
     return Container(
       padding: EdgeInsets.all(14.r),
@@ -566,7 +578,9 @@ class _TodayNutritionCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '$plannedCount PLANNED',
+                'home_workout.home.planned_count'.trParams({
+                  'count': '$plannedCount',
+                }),
                 style: text.boldTextStyle(
                   fontSize: 10.5,
                   lineHeight: 14,
@@ -578,7 +592,7 @@ class _TodayNutritionCard extends StatelessWidget {
           ),
           Gap(12),
           Text(
-            "TODAY'S NUTRITION",
+            'home_workout.home.todays_nutrition'.tr,
             style: text.boldTextStyle(
               fontSize: 10.5,
               lineHeight: 14,
@@ -601,7 +615,7 @@ class _TodayNutritionCard extends StatelessWidget {
               ),
               Gap.h(4),
               Text(
-                'kcal',
+                'home_workout.common.kcal'.tr,
                 style: text.regularTextStyle(
                   fontSize: 12,
                   color: AppColors.muted,
@@ -611,7 +625,9 @@ class _TodayNutritionCard extends StatelessWidget {
           ),
           Gap(3),
           Text(
-            '${targetProtein}g Protein',
+            'home_workout.home.protein_target'.trParams({
+              'amount': '$targetProtein$gramsSuffix',
+            }),
             style: text.regularTextStyle(
               fontSize: 12.5,
               lineHeight: 16,
@@ -623,14 +639,17 @@ class _TodayNutritionCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Protein',
+                'home_workout.home.protein'.tr,
                 style: text.regularTextStyle(
                   fontSize: 11.5,
                   color: AppColors.muted,
                 ),
               ),
               Text(
-                '$loggedProtein / ${targetProtein}g',
+                'home_workout.home.protein_progress'.trParams({
+                  'logged': '$loggedProtein',
+                  'target': '$targetProtein$gramsSuffix',
+                }),
                 style: text.boldTextStyle(
                   fontSize: 11.5,
                   color: AppColors.ink,
@@ -660,7 +679,7 @@ class _TodayNutritionCard extends StatelessWidget {
                 onTap: onViewPlan,
                 child: Center(
                   child: Text(
-                    'View Plan',
+                    'home_workout.home.view_plan'.tr,
                     style: text.boldTextStyle(
                       fontSize: 14,
                       lineHeight: 18,
@@ -732,7 +751,7 @@ class _MealRow extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        meal.tag,
+                        meal.tag.tr,
                         style: text.boldTextStyle(
                           fontSize: 10.5,
                           lineHeight: 14,
@@ -742,7 +761,7 @@ class _MealRow extends StatelessWidget {
                       ),
                       Gap(2),
                       Text(
-                        meal.title,
+                        meal.title.tr,
                         style: text.semiBoldTextStyle(
                           fontSize: 14.5,
                           lineHeight: 19,
@@ -763,7 +782,7 @@ class _MealRow extends StatelessWidget {
                           ),
                           Gap.h(4),
                           Text(
-                            meal.prepLabel,
+                            meal.prepLabel.tr,
                             style: text.regularTextStyle(
                               fontSize: 12,
                               lineHeight: 15,

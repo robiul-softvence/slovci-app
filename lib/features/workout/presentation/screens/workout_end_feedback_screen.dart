@@ -11,15 +11,20 @@ import 'package:flutter_tamplate/features/workout/presentation/controllers/worko
 class WorkoutEndFeedbackScreen extends GetView<WorkoutController> {
   const WorkoutEndFeedbackScreen({super.key});
 
+  // Translation keys — resolved with `.tr` at build time.
   static const _feelOptions = [
-    'Too easy',
-    'Easy',
-    'Just right',
-    'Hard',
-    'Too hard',
+    'home_workout.end_feedback.feel_too_easy',
+    'home_workout.end_feedback.feel_easy',
+    'home_workout.end_feedback.feel_just_right',
+    'home_workout.end_feedback.feel_hard',
+    'home_workout.end_feedback.feel_too_hard',
   ];
 
-  static const _enjoyOptions = ['Loved it', 'It was OK', 'Not really'];
+  static const _enjoyOptions = [
+    'home_workout.end_feedback.enjoy_loved',
+    'home_workout.end_feedback.enjoy_ok',
+    'home_workout.end_feedback.enjoy_not_really',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +32,14 @@ class WorkoutEndFeedbackScreen extends GetView<WorkoutController> {
 
     return OnboardingScaffold(
       showHeader: false,
-      eyebrow: 'SESSION COMPLETE · FULL BODY A',
-      title: 'How was your session?',
-      subtitle:
-          'Your feedback helps MILON Coach adjust your next workouts.',
+      eyebrow: 'home_workout.end_feedback.eyebrow'.trParams({
+        'workout': 'FULL BODY A',
+      }),
+      title: 'home_workout.end_feedback.title'.tr,
+      subtitle: 'home_workout.end_feedback.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'See my session summary',
+          label: 'home_workout.end_feedback.see_summary'.tr,
           onPressed: controller.openSessionSummary,
         ),
       ),
@@ -41,15 +47,26 @@ class WorkoutEndFeedbackScreen extends GetView<WorkoutController> {
         Gap(20),
         Row(
           children: const [
-            Expanded(child: _PeachStatBox(value: '45', label: 'min')),
+            Expanded(child: _PeachStatBox(
+                value: '45',
+                labelKey: 'home_workout.common.min',
+              )),
             Gap.h(10),
-            Expanded(child: _PeachStatBox(value: '18', label: 'sets')),
+            Expanded(child: _PeachStatBox(
+                value: '18',
+                labelKey: 'home_workout.common.sets',
+              )),
             Gap.h(10),
-            Expanded(child: _PeachStatBox(value: '6', label: 'exercises')),
+            Expanded(child: _PeachStatBox(
+                value: '6',
+                labelKey: 'home_workout.common.exercises',
+              )),
           ],
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'How did it feel overall?'),
+        OnboardingSectionTitle(
+          title: 'home_workout.end_feedback.feel_title'.tr,
+        ),
         Gap(12),
         Obx(
           () => Container(
@@ -76,7 +93,7 @@ class WorkoutEndFeedbackScreen extends GetView<WorkoutController> {
                         borderRadius: BorderRadius.circular(11.r),
                       ),
                       child: Text(
-                        _feelOptions[i],
+                        _feelOptions[i].tr,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -93,19 +110,21 @@ class WorkoutEndFeedbackScreen extends GetView<WorkoutController> {
           ),
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'Any pain or discomfort?'),
+        OnboardingSectionTitle(
+          title: 'home_workout.end_feedback.pain_title'.tr,
+        ),
         Gap(12),
         Obx(
           () => Wrap(
             spacing: 10.w,
             children: [
               OnboardingTagChip(
-                label: 'No, all good',
+                label: 'home_workout.end_feedback.pain_no'.tr,
                 selected: !controller.hadPain.value,
                 onTap: () => controller.hadPain.value = false,
               ),
               OnboardingTagChip(
-                label: 'Yes, somewhere',
+                label: 'home_workout.end_feedback.pain_yes'.tr,
                 selected: controller.hadPain.value,
                 onTap: () => controller.hadPain.value = true,
               ),
@@ -114,21 +133,23 @@ class WorkoutEndFeedbackScreen extends GetView<WorkoutController> {
         ),
         Gap(8),
         Text(
-          'If yes, we will ask where and adapt your next session.',
+          'home_workout.end_feedback.pain_hint'.tr,
           style: text.regularTextStyle(
             fontSize: 12.5,
             color: AppColors.muted,
           ),
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'Did you enjoy it?'),
+        OnboardingSectionTitle(
+          title: 'home_workout.end_feedback.enjoy_title'.tr,
+        ),
         Gap(12),
         Obx(
           () => Wrap(
             spacing: 10.w,
             children: List.generate(_enjoyOptions.length, (i) {
               return OnboardingTagChip(
-                label: _enjoyOptions[i],
+                label: _enjoyOptions[i].tr,
                 selected: controller.enjoymentIndex.value == i,
                 onTap: () => controller.enjoymentIndex.value = i,
               );
@@ -136,13 +157,15 @@ class WorkoutEndFeedbackScreen extends GetView<WorkoutController> {
           ),
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'A word for your coach? (optional)'),
+        OnboardingSectionTitle(
+          title: 'home_workout.end_feedback.coach_note_title'.tr,
+        ),
         Gap(12),
         TextField(
           controller: controller.coachNoteController,
           style: text.regularTextStyle(fontSize: 14, color: AppColors.ink),
           decoration: InputDecoration(
-            hintText: 'e.g. The lunges were hard on my knees',
+            hintText: 'home_workout.end_feedback.coach_note_hint'.tr,
             hintStyle: text.regularTextStyle(
               fontSize: 14,
               color: AppColors.subtle,
@@ -165,10 +188,12 @@ class WorkoutEndFeedbackScreen extends GetView<WorkoutController> {
 }
 
 class _PeachStatBox extends StatelessWidget {
-  const _PeachStatBox({required this.value, required this.label});
+  const _PeachStatBox({required this.value, required this.labelKey});
 
   final String value;
-  final String label;
+
+  /// Translation key, resolved at build time.
+  final String labelKey;
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +217,7 @@ class _PeachStatBox extends StatelessWidget {
           ),
           Gap(2),
           Text(
-            label,
+            labelKey.tr,
             style: text.regularTextStyle(
               fontSize: 12.5,
               color: AppColors.muted,

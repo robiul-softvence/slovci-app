@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 import 'package:flutter_tamplate/features/profile/presentation/widgets/settings_scaffold.dart';
 
@@ -7,26 +8,26 @@ import 'package:flutter_tamplate/features/profile/presentation/widgets/settings_
 class SettingsPrivacyPolicyScreen extends StatelessWidget {
   const SettingsPrivacyPolicyScreen({super.key});
 
-  static const _sections = [
+  static const _sectionKeys = [
     (
-      '1. Data we collect',
-      'Account details, profile information (age, height, weight, goal), training and nutrition logs, and, with your consent, health data such as injuries, sleep and data from Apple Health.',
+      'profile.privacy_policy.section1_title',
+      'profile.privacy_policy.section1_body',
     ),
     (
-      '2. How we use it',
-      'To generate and adapt your workout and meal plans, power the MILON Coach, send the reminders you choose, and improve MILON using anonymous analytics.',
+      'profile.privacy_policy.section2_title',
+      'profile.privacy_policy.section2_body',
     ),
     (
-      '3. Health data',
-      'Health data is processed only with your explicit consent, encrypted at rest and in transit, and never used for advertising. You can withdraw consent anytime in Privacy & Data.',
+      'profile.privacy_policy.section3_title',
+      'profile.privacy_policy.section3_body',
     ),
     (
-      '4. Your rights',
-      'You can access, correct, export or delete your data at any time from Settings, or by contacting privacy@example.com.',
+      'profile.privacy_policy.section4_title',
+      'profile.privacy_policy.section4_body',
     ),
     (
-      '5. Retention',
-      'We keep your data while your account is active. MILON Coach chats are kept for 90 days. Deleted accounts are erased within 30 days.',
+      'profile.privacy_policy.section5_title',
+      'profile.privacy_policy.section5_body',
     ),
   ];
 
@@ -35,14 +36,16 @@ class SettingsPrivacyPolicyScreen extends StatelessWidget {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Privacy Policy',
+      title: 'profile.privacy_policy.title'.tr,
       backgroundColor: AppColors.white,
       trailing: Material(
         color: AppColors.transparent,
         shape: const CircleBorder(),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: () => AppHelperFunctions.showSnackBar('Privacy Policy shared'),
+          onTap: () => AppHelperFunctions.showSnackBar(
+            'profile.privacy_policy.shared'.tr,
+          ),
           child: SizedBox.square(
             dimension: 40.r,
             child: Center(
@@ -68,7 +71,7 @@ class SettingsPrivacyPolicyScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Last updated November 1, 2026',
+                'profile.privacy_policy.last_updated'.tr,
                 style: text.regularTextStyle(
                   fontSize: 12,
                   color: AppColors.muted,
@@ -76,7 +79,7 @@ class SettingsPrivacyPolicyScreen extends StatelessWidget {
               ),
               Gap(6),
               Text(
-                'Summary: we use your data only to personalize your training and nutrition. We never sell it.',
+                'profile.privacy_policy.summary'.tr,
                 style: text.mediumTextStyle(
                   fontSize: 14,
                   lineHeight: 20,
@@ -87,23 +90,20 @@ class SettingsPrivacyPolicyScreen extends StatelessWidget {
           ),
         ),
         Gap(22),
-        ..._sections.map((pair) {
-          final (heading, body) = pair;
+        ..._sectionKeys.map((pair) {
+          final (headingKey, bodyKey) = pair;
           return Padding(
             padding: EdgeInsets.only(bottom: 20.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  heading,
-                  style: text.boldTextStyle(
-                    fontSize: 17,
-                    color: AppColors.ink,
-                  ),
+                  headingKey.tr,
+                  style: text.boldTextStyle(fontSize: 17, color: AppColors.ink),
                 ),
                 Gap(8),
                 Text(
-                  body,
+                  bodyKey.tr,
                   style: text.regularTextStyle(
                     fontSize: 14,
                     lineHeight: 21,

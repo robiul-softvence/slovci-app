@@ -15,132 +15,132 @@ class ProfileSettingsScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Settings',
+      title: 'profile.settings.title'.tr,
       backgroundColor: AppColors.white,
       children: [
-        const SettingsSectionLabel('ACCOUNT'),
+        SettingsSectionLabel('profile.settings.section_account'.tr),
         SettingsCardGroup(
           children: [
             SettingsNavRow(
               iconPath: IconPath.mail,
-              title: 'Email',
+              title: 'profile.settings.email'.tr,
               subtitle: 'solene.martin@example.com',
               onTap: controller.openAccountSecurity,
             ),
             SettingsNavRow(
               iconPath: IconPath.prCard,
-              title: 'Subscription',
-              subtitle: 'MILON Pro · Annual · renews Sep 12, 2027',
+              title: 'profile.settings.subscription'.tr,
+              subtitle: 'profile.settings.subscription_subtitle'.tr,
               onTap: controller.openSubscription,
             ),
             SettingsNavRow(
               iconPath: IconPath.prTag,
-              title: 'Promo code',
-              subtitle: 'Add a code',
+              title: 'profile.settings.promo_code'.tr,
+              subtitle: 'profile.settings.promo_code_subtitle'.tr,
               onTap: controller.openPaywall,
             ),
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('PREFERENCES'),
+        SettingsSectionLabel('profile.settings.section_preferences'.tr),
         SettingsCardGroup(
           children: [
             SettingsNavRow(
               iconPath: IconPath.pcRuler,
-              title: 'Units',
+              title: 'profile.settings.units'.tr,
               subtitle: 'kg · cm',
               onTap: controller.openUnitsLanguage,
             ),
             SettingsNavRow(
               iconPath: IconPath.prGlobe,
-              title: 'Language',
-              subtitle: 'English',
+              title: 'profile.settings.language'.tr,
+              subtitle: 'profile.settings.language_subtitle'.tr,
               onTap: controller.openUnitsLanguage,
             ),
             SettingsNavRow(
               iconPath: IconPath.hwBell,
-              title: 'Notifications',
-              subtitle: 'Workouts, meals, weekly check-in',
+              title: 'profile.settings.notifications'.tr,
+              subtitle: 'profile.settings.notifications_subtitle'.tr,
               onTap: controller.openNotifications,
             ),
             SettingsNavRow(
               iconPath: IconPath.prActivity,
-              title: 'Connected apps',
-              subtitle: 'Apple Health · Connected',
+              title: 'profile.settings.connected_apps'.tr,
+              subtitle: 'profile.settings.connected_apps_subtitle'.tr,
               onTap: controller.openConnectedApps,
             ),
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('PRIVACY & DATA'),
+        SettingsSectionLabel('profile.settings.section_privacy_data'.tr),
         SettingsCardGroup(
           children: [
             SettingsNavRow(
               iconPath: IconPath.hwShield,
-              title: 'Health data consent',
-              subtitle: 'Granted Nov 16, 2026 · manage',
+              title: 'profile.settings.health_consent'.tr,
+              subtitle: 'profile.settings.health_consent_subtitle'.tr,
               onTap: controller.openPrivacyData,
             ),
             SettingsNavRow(
               iconPath: IconPath.hwLock,
-              title: 'Privacy settings',
-              subtitle: 'Profile visibility, analytics',
+              title: 'profile.settings.privacy_settings'.tr,
+              subtitle: 'profile.settings.privacy_settings_subtitle'.tr,
               onTap: controller.openPrivacyData,
             ),
             SettingsNavRow(
               iconPath: IconPath.prDownload,
-              title: 'Download my data',
-              subtitle: 'Export everything as a file',
+              title: 'profile.settings.download_data'.tr,
+              subtitle: 'profile.settings.download_data_subtitle'.tr,
               onTap: controller.openPrivacyData,
             ),
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('HELP & LEGAL'),
+        SettingsSectionLabel('profile.settings.section_help_legal'.tr),
         SettingsCardGroup(
           children: [
             SettingsNavRow(
               iconPath: IconPath.pcChat,
-              title: 'Contact us',
-              subtitle: 'Reply within 24 h',
+              title: 'profile.settings.contact_us'.tr,
+              subtitle: 'profile.settings.contact_us_subtitle'.tr,
               onTap: controller.openHelpSupport,
             ),
             SettingsNavRow(
               iconPath: IconPath.nutAlert,
-              title: 'Report a problem',
+              title: 'profile.settings.report_problem'.tr,
               onTap: controller.openHelpSupport,
             ),
             SettingsNavRow(
               iconPath: IconPath.prFile,
-              title: 'Privacy Policy',
+              title: 'profile.settings.privacy_policy'.tr,
               onTap: controller.openPrivacyPolicy,
             ),
             SettingsNavRow(
               iconPath: IconPath.prFile,
-              title: 'Terms of Use',
+              title: 'profile.settings.terms_of_use'.tr,
               onTap: controller.openPrivacyPolicy,
             ),
             SettingsNavRow(
               iconPath: IconPath.prFile,
-              title: 'Terms of Sale',
+              title: 'profile.settings.terms_of_sale'.tr,
               onTap: controller.openPrivacyPolicy,
             ),
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('SESSION'),
+        SettingsSectionLabel('profile.settings.section_session'.tr),
         SettingsCardGroup(
           children: [
             SettingsNavRow(
               iconPath: IconPath.prLogout,
-              title: 'Log out',
+              title: 'profile.settings.log_out'.tr,
               trailing: const SizedBox.shrink(),
               onTap: () => LogOutConfirmDialog.show(context),
             ),
             SettingsNavRow(
               iconPath: IconPath.prTrash,
-              title: 'Delete my account',
-              subtitle: 'Permanently erase your data',
+              title: 'profile.settings.delete_account'.tr,
+              subtitle: 'profile.settings.delete_account_subtitle'.tr,
               isDanger: true,
               onTap: () => DeleteAccountConfirmSheet.show(context),
             ),
@@ -149,7 +149,7 @@ class ProfileSettingsScreen extends GetView<ProfileController> {
         Gap(18),
         Center(
           child: Text(
-            'MILON · Version 1.0.0 (1)',
+            'profile.settings.version'.tr,
             style: text.regularTextStyle(fontSize: 12, color: AppColors.subtle),
           ),
         ),

@@ -20,18 +20,18 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
 
     return OnboardingScaffold(
       stepIndex: 1,
-      eyebrow: 'STEP 1 · PROFILE & GOALS',
-      title: "Let's build your plan",
-      subtitle: 'A few basics so MILON can personalize your workouts and meals.',
+      eyebrow: 'onboarding.profile_goals.eyebrow'.tr,
+      title: 'onboarding.profile_goals.title'.tr,
+      subtitle: 'onboarding.profile_goals.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Continue',
+          label: 'onboarding.common.continue'.tr,
           onPressed: controller.goToTargetWeight,
         ),
       ),
       children: [
         Gap(22),
-        const OnboardingSectionTitle(title: 'What should I call you?'),
+        OnboardingSectionTitle(title: 'onboarding.profile_goals.name_title'.tr),
         Gap(10),
         TextField(
           controller: controller.nameController,
@@ -42,7 +42,7 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
             color: AppColors.ink,
           ),
           decoration: InputDecoration(
-            hintText: 'Your first name',
+            hintText: 'onboarding.profile_goals.name_hint'.tr,
             hintStyle: text.regularTextStyle(
               fontSize: 16,
               color: AppColors.subtle,
@@ -65,7 +65,7 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
         ),
         Gap(8),
         Text(
-          'Your first name. MILON Coach will use it in your messages.',
+          'onboarding.profile_goals.name_helper'.tr,
           style: text.regularTextStyle(
             fontSize: AppTextStyle.sm,
             lineHeight: 16,
@@ -73,14 +73,16 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(22),
-        const OnboardingSectionTitle(title: 'Gender'),
+        OnboardingSectionTitle(
+          title: 'onboarding.profile_goals.gender_title'.tr,
+        ),
         Gap(10),
         Obx(
           () => Row(
             children: [
               Expanded(
                 child: OnboardingChoicePill(
-                  label: 'Female',
+                  label: 'onboarding.profile_goals.gender_female'.tr,
                   selected: controller.gender.value == GenderOption.female,
                   onTap: () => controller.gender.value = GenderOption.female,
                 ),
@@ -88,7 +90,7 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
               Gap.h(10),
               Expanded(
                 child: OnboardingChoicePill(
-                  label: 'Male',
+                  label: 'onboarding.profile_goals.gender_male'.tr,
                   selected: controller.gender.value == GenderOption.male,
                   onTap: () => controller.gender.value = GenderOption.male,
                 ),
@@ -96,7 +98,7 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
               Gap.h(10),
               Expanded(
                 child: OnboardingChoicePill(
-                  label: 'Other',
+                  label: 'onboarding.common.other'.tr,
                   selected: controller.gender.value == GenderOption.other,
                   onTap: () => controller.gender.value = GenderOption.other,
                 ),
@@ -105,22 +107,23 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(22),
-        const OnboardingSectionTitle(title: 'Who should demo your exercises?'),
+        OnboardingSectionTitle(title: 'onboarding.profile_goals.demo_title'.tr),
         Gap(10),
         Obx(
           () => Row(
             children: [
               Expanded(
                 child: OnboardingChoicePill(
-                  label: 'A woman',
+                  label: 'onboarding.profile_goals.demo_woman'.tr,
                   selected: controller.demoModel.value == DemoModelOption.woman,
-                  onTap: () => controller.demoModel.value = DemoModelOption.woman,
+                  onTap: () =>
+                      controller.demoModel.value = DemoModelOption.woman,
                 ),
               ),
               Gap.h(10),
               Expanded(
                 child: OnboardingChoicePill(
-                  label: 'A man',
+                  label: 'onboarding.profile_goals.demo_man'.tr,
                   selected: controller.demoModel.value == DemoModelOption.man,
                   onTap: () => controller.demoModel.value = DemoModelOption.man,
                 ),
@@ -130,7 +133,7 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
         ),
         Gap(8),
         Text(
-          'Videos and photos will show this model. You can change it anytime in Settings.',
+          'onboarding.profile_goals.demo_helper'.tr,
           style: text.regularTextStyle(
             fontSize: AppTextStyle.sm,
             lineHeight: 17,
@@ -138,14 +141,16 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(22),
-        const OnboardingSectionTitle(title: 'Age, height & weight'),
+        OnboardingSectionTitle(
+          title: 'onboarding.profile_goals.metrics_title'.tr,
+        ),
         Gap(12),
         Row(
           children: [
             Expanded(
               child: _MetricWheelColumn(
-                label: 'Age',
-                unit: 'yrs',
+                label: 'onboarding.profile_goals.age'.tr,
+                unit: 'onboarding.common.yrs'.tr,
                 minValue: 16,
                 maxValue: 85,
                 valueRx: controller.age,
@@ -154,7 +159,7 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
             Gap.h(10),
             Expanded(
               child: _MetricWheelColumn(
-                label: 'Height',
+                label: 'onboarding.profile_goals.height'.tr,
                 unit: 'cm',
                 minValue: 130,
                 maxValue: 220,
@@ -164,7 +169,7 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
             Gap.h(10),
             Expanded(
               child: _MetricWheelColumn(
-                label: 'Weight',
+                label: 'onboarding.profile_goals.weight'.tr,
                 unit: 'kg',
                 minValue: 35,
                 maxValue: 180,
@@ -174,26 +179,26 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
           ],
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'Primary goal'),
+        OnboardingSectionTitle(title: 'onboarding.profile_goals.goal_title'.tr),
         Gap(12),
         Obx(
           () => Row(
             children: [
               Expanded(
                 child: _GoalCard(
-                  label: 'Lose Weight',
+                  label: 'onboarding.goal.lose_weight'.tr,
                   iconPath: IconPath.obFlame,
                   selected:
                       controller.primaryGoal.value ==
                       PrimaryGoalOption.loseWeight,
-                  onTap: () =>
-                      controller.primaryGoal.value = PrimaryGoalOption.loseWeight,
+                  onTap: () => controller.primaryGoal.value =
+                      PrimaryGoalOption.loseWeight,
                 ),
               ),
               Gap.h(10),
               Expanded(
                 child: _GoalCard(
-                  label: 'Build Muscle',
+                  label: 'onboarding.goal.build_muscle'.tr,
                   iconPath: IconPath.obDumbbell,
                   selected:
                       controller.primaryGoal.value ==
@@ -205,7 +210,7 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
               Gap.h(10),
               Expanded(
                 child: _GoalCard(
-                  label: 'Stay Fit',
+                  label: 'onboarding.goal.stay_fit'.tr,
                   iconPath: IconPath.obHeart,
                   selected:
                       controller.primaryGoal.value == PrimaryGoalOption.stayFit,
@@ -217,14 +222,16 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'Daily activity level'),
+        OnboardingSectionTitle(
+          title: 'onboarding.profile_goals.activity_title'.tr,
+        ),
         Gap(12),
         Obx(
           () => Column(
             children: [
               _ActivityCard(
-                title: 'Sedentary / Desk Job',
-                subtitle: 'Mostly sitting, < 5k steps a day',
+                title: 'onboarding.profile_goals.sedentary_title'.tr,
+                subtitle: 'onboarding.profile_goals.sedentary_subtitle'.tr,
                 iconPath: IconPath.obBuilding,
                 selected:
                     controller.activityLevel.value ==
@@ -234,18 +241,19 @@ class OnboardingProfileGoalsScreen extends GetView<OnboardingController> {
               ),
               Gap(10),
               _ActivityCard(
-                title: 'Active',
-                subtitle: 'On your feet, 5k–10k steps a day',
+                title: 'onboarding.profile_goals.active_title'.tr,
+                subtitle: 'onboarding.profile_goals.active_subtitle'.tr,
                 iconPath: IconPath.obRun,
                 selected:
-                    controller.activityLevel.value == ActivityLevelOption.active,
+                    controller.activityLevel.value ==
+                    ActivityLevelOption.active,
                 onTap: () =>
                     controller.activityLevel.value = ActivityLevelOption.active,
               ),
               Gap(10),
               _ActivityCard(
-                title: 'Very Active',
-                subtitle: 'Physical job or 10k+ steps a day',
+                title: 'onboarding.profile_goals.very_active_title'.tr,
+                subtitle: 'onboarding.profile_goals.very_active_subtitle'.tr,
                 iconPath: IconPath.obBolt,
                 selected:
                     controller.activityLevel.value ==

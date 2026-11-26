@@ -5,11 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 import 'package:flutter_tamplate/features/bottom_nav/controllers/bottom_nav_controller.dart';
-import 'package:flutter_tamplate/features/coach/presentation/controllers/coach_controller.dart';
-import 'package:flutter_tamplate/features/home/presentation/controllers/home_controller.dart';
-import 'package:flutter_tamplate/features/nutrition/presentation/controllers/nutrition_controller.dart';
-import 'package:flutter_tamplate/features/progress/presentation/controllers/progress_controller.dart';
-import 'package:flutter_tamplate/features/workout/presentation/controllers/workout_controller.dart';
 
 /// Main app shell with the Figma-exact floating pill Bottom Navigation Bar:
 /// active tab shows a coral CTA pill with white icon + label, inactive tabs
@@ -19,24 +14,8 @@ class BottomNavScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<HomeController>()) {
-      Get.put(HomeController());
-    }
-    if (!Get.isRegistered<WorkoutController>()) {
-      Get.put(WorkoutController());
-    }
-    if (!Get.isRegistered<NutritionController>()) {
-      Get.put(NutritionController());
-    }
-    if (!Get.isRegistered<ProgressController>()) {
-      Get.put(ProgressController());
-    }
-    if (!Get.isRegistered<CoachController>()) {
-      Get.put(CoachController());
-    }
-    final controller = Get.isRegistered<BottomNavController>()
-        ? Get.find<BottomNavController>()
-        : Get.put(BottomNavController());
+    // Tab controllers come from BottomNavBinding (see app_routes.dart).
+    final controller = Get.find<BottomNavController>();
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -121,7 +100,7 @@ class MilonFloatingNavBar extends StatelessWidget {
                       if (isSelected) ...[
                         Gap.h(6),
                         Text(
-                          item.title,
+                          item.titleKey.tr,
                           style: text.boldTextStyle(
                             fontSize: 13,
                             lineHeight: 16,

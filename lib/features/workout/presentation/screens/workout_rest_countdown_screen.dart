@@ -25,7 +25,9 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
             child: Column(
               children: [
                 Text(
-                  'ROUND 1 COMPLETE',
+                  'home_workout.rest_countdown.round_complete'.trParams({
+                    'round': '1',
+                  }),
                   style: text.boldTextStyle(
                     fontSize: 11.5,
                     letterSpacing: 0.8,
@@ -34,7 +36,7 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
                 ),
                 Gap(6),
                 Text(
-                  "Breathe. You're doing great.",
+                  'home_workout.rest_countdown.encouragement'.tr,
                   textAlign: TextAlign.center,
                   style: text.boldTextStyle(
                     fontSize: 22,
@@ -62,7 +64,7 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'REST',
+                              'home_workout.common.rest'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 12,
                                 letterSpacing: 1.0,
@@ -81,7 +83,9 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
                             ),
                             Gap(4),
                             Text(
-                              'of ${controller.formatShortMmSs(total)}',
+                              'home_workout.rest_countdown.of_total'.trParams({
+                                'total': controller.formatShortMmSs(total),
+                              }),
                               style: text.mediumTextStyle(
                                 fontSize: 14,
                                 color: AppColors.muted,
@@ -98,15 +102,24 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
                 Row(
                   children: const [
                     Expanded(
-                      child: _RoundStatCard(value: '142', label: 'avg bpm'),
+                      child: _RoundStatCard(
+                        value: '142',
+                        labelKey: 'home_workout.rest_countdown.avg_bpm',
+                      ),
                     ),
                     Gap.h(10),
                     Expanded(
-                      child: _RoundStatCard(value: '96', label: 'kcal'),
+                      child: _RoundStatCard(
+                        value: '96',
+                        labelKey: 'home_workout.common.kcal',
+                      ),
                     ),
                     Gap.h(10),
                     Expanded(
-                      child: _RoundStatCard(value: '4:00', label: 'round'),
+                      child: _RoundStatCard(
+                        value: '4:00',
+                        labelKey: 'home_workout.rest_countdown.round',
+                      ),
                     ),
                   ],
                 ),
@@ -145,7 +158,8 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'NEXT · ROUND 2 OF 4',
+                              'home_workout.rest_countdown.next_round'
+                                  .trParams({'round': '2', 'total': '4'}),
                               style: text.boldTextStyle(
                                 fontSize: 10.5,
                                 letterSpacing: 0.6,
@@ -188,7 +202,7 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
                           onTap: () => controller.addRoundRestSeconds(15),
                           child: Center(
                             child: Text(
-                              '+15s',
+                              'home_workout.common.plus_15s'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 15,
                                 color: AppColors.ink,
@@ -210,7 +224,7 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
                             onTap: controller.openEndFeedback,
                             child: Center(
                               child: Text(
-                                'Skip Rest',
+                                'home_workout.rest_countdown.skip_rest'.tr,
                                 style: text.boldTextStyle(
                                   fontSize: 16,
                                   color: AppColors.white,
@@ -233,10 +247,12 @@ class WorkoutRestCountdownScreen extends GetView<WorkoutController> {
 }
 
 class _RoundStatCard extends StatelessWidget {
-  const _RoundStatCard({required this.value, required this.label});
+  const _RoundStatCard({required this.value, required this.labelKey});
 
   final String value;
-  final String label;
+
+  /// Translation key, resolved at build time.
+  final String labelKey;
 
   @override
   Widget build(BuildContext context) {
@@ -260,7 +276,7 @@ class _RoundStatCard extends StatelessWidget {
           ),
           Gap(3),
           Text(
-            label,
+            labelKey.tr,
             style: text.regularTextStyle(
               fontSize: 12,
               color: AppColors.muted,

@@ -12,11 +12,11 @@ import 'package:flutter_tamplate/features/profile/presentation/controllers/profi
 class PaywallProScreen extends GetView<ProfileController> {
   const PaywallProScreen({super.key});
 
-  static const _benefits = [
-    'Unlimited workout & meal plans',
-    'Injury-adaptive programs that protect your body',
-    'Auto grocery lists that fit your budget',
-    'Post-workout analysis & 24/7 MILON Coach',
+  static const _benefitKeys = [
+    'profile.paywall.benefit_unlimited_plans',
+    'profile.paywall.benefit_injury_adaptive',
+    'profile.paywall.benefit_grocery_lists',
+    'profile.paywall.benefit_coach',
   ];
 
   @override
@@ -39,10 +39,10 @@ class PaywallProScreen extends GetView<ProfileController> {
                   children: [
                     GestureDetector(
                       onTap: () => AppHelperFunctions.showSnackBar(
-                        'Purchases restored!',
+                        'profile.paywall.purchases_restored'.tr,
                       ),
                       child: Text(
-                        'Restore',
+                        'profile.paywall.restore'.tr,
                         style: text.semiBoldTextStyle(
                           fontSize: 14.5,
                           color: AppColors.muted,
@@ -93,7 +93,7 @@ class PaywallProScreen extends GetView<ProfileController> {
                       ),
                       Gap(16),
                       Text(
-                        'Unlock MILON Pro',
+                        'profile.paywall.title'.tr,
                         style: text.boldTextStyle(
                           fontSize: 28,
                           lineHeight: 34,
@@ -103,7 +103,7 @@ class PaywallProScreen extends GetView<ProfileController> {
                       ),
                       Gap(6),
                       Text(
-                        'Every day, stronger.',
+                        'profile.paywall.tagline'.tr,
                         style: text.boldTextStyle(
                           fontSize: 16,
                           color: AppColors.cta,
@@ -111,7 +111,7 @@ class PaywallProScreen extends GetView<ProfileController> {
                       ),
                       Gap(20),
                       // 4 lime check benefits
-                      ..._benefits.map(
+                      ..._benefitKeys.map(
                         (item) => Padding(
                           padding: EdgeInsets.only(bottom: 12.h),
                           child: Row(
@@ -138,7 +138,7 @@ class PaywallProScreen extends GetView<ProfileController> {
                               Gap.h(12),
                               Expanded(
                                 child: Text(
-                                  item,
+                                  item.tr,
                                   style: text.mediumTextStyle(
                                     fontSize: 14,
                                     lineHeight: 19,
@@ -156,10 +156,11 @@ class PaywallProScreen extends GetView<ProfileController> {
                         () => Column(
                           children: [
                             _PaywallPlanCard(
-                              title: 'Monthly',
-                              subtitle: 'Billed monthly',
-                              price: '€19.90',
-                              period: 'per month',
+                              title: 'profile.paywall.plan_monthly'.tr,
+                              subtitle:
+                                  'profile.paywall.plan_monthly_subtitle'.tr,
+                              price: 'profile.paywall.plan_monthly_price'.tr,
+                              period: 'profile.paywall.plan_monthly_period'.tr,
                               selected:
                                   controller.selectedPaywallPlan.value == 0,
                               onTap: () =>
@@ -171,10 +172,12 @@ class PaywallProScreen extends GetView<ProfileController> {
                               alignment: Alignment.topCenter,
                               children: [
                                 _PaywallPlanCard(
-                                  title: 'Annual',
-                                  subtitle: '€238.80 −10% · €17.91/mo',
-                                  price: '€214.90',
-                                  period: 'per year',
+                                  title: 'profile.paywall.plan_annual'.tr,
+                                  subtitle:
+                                      'profile.paywall.plan_annual_subtitle'.tr,
+                                  price: 'profile.paywall.plan_annual_price'.tr,
+                                  period:
+                                      'profile.paywall.plan_annual_period'.tr,
                                   highlightSubtitle: true,
                                   selected:
                                       controller.selectedPaywallPlan.value == 1,
@@ -193,7 +196,7 @@ class PaywallProScreen extends GetView<ProfileController> {
                                       borderRadius: BorderRadius.circular(99.r),
                                     ),
                                     child: Text(
-                                      'BEST OFFER',
+                                      'profile.paywall.best_offer'.tr,
                                       style: text.boldTextStyle(
                                         fontSize: 10.5,
                                         letterSpacing: 0.7,
@@ -206,10 +209,12 @@ class PaywallProScreen extends GetView<ProfileController> {
                             ),
                             Gap(12),
                             _PaywallPlanCard(
-                              title: 'Quarterly',
-                              subtitle: '€59.70 −5% · €18.90/mo',
-                              price: '€56.70',
-                              period: 'per 3 months',
+                              title: 'profile.paywall.plan_quarterly'.tr,
+                              subtitle:
+                                  'profile.paywall.plan_quarterly_subtitle'.tr,
+                              price: 'profile.paywall.plan_quarterly_price'.tr,
+                              period:
+                                  'profile.paywall.plan_quarterly_period'.tr,
                               selected:
                                   controller.selectedPaywallPlan.value == 2,
                               onTap: () =>
@@ -242,7 +247,8 @@ class PaywallProScreen extends GetView<ProfileController> {
                                   color: AppColors.ink,
                                 ),
                                 decoration: InputDecoration(
-                                  hintText: 'Promo code',
+                                  hintText:
+                                      'profile.paywall.promo_code_hint'.tr,
                                   hintStyle: text.regularTextStyle(
                                     fontSize: 14,
                                     color: AppColors.subtle,
@@ -258,7 +264,7 @@ class PaywallProScreen extends GetView<ProfileController> {
                               clipBehavior: Clip.antiAlias,
                               child: InkWell(
                                 onTap: () => AppHelperFunctions.showSnackBar(
-                                  'Promo code applied!',
+                                  'profile.paywall.promo_code_applied'.tr,
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
@@ -266,7 +272,7 @@ class PaywallProScreen extends GetView<ProfileController> {
                                     vertical: 10.h,
                                   ),
                                   child: Text(
-                                    'Apply',
+                                    'profile.paywall.apply'.tr,
                                     style: text.semiBoldTextStyle(
                                       fontSize: 13.5,
                                       color: AppColors.ink,
@@ -284,18 +290,18 @@ class PaywallProScreen extends GetView<ProfileController> {
               ),
               BottomActionBar(
                 primary: AppPrimaryButton(
-                  label: 'Start 7-Day Free Trial',
+                  label: 'profile.paywall.start_trial'.tr,
                   onPressed: () {
                     Get.back();
                     AppHelperFunctions.showSnackBar(
-                      'Welcome to MILON Pro!',
+                      'profile.paywall.welcome_pro'.tr,
                     );
                   },
                 ),
                 secondary: Column(
                   children: [
                     Text(
-                      'Cancel anytime.',
+                      'profile.paywall.cancel_anytime'.tr,
                       style: text.regularTextStyle(
                         fontSize: 12,
                         color: AppColors.muted,
@@ -306,14 +312,14 @@ class PaywallProScreen extends GetView<ProfileController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Restore Purchase',
+                          'profile.paywall.restore_purchase'.tr,
                           style: text.boldTextStyle(
                             fontSize: 12,
                             color: AppColors.ink,
                           ),
                         ),
                         Text(
-                          '  ·  Terms  ·  Privacy',
+                          'profile.paywall.terms_privacy'.tr,
                           style: text.regularTextStyle(
                             fontSize: 12,
                             color: AppColors.muted,

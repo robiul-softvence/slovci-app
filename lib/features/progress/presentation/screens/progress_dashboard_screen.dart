@@ -43,7 +43,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                 Row(
                   children: [
                     Text(
-                      'Progress',
+                      'progress_coach.dashboard.title'.tr,
                       style: text.boldTextStyle(
                         fontSize: 28,
                         lineHeight: 34,
@@ -81,7 +81,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                                     borderRadius: BorderRadius.circular(99.r),
                                   ),
                                   child: Text(
-                                    ProgressController.periodTabs[i],
+                                    ProgressController.periodTabs[i].tr,
                                     style: text.semiBoldTextStyle(
                                       fontSize: 12,
                                       color: selected
@@ -101,14 +101,14 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                 Gap(16),
                 // 3 KPI summary tiles
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
                       child: _KpiTile(
                         bg: AppColors.peach,
                         iconPath: IconPath.hwDumbbell,
                         iconColor: AppColors.cta,
                         value: '14',
-                        label: 'workouts',
+                        label: 'progress_coach.dashboard.kpi_workouts'.tr,
                       ),
                     ),
                     Gap.h(10),
@@ -118,7 +118,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                         iconPath: IconPath.hwFlame,
                         iconColor: AppColors.emerald,
                         value: '5',
-                        label: 'day streak',
+                        label: 'progress_coach.dashboard.kpi_day_streak'.tr,
                       ),
                     ),
                     Gap.h(10),
@@ -128,7 +128,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                         iconPath: IconPath.hwBolt,
                         iconColor: AppColors.ink,
                         value: '6,280',
-                        label: 'kcal burned',
+                        label: 'progress_coach.dashboard.kpi_kcal_burned'.tr,
                       ),
                     ),
                   ],
@@ -139,7 +139,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                   children: [
                     Expanded(
                       child: _QuickLinkCard(
-                        title: 'Body & weight',
+                        title: 'progress_coach.dashboard.body_weight_title'.tr,
                         subtitle: '62.4 kg · −0.6 kg',
                         onTap: controller.openBodyWeight,
                       ),
@@ -147,8 +147,11 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                     Gap.h(10),
                     Expanded(
                       child: _QuickLinkCard(
-                        title: 'Weekly review',
-                        subtitle: 'Week 12 · 3/4 done',
+                        title:
+                            'progress_coach.dashboard.weekly_review_title'.tr,
+                        subtitle:
+                            'progress_coach.dashboard.weekly_review_subtitle'
+                                .tr,
                         onTap: controller.openWeeklyReview,
                       ),
                     ),
@@ -175,7 +178,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Consistency',
+                                'progress_coach.dashboard.consistency_title'.tr,
                                 style: text.boldTextStyle(
                                   fontSize: 17,
                                   color: AppColors.ink,
@@ -183,7 +186,8 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                               ),
                               Gap(2),
                               Text(
-                                'Last 12 weeks',
+                                'progress_coach.dashboard.consistency_period'
+                                    .tr,
                                 style: text.regularTextStyle(
                                   fontSize: 12,
                                   color: AppColors.muted,
@@ -201,7 +205,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                               borderRadius: BorderRadius.circular(99.r),
                             ),
                             child: Text(
-                              '84% this month',
+                              'progress_coach.dashboard.consistency_badge'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 11.5,
                                 color: AppColors.ink,
@@ -213,7 +217,15 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                       Gap(14),
                       // 7 rows × 12 cols heatmap
                       ...List.generate(controller.heatmapMatrix.length, (r) {
-                        const rowLabels = ['M', '', 'W', '', 'F', '', 'S'];
+                        const rowLabels = [
+                          'progress_coach.dashboard.day_mon_short',
+                          '',
+                          'progress_coach.dashboard.day_wed_short',
+                          '',
+                          'progress_coach.dashboard.day_fri_short',
+                          '',
+                          'progress_coach.dashboard.day_sun_short',
+                        ];
                         return Padding(
                           padding: EdgeInsets.only(bottom: 5.h),
                           child: Row(
@@ -221,7 +233,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                               SizedBox(
                                 width: 16.w,
                                 child: Text(
-                                  rowLabels[r],
+                                  rowLabels[r].isEmpty ? '' : rowLabels[r].tr,
                                   style: text.mediumTextStyle(
                                     fontSize: 10.5,
                                     color: AppColors.subtle,
@@ -258,7 +270,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            'Less',
+                            'progress_coach.dashboard.legend_less'.tr,
                             style: text.regularTextStyle(
                               fontSize: 11,
                               color: AppColors.muted,
@@ -279,7 +291,7 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                           ),
                           Gap.h(2),
                           Text(
-                            'More',
+                            'progress_coach.dashboard.legend_more'.tr,
                             style: text.regularTextStyle(
                               fontSize: 11,
                               color: AppColors.muted,
@@ -293,34 +305,34 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                 Gap(22),
                 // Most practiced horizontal list
                 Text(
-                  'Most practiced',
-                  style: text.boldTextStyle(
-                    fontSize: 18,
-                    color: AppColors.ink,
-                  ),
+                  'progress_coach.dashboard.most_practiced'.tr,
+                  style: text.boldTextStyle(fontSize: 18, color: AppColors.ink),
                 ),
                 Gap(12),
                 SizedBox(
                   height: 184.h,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    children: const [
+                    children: [
                       _PracticedCard(
                         imagePath: ImagePath.exGobletSquat,
                         title: 'Goblet Squat',
-                        subtitle: '24 sessions · 15 kg',
+                        subtitle: 'progress_coach.dashboard.practiced_subtitle'
+                            .trParams({'count': '24', 'load': '15 kg'}),
                       ),
                       Gap.h(12),
                       _PracticedCard(
                         imagePath: ImagePath.exGluteBridge,
                         title: 'Glute Bridge',
-                        subtitle: '19 sessions · 15 kg',
+                        subtitle: 'progress_coach.dashboard.practiced_subtitle'
+                            .trParams({'count': '19', 'load': '15 kg'}),
                       ),
                       Gap.h(12),
                       _PracticedCard(
                         imagePath: ImagePath.exForearmPlank,
                         title: 'Forearm Plank',
-                        subtitle: '17 sessions · 45 sec',
+                        subtitle: 'progress_coach.dashboard.practiced_subtitle'
+                            .trParams({'count': '17', 'load': '45 sec'}),
                       ),
                     ],
                   ),
@@ -331,14 +343,16 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Muscle recovery readiness',
+                      'progress_coach.dashboard.recovery_title'.tr,
                       style: text.boldTextStyle(
                         fontSize: 17,
                         color: AppColors.ink,
                       ),
                     ),
                     Text(
-                      'Updated 9:00 AM',
+                      'progress_coach.dashboard.recovery_updated'.trParams({
+                        'time': '9:00 AM',
+                      }),
                       style: text.regularTextStyle(
                         fontSize: 11.5,
                         color: AppColors.muted,
@@ -348,13 +362,13 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                 ),
                 Gap(12),
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
                       child: _RecoveryCard(
                         bg: AppColors.mintSoft,
                         ringSvg: IconPath.pcReadiness0,
-                        muscle: 'Calves',
-                        status: 'Ready to train',
+                        muscle: 'progress_coach.dashboard.muscle_calves'.tr,
+                        status: 'progress_coach.dashboard.status_ready'.tr,
                         statusColor: AppColors.emerald,
                       ),
                     ),
@@ -363,8 +377,8 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                       child: _RecoveryCard(
                         bg: AppColors.mintSoft,
                         ringSvg: IconPath.pcReadiness1,
-                        muscle: 'Quads',
-                        status: 'Ready to train',
+                        muscle: 'progress_coach.dashboard.muscle_quads'.tr,
+                        status: 'progress_coach.dashboard.status_ready'.tr,
                         statusColor: AppColors.emerald,
                       ),
                     ),
@@ -372,13 +386,14 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                 ),
                 Gap(10),
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
                       child: _RecoveryCard(
                         bg: AppColors.amberSoft,
                         ringSvg: IconPath.pcReadiness2,
-                        muscle: 'Biceps',
-                        status: 'Recovering · 21h',
+                        muscle: 'progress_coach.dashboard.muscle_biceps'.tr,
+                        status: 'progress_coach.dashboard.status_recovering'
+                            .trParams({'time': '21h'}),
                         statusColor: AppColors.amber,
                       ),
                     ),
@@ -387,8 +402,9 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                       child: _RecoveryCard(
                         bg: AppColors.amberSoft,
                         ringSvg: IconPath.pcReadiness3,
-                        muscle: 'Shoulders',
-                        status: 'Recovering · 9h',
+                        muscle: 'progress_coach.dashboard.muscle_shoulders'.tr,
+                        status: 'progress_coach.dashboard.status_recovering'
+                            .trParams({'time': '9h'}),
                         statusColor: AppColors.amber,
                       ),
                     ),
@@ -399,7 +415,8 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                 Obx(() {
                   final glasses = controller.waterGlasses.value;
                   final liters = controller.waterLiters;
-                  final fillRatio = glasses / ProgressController.maxWaterGlasses;
+                  final fillRatio =
+                      glasses / ProgressController.maxWaterGlasses;
 
                   return Container(
                     width: double.infinity,
@@ -447,7 +464,8 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'DAILY HYDRATION',
+                                    'progress_coach.dashboard.hydration_eyebrow'
+                                        .tr,
                                     style: text.boldTextStyle(
                                       fontSize: 11,
                                       letterSpacing: 0.7,
@@ -482,7 +500,8 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                                   ),
                                   Gap(4),
                                   Text(
-                                    '8 glasses of 250 ml to reach your goal',
+                                    'progress_coach.dashboard.hydration_hint'
+                                        .tr,
                                     style: text.regularTextStyle(
                                       fontSize: 12,
                                       color: AppColors.muted,
@@ -548,7 +567,8 @@ class ProgressDashboardScreen extends GetView<ProgressController> {
                                   ),
                                   Gap.h(8),
                                   Text(
-                                    'I Drank Water (+250ml)',
+                                    'progress_coach.dashboard.hydration_button'
+                                        .tr,
                                     style: text.boldTextStyle(
                                       fontSize: 14.5,
                                       color: AppColors.white,
@@ -618,10 +638,7 @@ class _KpiTile extends StatelessWidget {
           Gap(2),
           Text(
             label,
-            style: text.regularTextStyle(
-              fontSize: 12,
-              color: AppColors.muted,
-            ),
+            style: text.regularTextStyle(fontSize: 12, color: AppColors.muted),
           ),
         ],
       ),
@@ -731,7 +748,10 @@ class _PracticedCard extends StatelessWidget {
           Gap(2),
           Text(
             subtitle,
-            style: text.regularTextStyle(fontSize: 11.5, color: AppColors.muted),
+            style: text.regularTextStyle(
+              fontSize: 11.5,
+              color: AppColors.muted,
+            ),
           ),
         ],
       ),

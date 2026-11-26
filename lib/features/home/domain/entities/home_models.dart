@@ -8,6 +8,7 @@ class HomeWeekDay {
     required this.status,
   });
 
+  /// Short English identifier (`Mon`…`Sun`), not display text.
   final String weekday;
   final int dayNumber;
   final DayStatusDot status;
@@ -26,6 +27,8 @@ class HomeMealItem {
   });
 
   final String id;
+
+  /// Translation keys for the display labels.
   final String tag;
   final String title;
   final String prepLabel;

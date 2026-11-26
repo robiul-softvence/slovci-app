@@ -18,11 +18,12 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
     );
   }
 
+  // (score, label key, advice key) — keys are resolved with `.tr` at build.
   static const _rpeOptions = [
-    ('1–2', 'Easy', 'Too light! Next set increases to 17 kg. Rest 01:15.'),
-    ('3', 'Moderate', 'Good effort! Next set stays at 16 kg. Rest 01:30.'),
-    ('4', 'Hard', 'Strong push! Keep 16 kg and rest 02:00.'),
-    ('5', 'Max effort', 'All-out set! Drop to 15 kg next set. Rest 02:00.'),
+    ('1–2', 'home_workout.rpe.easy', 'home_workout.rpe.easy_advice'),
+    ('3', 'home_workout.rpe.moderate', 'home_workout.rpe.moderate_advice'),
+    ('4', 'home_workout.rpe.hard', 'home_workout.rpe.hard_advice'),
+    ('5', 'home_workout.rpe.max_effort', 'home_workout.rpe.max_effort_advice'),
   ];
 
   @override
@@ -77,7 +78,7 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'SET 3 COMPLETE',
+                    'home_workout.rpe.set_complete'.trParams({'number': '3'}),
                     style: text.boldTextStyle(
                       fontSize: 11,
                       letterSpacing: 0.7,
@@ -86,7 +87,10 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
                   ),
                   Gap(2),
                   Text(
-                    '12 reps · 16 kg',
+                    'home_workout.rpe.reps_kg'.trParams({
+                      'reps': '12',
+                      'kg': '16',
+                    }),
                     style: text.boldTextStyle(
                       fontSize: 20,
                       lineHeight: 24,
@@ -101,7 +105,7 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
           const Divider(height: 1, color: AppColors.line),
           Gap(16),
           Text(
-            'How hard was that set?',
+            'home_workout.rpe.question'.tr,
             style: text.boldTextStyle(
               fontSize: 18,
               lineHeight: 22,
@@ -110,7 +114,7 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
           ),
           Gap(6),
           Text(
-            'Rate it from 1 (easy) to 5 (max effort). MILON uses your answer to adjust the weight of your next set.',
+            'home_workout.rpe.description'.tr,
             style: text.regularTextStyle(
               fontSize: 13.5,
               lineHeight: 19,
@@ -124,7 +128,7 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
               children: [
                 Row(
                   children: List.generate(_rpeOptions.length, (i) {
-                    final (score, label, _) = _rpeOptions[i];
+                    final (score, labelKey, _) = _rpeOptions[i];
                     final isSelected = i == selected;
                     return Expanded(
                       child: Padding(
@@ -159,7 +163,7 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
                                 ),
                                 Gap(4),
                                 Text(
-                                  label,
+                                  labelKey.tr,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: text.mediumTextStyle(
@@ -202,7 +206,7 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
                       Gap.h(8),
                       Expanded(
                         child: Text(
-                          _rpeOptions[selected].$3,
+                          _rpeOptions[selected].$3.tr,
                           style: text.mediumTextStyle(
                             fontSize: 12.5,
                             lineHeight: 17,
@@ -218,7 +222,7 @@ class WorkoutRpeFeedbackSheet extends StatelessWidget {
           }),
           Gap(18),
           AppPrimaryButton(
-            label: 'Save & Start Rest',
+            label: 'home_workout.rpe.save_start_rest'.tr,
             onPressed: () {
               Get.back();
               controller.openEndFeedback();

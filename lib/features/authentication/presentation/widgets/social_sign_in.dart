@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 
 /// Figma "Continue with Apple / Google" buttons followed by the
@@ -22,7 +23,7 @@ class SocialSignIn extends StatelessWidget {
         const SizedBox(height: 24),
         _SocialButton(
           letter: 'A',
-          label: 'Continue with Apple',
+          label: 'auth.social.continue_apple'.tr,
           background: AppColors.ink,
           foreground: AppColors.white,
           badge: AppColors.white,
@@ -31,7 +32,7 @@ class SocialSignIn extends StatelessWidget {
         const SizedBox(height: 10),
         _SocialButton(
           letter: 'G',
-          label: 'Continue with Google',
+          label: 'auth.social.continue_google'.tr,
           background: AppColors.white,
           foreground: AppColors.ink,
           badge: AppColors.pearl,
@@ -44,7 +45,7 @@ class SocialSignIn extends StatelessWidget {
             const Expanded(child: Divider(height: 1, color: AppColors.line)),
             const SizedBox(width: 12),
             Text(
-              'or with email',
+              'auth.social.or_email'.tr,
               style: text.mediumTextStyle(
                 fontSize: AppTextStyle.sm,
                 lineHeight: 16,

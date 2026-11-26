@@ -62,7 +62,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            controller.todayDateLabel.value,
+                            controller.todayDateLabel.value.tr,
                             style: text.regularTextStyle(
                               fontSize: 13,
                               color: AppColors.muted,
@@ -70,7 +70,9 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                           ),
                           Gap(2),
                           Text(
-                            'Hello, ${controller.userName.value}',
+                            'home_workout.home.hello'.trParams({
+                              'name': controller.userName.value,
+                            }),
                             style: text.boldTextStyle(
                               fontSize: 22,
                               lineHeight: 26,
@@ -91,7 +93,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                         borderRadius: BorderRadius.circular(99.r),
                       ),
                       child: Text(
-                        'FREE PLAN',
+                        'home_workout.free_plan.badge'.tr,
                         style: text.boldTextStyle(
                           fontSize: 11,
                           letterSpacing: 0.6,
@@ -132,7 +134,9 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '2 free photo scans left',
+                              'home_workout.free_plan.scans_left'.trParams({
+                                'count': '2',
+                              }),
                               style: text.boldTextStyle(
                                 fontSize: 14.5,
                                 lineHeight: 19,
@@ -141,7 +145,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                             ),
                             Gap(2),
                             Text(
-                              'Snap your plate to get calories & macros',
+                              'home_workout.free_plan.scans_subtitle'.tr,
                               style: text.regularTextStyle(
                                 fontSize: 12.5,
                                 lineHeight: 16,
@@ -175,7 +179,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'YOUR FREE SESSION',
+                            'home_workout.free_plan.free_session'.tr,
                             style: text.boldTextStyle(
                               fontSize: 11,
                               letterSpacing: 0.7,
@@ -192,7 +196,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                               borderRadius: BorderRadius.circular(99.r),
                             ),
                             child: Text(
-                              'Included',
+                              'home_workout.free_plan.included'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 11.5,
                                 color: AppColors.emerald,
@@ -203,7 +207,9 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                       ),
                       Gap(10),
                       Text(
-                        'Full Body A · 45 min · Home',
+                        'home_workout.free_plan.session_title'.trParams({
+                          'workout': 'Full Body A',
+                        }),
                         style: text.boldTextStyle(
                           fontSize: 19,
                           lineHeight: 24,
@@ -212,7 +218,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                       ),
                       Gap(4),
                       Text(
-                        'Wrist-safe · 6 exercises',
+                        'home_workout.free_plan.session_meta'.tr,
                         style: text.regularTextStyle(
                           fontSize: 13,
                           color: AppColors.muted,
@@ -232,7 +238,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                             ),
                             child: Center(
                               child: Text(
-                                'Start Free Session',
+                                'home_workout.free_plan.start_free_session'.tr,
                                 style: text.boldTextStyle(
                                   fontSize: 15,
                                   color: AppColors.white,
@@ -288,7 +294,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                         ),
                         Gap(14),
                         Text(
-                          'Your full program is waiting',
+                          'home_workout.free_plan.locked_title'.tr,
                           textAlign: TextAlign.center,
                           style: text.boldTextStyle(
                             fontSize: 19,
@@ -298,7 +304,7 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                         ),
                         Gap(8),
                         Text(
-                          'Meal plan, grocery list, all 4 weekly sessions and your MILON Coach.',
+                          'home_workout.free_plan.locked_body'.tr,
                           textAlign: TextAlign.center,
                           style: text.regularTextStyle(
                             fontSize: 13.5,
@@ -308,12 +314,12 @@ class HomeFreePlanScreen extends GetView<HomeController> {
                         ),
                         Gap(18),
                         AppPrimaryButton(
-                          label: 'Try 7 Days Free',
+                          label: 'home_workout.free_plan.try_free'.tr,
                           onPressed: Get.back,
                         ),
                         Gap(12),
                         Text(
-                          'Then annual price (TBC) · cancel anytime',
+                          'home_workout.free_plan.then_price'.tr,
                           style: text.regularTextStyle(
                             fontSize: 12,
                             color: AppColors.muted,

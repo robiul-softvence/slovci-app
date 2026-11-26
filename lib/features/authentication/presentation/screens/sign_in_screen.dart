@@ -15,13 +15,16 @@ class SignInScreen extends GetView<SignInController> {
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
-      title: 'Welcome back',
-      subtitle: 'Log in to pick up your plan where you left off.',
+      title: 'auth.sign_in.title'.tr,
+      subtitle: 'auth.sign_in.subtitle'.tr,
       footer: BottomActionBar(
-        primary: AppPrimaryButton(label: 'Log In', onPressed: controller.logIn),
+        primary: AppPrimaryButton(
+          label: 'auth.sign_in.button'.tr,
+          onPressed: controller.logIn,
+        ),
         secondary: AuthFooterLink(
-          prompt: 'New to MILON?',
-          action: 'Create an account',
+          prompt: 'auth.sign_in.new_prompt'.tr,
+          action: 'auth.sign_in.create_account_link'.tr,
           onTap: controller.openSignUp,
         ),
       ),
@@ -35,7 +38,7 @@ class SignInScreen extends GetView<SignInController> {
           child: Column(
             children: [
               AuthTextField(
-                label: 'Email',
+                label: 'auth.common.email_label'.tr,
                 hint: 'you@example.com',
                 icon: IconPath.mail,
                 controller: controller.emailController,
@@ -46,7 +49,7 @@ class SignInScreen extends GetView<SignInController> {
               const SizedBox(height: 16),
               Obx(
                 () => AuthTextField(
-                  label: 'Password',
+                  label: 'auth.common.password_label'.tr,
                   hint: '••••••••••',
                   icon: IconPath.lock,
                   controller: controller.passwordController,
@@ -65,7 +68,7 @@ class SignInScreen extends GetView<SignInController> {
           onTap: controller.openForgotPassword,
           behavior: HitTestBehavior.opaque,
           child: Text(
-            'Forgot password?',
+            'auth.sign_in.forgot_password'.tr,
             style: AppTextStyle(context).semiBoldTextStyle(
               fontSize: AppTextStyle.md,
               lineHeight: 20,

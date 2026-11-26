@@ -21,7 +21,7 @@ class AppHelperFunctions{
      actions: [
       TextButton(
        onPressed: () => Navigator.of(context).pop(),
-       child: const Text('OK'),
+       child: Text('common.app.ok'.tr),
       ),
      ],
     );

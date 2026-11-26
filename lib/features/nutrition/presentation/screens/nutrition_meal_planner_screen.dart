@@ -42,7 +42,7 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                     ),
                     Expanded(
                       child: Text(
-                        'Meal Plan',
+                        'nutrition.meal_plan.title'.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 18,
@@ -83,7 +83,7 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                   borderRadius: BorderRadius.circular(11.r),
                                 ),
                                 child: Text(
-                                  NutritionController.mealSlotTabs[i],
+                                  NutritionController.mealSlotTabs[i].tr,
                                   textAlign: TextAlign.center,
                                   style: text.semiBoldTextStyle(
                                     fontSize: 13,
@@ -152,7 +152,12 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                         ),
                                         Gap.h(5),
                                         Text(
-                                          '1.25 PORTION · AUTO-ADJUSTED',
+                                          'nutrition.meal_plan.portion_badge'
+                                              .trParams({
+                                                'portion': controller.amount(
+                                                  1.25,
+                                                ),
+                                              }),
                                           style: text.boldTextStyle(
                                             fontSize: 10,
                                             letterSpacing: 0.5,
@@ -198,8 +203,8 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                           Gap.h(5),
                                           Text(
                                             controller.recipeSaved.value
-                                                ? 'Saved'
-                                                : 'Save',
+                                                ? 'nutrition.meal_plan.saved'.tr
+                                                : 'nutrition.meal_plan.save'.tr,
                                             style: text.semiBoldTextStyle(
                                               fontSize: 12,
                                               color: AppColors.ink,
@@ -220,7 +225,7 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                meal.timeLabel,
+                                meal.timeLabel.tr,
                                 style: text.boldTextStyle(
                                   fontSize: 11,
                                   letterSpacing: 0.6,
@@ -231,7 +236,7 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                               GestureDetector(
                                 onTap: controller.openRecipeDetail,
                                 child: Text(
-                                  meal.title,
+                                  meal.title.tr,
                                   style: text.boldTextStyle(
                                     fontSize: 21,
                                     lineHeight: 26,
@@ -281,7 +286,7 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                       ),
                                       Gap.h(4),
                                       Text(
-                                        meal.prepLabel,
+                                        controller.prepText(meal),
                                         style: text.regularTextStyle(
                                           fontSize: 12.5,
                                           color: AppColors.muted,
@@ -290,7 +295,7 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                     ],
                                   ),
                                   Text(
-                                    '≈ €${meal.costEur.toStringAsFixed(2)}',
+                                    controller.approxPrice(meal.costEur),
                                     style: text.boldTextStyle(
                                       fontSize: 12.5,
                                       color: AppColors.emerald,
@@ -303,24 +308,24 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                 children: [
                                   Expanded(
                                     child: _MacroChipBox(
-                                      value: '${meal.proteinG}g',
-                                      label: 'Protein',
+                                      value: controller.grams(meal.proteinG),
+                                      label: 'nutrition.common.protein'.tr,
                                       dotColor: AppColors.coral,
                                     ),
                                   ),
                                   Gap.h(8),
                                   Expanded(
                                     child: _MacroChipBox(
-                                      value: '${meal.carbsG}g',
-                                      label: 'Carbs',
+                                      value: controller.grams(meal.carbsG),
+                                      label: 'nutrition.common.carbs'.tr,
                                       dotColor: AppColors.carbsBlue,
                                     ),
                                   ),
                                   Gap.h(8),
                                   Expanded(
                                     child: _MacroChipBox(
-                                      value: '${meal.fatsG}g',
-                                      label: 'Fats',
+                                      value: controller.grams(meal.fatsG),
+                                      label: 'nutrition.common.fats'.tr,
                                       dotColor: AppColors.amber,
                                     ),
                                   ),
@@ -332,8 +337,8 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                   Expanded(
                                     child: AppPrimaryButton(
                                       label: meal.eaten
-                                          ? 'Logged ✓'
-                                          : 'Log as Eaten',
+                                          ? 'nutrition.meal_plan.logged'.tr
+                                          : 'nutrition.common.log_as_eaten'.tr,
                                       onPressed:
                                           controller.logFeaturedMealAsEaten,
                                     ),
@@ -403,7 +408,7 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                         ),
                         Gap.h(8),
                         Text(
-                          'Add a meal or snack (photo, barcode, search)',
+                          'nutrition.meal_plan.add_meal_cta'.tr,
                           style: text.semiBoldTextStyle(
                             fontSize: 13,
                             color: AppColors.cta,
@@ -419,14 +424,14 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Swap with an alternative',
+                      'nutrition.meal_plan.swap_title'.tr,
                       style: text.boldTextStyle(
                         fontSize: 17,
                         color: AppColors.ink,
                       ),
                     ),
                     Text(
-                      'Same macros ±5%',
+                      'nutrition.meal_plan.swap_subtitle'.tr,
                       style: text.regularTextStyle(
                         fontSize: 12,
                         color: AppColors.muted,
@@ -472,7 +477,7 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    alt.title,
+                                    alt.title.tr,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: text.boldTextStyle(
@@ -487,14 +492,16 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        alt.prepMin,
+                                        'nutrition.common.minutes'.trParams({
+                                          'min': '${alt.prepMin}',
+                                        }),
                                         style: text.regularTextStyle(
                                           fontSize: 11.5,
                                           color: AppColors.muted,
                                         ),
                                       ),
                                       Text(
-                                        '≈ €${alt.costEur.toStringAsFixed(2)}',
+                                        controller.approxPrice(alt.costEur),
                                         style: text.boldTextStyle(
                                           fontSize: 11.5,
                                           color: AppColors.emerald,
@@ -504,7 +511,10 @@ class NutritionMealPlannerScreen extends GetView<NutritionController> {
                                   ),
                                   Gap(3),
                                   Text(
-                                    '${alt.kcal} kcal · ${alt.proteinG}g P',
+                                    'nutrition.meal_plan.alt_macros'.trParams({
+                                      'kcal': '${alt.kcal}',
+                                      'protein': controller.grams(alt.proteinG),
+                                    }),
                                     style: text.regularTextStyle(
                                       fontSize: 11.5,
                                       color: AppColors.muted,
