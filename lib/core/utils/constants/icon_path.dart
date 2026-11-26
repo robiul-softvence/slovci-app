@@ -11,4 +11,44 @@ class IconPath {
   static const String eye = 'assets/icons/auth/eye.svg';
   static const String check = 'assets/icons/auth/check.svg';
   static const String dumbbell = 'assets/icons/auth/dumbbell.svg';
+
+  // ─── Onboarding icons (Figma "1 · Onboarding") ───
+  static const String obAlert = 'assets/icons/onboarding/alert.svg';
+  static const String obArrowRight = 'assets/icons/onboarding/arrow_right.svg';
+  static const String obBand = 'assets/icons/onboarding/band.svg';
+  static const String obBar = 'assets/icons/onboarding/bar.svg';
+  static const String obBench = 'assets/icons/onboarding/bench.svg';
+  static const String obBodyMapBack = 'assets/icons/onboarding/body_map_back.svg';
+  static const String obBodyMapFront =
+      'assets/icons/onboarding/body_map_front.svg';
+  static const String obBolt = 'assets/icons/onboarding/bolt.svg';
+  static const String obBuilding = 'assets/icons/onboarding/building.svg';
+  static const String obCalendar = 'assets/icons/onboarding/cal.svg';
+  static const String obCheck = 'assets/icons/onboarding/check.svg';
+  static const String obChevRight = 'assets/icons/onboarding/chev_r.svg';
+  static const String obCoffee = 'assets/icons/onboarding/coffee.svg';
+  static const String obDumbbell = 'assets/icons/onboarding/dumbbell.svg';
+  static const String obFlame = 'assets/icons/onboarding/flame.svg';
+  static const String obFood = 'assets/icons/onboarding/food.svg';
+  static const String obDumbbellCoral = 'assets/icons/onboarding/frame.svg';
+  static const String obForkKnife = 'assets/icons/onboarding/frame1.svg';
+  static const String obChatBubble = 'assets/icons/onboarding/frame2.svg';
+  static const String obMilonMark = 'assets/icons/onboarding/group.svg';
+  static const String obHand = 'assets/icons/onboarding/hand.svg';
+  static const String obHeart = 'assets/icons/onboarding/heart.svg';
+  static const String obHome = 'assets/icons/onboarding/home2.svg';
+  static const String obInfo = 'assets/icons/onboarding/info.svg';
+  static const String obKettle = 'assets/icons/onboarding/kettle.svg';
+  static const String obMinus = 'assets/icons/onboarding/minus.svg';
+  static const String obMoon = 'assets/icons/onboarding/moon.svg';
+  static const String obPlus = 'assets/icons/onboarding/plus.svg';
+  static const String obRefresh = 'assets/icons/onboarding/refresh.svg';
+  static const String obRun = 'assets/icons/onboarding/run.svg';
+  static const String obShield = 'assets/icons/onboarding/shield.svg';
+  static const String obSpark = 'assets/icons/onboarding/spark.svg';
+  static const String obSun = 'assets/icons/onboarding/sun.svg';
+  static const String obTarget = 'assets/icons/onboarding/target.svg';
+  static const String obUser = 'assets/icons/onboarding/user.svg';
+  static const String obClose = 'assets/icons/onboarding/x.svg';
+  static const String obCloseSmall = 'assets/icons/onboarding/x1.svg';
 }

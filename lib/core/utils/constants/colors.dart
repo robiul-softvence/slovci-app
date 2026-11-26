@@ -19,6 +19,14 @@ class AppColors {
   static const Color pearl = Color(0xFFF5F6F4);
   static const Color peach = Color(0xFFFFE8E1);
   static const Color coral = Color(0xFFFF654F);
+  static const Color emerald = Color(0xFF25845C);
+  static const Color mintLight = Color(0xFFE3F2EA);
+  static const Color mintSoft = Color(0xFFEEF7F2);
+  static const Color lime = Color(0xFFD8F56A);
+  static const Color infoSoft = Color(0xFFE3EDF8);
+  static const Color amberSoft = Color(0xFFFDF3E6);
+  static const Color coralSoft = Color(0xFFFDE4E0);
+  static const Color dangerDark = Color(0xFFC9332B);
 
   // ─── Status ────────────────────────────────────────────
   static const Color success = Color(0xFF22C55E);

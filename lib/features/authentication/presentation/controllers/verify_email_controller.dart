@@ -76,7 +76,7 @@ class VerifyEmailController extends GetxController {
     // TODO(milon): call the verify-code use case once the auth API is ready.
     switch (args.flow) {
       case VerifyFlow.signUp:
-        Get.offAllNamed(AppRoute.bottomNavScreen);
+        Get.offAllNamed(AppRoute.onboardingProfileGoalsScreen);
       case VerifyFlow.resetPassword:
         Get.offNamed(AppRoute.createPasswordScreen);
     }
