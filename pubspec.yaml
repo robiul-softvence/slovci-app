@@ -88,7 +88,9 @@ flutter:
     - assets/icons/
     - assets/icons/auth/
     - assets/icons/onboarding/
+    - assets/icons/home_workout/
     - assets/images/
+    - assets/images/home_workout/
     - assets/jsons/
     
     

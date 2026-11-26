@@ -51,4 +51,32 @@ class IconPath {
   static const String obUser = 'assets/icons/onboarding/user.svg';
   static const String obClose = 'assets/icons/onboarding/x.svg';
   static const String obCloseSmall = 'assets/icons/onboarding/x1.svg';
+
+  // ─── Home & Workout + Bottom Nav icons (Figma "2 · Home & Workout") ───
+  static const String hwHome = 'assets/icons/home_workout/home.svg';
+  static const String hwDumbbell = 'assets/icons/home_workout/dumbbell.svg';
+  static const String hwFood = 'assets/icons/home_workout/food.svg';
+  static const String hwChart = 'assets/icons/home_workout/chart.svg';
+  static const String hwSpark = 'assets/icons/home_workout/spark.svg';
+  static const String hwBell = 'assets/icons/home_workout/bell.svg';
+  static const String hwFlame = 'assets/icons/home_workout/flame.svg';
+  static const String hwClock = 'assets/icons/home_workout/clock.svg';
+  static const String hwPlus = 'assets/icons/home_workout/plus.svg';
+  static const String hwMinus = 'assets/icons/home_workout/minus.svg';
+  static const String hwCamera = 'assets/icons/home_workout/camera.svg';
+  static const String hwLock = 'assets/icons/home_workout/lock.svg';
+  static const String hwChevRight = 'assets/icons/home_workout/chev_r.svg';
+  static const String hwChevDown = 'assets/icons/home_workout/chev_d.svg';
+  static const String hwMore = 'assets/icons/home_workout/more.svg';
+  static const String hwShield = 'assets/icons/home_workout/shield.svg';
+  static const String hwPlay = 'assets/icons/home_workout/play.svg';
+  static const String hwPause = 'assets/icons/home_workout/pause.svg';
+  static const String hwBack = 'assets/icons/home_workout/back.svg';
+  static const String hwSkip = 'assets/icons/home_workout/skip.svg';
+  static const String hwBolt = 'assets/icons/home_workout/bolt.svg';
+  static const String hwTrophy = 'assets/icons/home_workout/trophy.svg';
+  static const String hwShare = 'assets/icons/home_workout/share.svg';
+  static const String hwSend = 'assets/icons/home_workout/send.svg';
+  static const String hwClose = 'assets/icons/home_workout/x.svg';
+  static const String hwCheck = 'assets/icons/home_workout/check.svg';
 }
