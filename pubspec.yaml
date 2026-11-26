@@ -90,9 +90,11 @@ flutter:
     - assets/icons/onboarding/
     - assets/icons/home_workout/
     - assets/icons/nutrition/
+    - assets/icons/progress_coach/
     - assets/images/
     - assets/images/home_workout/
     - assets/images/nutrition/
+    - assets/images/progress_coach/
     - assets/jsons/
     
     

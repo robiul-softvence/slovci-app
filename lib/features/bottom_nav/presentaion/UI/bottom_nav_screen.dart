@@ -5,8 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 import 'package:flutter_tamplate/features/bottom_nav/controllers/bottom_nav_controller.dart';
+import 'package:flutter_tamplate/features/coach/presentation/controllers/coach_controller.dart';
 import 'package:flutter_tamplate/features/home/presentation/controllers/home_controller.dart';
 import 'package:flutter_tamplate/features/nutrition/presentation/controllers/nutrition_controller.dart';
+import 'package:flutter_tamplate/features/progress/presentation/controllers/progress_controller.dart';
 import 'package:flutter_tamplate/features/workout/presentation/controllers/workout_controller.dart';
 
 /// Main app shell with the Figma-exact floating pill Bottom Navigation Bar:
@@ -25,6 +27,12 @@ class BottomNavScreen extends StatelessWidget {
     }
     if (!Get.isRegistered<NutritionController>()) {
       Get.put(NutritionController());
+    }
+    if (!Get.isRegistered<ProgressController>()) {
+      Get.put(ProgressController());
+    }
+    if (!Get.isRegistered<CoachController>()) {
+      Get.put(CoachController());
     }
     final controller = Get.isRegistered<BottomNavController>()
         ? Get.find<BottomNavController>()
@@ -91,7 +99,7 @@ class MilonFloatingNavBar extends StatelessWidget {
                   curve: Curves.easeOutCubic,
                   height: double.infinity,
                   padding: EdgeInsets.symmetric(
-                    horizontal: isSelected ? 18.w : 14.w,
+                    horizontal: isSelected ? 14.w : 10.w,
                   ),
                   decoration: BoxDecoration(
                     color: isSelected ? AppColors.cta : AppColors.transparent,
@@ -103,19 +111,19 @@ class MilonFloatingNavBar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         item.iconPath,
-                        width: 21.r,
-                        height: 21.r,
+                        width: 20.r,
+                        height: 20.r,
                         colorFilter: ColorFilter.mode(
                           isSelected ? AppColors.white : AppColors.muted,
                           BlendMode.srcIn,
                         ),
                       ),
                       if (isSelected) ...[
-                        Gap.h(8),
+                        Gap.h(6),
                         Text(
                           item.title,
                           style: text.boldTextStyle(
-                            fontSize: 13.5,
+                            fontSize: 13,
                             lineHeight: 16,
                             color: AppColors.white,
                           ),

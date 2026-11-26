@@ -93,4 +93,24 @@ class IconPath {
   static const String nutRefresh = 'assets/icons/nutrition/refresh.svg';
   static const String nutCal = 'assets/icons/nutrition/cal.svg';
   static const String nutAlert = 'assets/icons/nutrition/alert.svg';
+
+  // ─── Progress & MILON Coach icons (Figma "4 · Progress & MILON Coach") ───
+  static const String pcDrop = 'assets/icons/progress_coach/drop.svg';
+  static const String pcRuler = 'assets/icons/progress_coach/ruler.svg';
+  static const String pcScale = 'assets/icons/progress_coach/scale.svg';
+  static const String pcBookmark = 'assets/icons/progress_coach/bookmark.svg';
+  static const String pcChat = 'assets/icons/progress_coach/chat.svg';
+  static const String pcZap = 'assets/icons/progress_coach/zap.svg';
+  static const String pcMoon = 'assets/icons/progress_coach/moon.svg';
+  static const String pcHeart = 'assets/icons/progress_coach/heart.svg';
+  static const String pcWeightChart =
+      'assets/icons/progress_coach/weight_chart.svg';
+  static const String pcReadiness0 =
+      'assets/icons/progress_coach/readiness.svg';
+  static const String pcReadiness1 =
+      'assets/icons/progress_coach/readiness1.svg';
+  static const String pcReadiness2 =
+      'assets/icons/progress_coach/readiness2.svg';
+  static const String pcReadiness3 =
+      'assets/icons/progress_coach/readiness3.svg';
 }

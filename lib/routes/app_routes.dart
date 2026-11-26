@@ -13,6 +13,11 @@ import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutriti
 import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_photo_scan_screen.dart';
 import 'package:flutter_tamplate/features/nutrition/presentation/screens/nutrition_recipe_detail_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/bindings/onboarding_binding.dart';
+import 'package:flutter_tamplate/features/progress/bindings/progress_binding.dart';
+import 'package:flutter_tamplate/features/progress/presentation/screens/progress_body_weight_screen.dart';
+import 'package:flutter_tamplate/features/progress/presentation/screens/progress_week2_plan_screen.dart';
+import 'package:flutter_tamplate/features/progress/presentation/screens/progress_weekly_checkin_screen.dart';
+import 'package:flutter_tamplate/features/progress/presentation/screens/progress_weekly_review_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_anything_to_report_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_environment_screen.dart';
 import 'package:flutter_tamplate/features/onboarding/presentation/screens/onboarding_food_preferences_screen.dart';
@@ -87,6 +92,12 @@ class AppRoute {
   static const String nutritionPhotoScanScreen = "/nutritionPhotoScanScreen";
   static const String nutritionGroceryListScreen =
       "/nutritionGroceryListScreen";
+  static const String progressBodyWeightScreen = "/progressBodyWeightScreen";
+  static const String progressWeeklyReviewScreen =
+      "/progressWeeklyReviewScreen";
+  static const String progressWeeklyCheckinScreen =
+      "/progressWeeklyCheckinScreen";
+  static const String progressWeek2PlanScreen = "/progressWeek2PlanScreen";
 
   static const String internetlost = "/internetlost";
   static const String communityScreen = "/communityScreen";
@@ -249,6 +260,26 @@ class AppRoute {
       name: nutritionGroceryListScreen,
       page: () => const NutritionGroceryListScreen(),
       binding: NutritionBinding(),
+    ),
+    GetPage(
+      name: progressBodyWeightScreen,
+      page: () => const ProgressBodyWeightScreen(),
+      binding: ProgressBinding(),
+    ),
+    GetPage(
+      name: progressWeeklyReviewScreen,
+      page: () => const ProgressWeeklyReviewScreen(),
+      binding: ProgressBinding(),
+    ),
+    GetPage(
+      name: progressWeeklyCheckinScreen,
+      page: () => const ProgressWeeklyCheckinScreen(),
+      binding: ProgressBinding(),
+    ),
+    GetPage(
+      name: progressWeek2PlanScreen,
+      page: () => const ProgressWeek2PlanScreen(),
+      binding: ProgressBinding(),
     ),
   ];
 }

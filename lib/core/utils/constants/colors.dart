@@ -31,6 +31,10 @@ class AppColors {
   static const Color amber = Color(0xFFD68A25);
   static const Color mintRow = Color(0xFFE8F4EE);
   static const Color carbsBlue = Color(0xFF3478C8);
+  static const Color waterBg = Color(0xFFF2F7FD);
+  static const Color waterBorder = Color(0xFFB9D2EE);
+  static const Color heatmap1 = Color(0xFFFFD9D1);
+  static const Color heatmap2 = Color(0xFFFFA796);
 
   // ─── Status ────────────────────────────────────────────
   static const Color success = Color(0xFF22C55E);

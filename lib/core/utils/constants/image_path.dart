@@ -33,4 +33,8 @@ class ImagePath {
   static const String nutRecipeHero = 'assets/images/nutrition/recipe_hero.png';
   static const String nutPhotoScan =
       'assets/images/nutrition/camera_capture.png';
+
+  // ─── Progress & MILON Coach photos ───
+  static const String pcCoachWorkoutThumb =
+      'assets/images/progress_coach/row.png';
 }
