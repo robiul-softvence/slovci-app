@@ -133,4 +133,17 @@ class IconPath {
   static const String prSearch = 'assets/icons/profile/search.svg';
   static const String prRun = 'assets/icons/profile/run.svg';
   static const String prTrophy = 'assets/icons/profile/trophy.svg';
+
+  // ─── System States icons (Figma "6 · System States") ───
+  static const String sysChevL = 'assets/icons/system_states/chev_l.svg';
+  static const String sysChevR = 'assets/icons/system_states/chev_r.svg';
+  static const String sysWifi = 'assets/icons/system_states/wifi.svg';
+  static const String sysInfo = 'assets/icons/system_states/info.svg';
+  static const String sysDumbbellCoral =
+      'assets/icons/system_states/dumbbell_coral.svg';
+  static const String sysDumbbellWhite =
+      'assets/icons/system_states/dumbbell_white.svg';
+  static const String sysClose = 'assets/icons/system_states/close.svg';
+  static const String sysCheckEmerald =
+      'assets/icons/system_states/check_emerald.svg';
 }

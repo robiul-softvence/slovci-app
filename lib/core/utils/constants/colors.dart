@@ -35,6 +35,7 @@ class AppColors {
   static const Color waterBorder = Color(0xFFB9D2EE);
   static const Color heatmap1 = Color(0xFFFFD9D1);
   static const Color heatmap2 = Color(0xFFFFA796);
+  static const Color skeleton = Color(0xFFECEDE9);
 
   // ─── Status ────────────────────────────────────────────
   static const Color success = Color(0xFF22C55E);

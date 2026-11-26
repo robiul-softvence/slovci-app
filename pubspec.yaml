@@ -92,6 +92,7 @@ flutter:
     - assets/icons/nutrition/
     - assets/icons/progress_coach/
     - assets/icons/profile/
+    - assets/icons/system_states/
     - assets/images/
     - assets/images/home_workout/
     - assets/images/nutrition/
