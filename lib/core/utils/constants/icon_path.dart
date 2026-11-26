@@ -113,4 +113,24 @@ class IconPath {
       'assets/icons/progress_coach/readiness2.svg';
   static const String pcReadiness3 =
       'assets/icons/progress_coach/readiness3.svg';
+
+  // ─── Profile & Subscription icons (Figma "5 · Profile & Subscription") ───
+  static const String prSettings = 'assets/icons/profile/settings.svg';
+  static const String prGift = 'assets/icons/profile/gift.svg';
+  static const String prCopy = 'assets/icons/profile/copy.svg';
+  static const String prCard = 'assets/icons/profile/card.svg';
+  static const String prLogout = 'assets/icons/profile/logout.svg';
+  static const String prTrash = 'assets/icons/profile/trash.svg';
+  static const String prTag = 'assets/icons/profile/tag.svg';
+  static const String prActivity = 'assets/icons/profile/activity.svg';
+  static const String prDownload = 'assets/icons/profile/download.svg';
+  static const String prFile = 'assets/icons/profile/file.svg';
+  static const String prPhone = 'assets/icons/profile/phone.svg';
+  static const String prTablet = 'assets/icons/profile/tablet.svg';
+  static const String prStore = 'assets/icons/profile/store.svg';
+  static const String prLink = 'assets/icons/profile/link.svg';
+  static const String prGlobe = 'assets/icons/profile/globe1.svg';
+  static const String prSearch = 'assets/icons/profile/search.svg';
+  static const String prRun = 'assets/icons/profile/run.svg';
+  static const String prTrophy = 'assets/icons/profile/trophy.svg';
 }
