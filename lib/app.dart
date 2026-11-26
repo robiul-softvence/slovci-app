@@ -7,6 +7,7 @@ import 'core/controllers/theme_controller.dart';
 import 'core/localization/app_translations.dart';
 import 'core/utils/theme/theme.dart';
 import 'core/utils/constants/sizer.dart'; // Assuming this provides the Sizer widget
+import 'core/utils/constants/app_texts.dart';
 import 'routes/app_routes.dart';
 
 class MyApp extends StatelessWidget {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, screenType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
+          title: AppText.appName,
           initialRoute: AppRoute.getSplashScreen(),
           getPages: AppRoute.routes,
           initialBinding: ControllerBinder(),
