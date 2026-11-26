@@ -14,25 +14,25 @@ class SettingsUnitsLanguageScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Units & Language',
+      title: 'profile.units_language.title'.tr,
       children: [
-        const SettingsSectionLabel('LANGUAGE'),
+        SettingsSectionLabel('profile.units_language.section_language'.tr),
         Obx(
           () => SettingsBinaryToggle(
             leftLabel: 'English',
             rightLabel: 'Français',
-            leftSelected: controller.appLanguage.value == 'EN',
+            leftSelected: controller.appLanguage.value == AppLanguage.en,
             onSelect: (isEn) =>
-                controller.appLanguage.value = isEn ? 'EN' : 'FR',
+                controller.setLanguage(isEn ? AppLanguage.en : AppLanguage.fr),
           ),
         ),
         Gap(8),
         Text(
-          "Changes the app, recipes and your MILON Coach's language.",
+          'profile.units_language.language_info'.tr,
           style: text.regularTextStyle(fontSize: 12, color: AppColors.muted),
         ),
         Gap(22),
-        const SettingsSectionLabel('WEIGHT'),
+        SettingsSectionLabel('profile.units_language.section_weight'.tr),
         Obx(
           () => SettingsBinaryToggle(
             leftLabel: 'kg',
@@ -42,7 +42,7 @@ class SettingsUnitsLanguageScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('HEIGHT & MEASUREMENTS'),
+        SettingsSectionLabel('profile.units_language.section_height'.tr),
         Obx(
           () => SettingsBinaryToggle(
             leftLabel: 'cm',
@@ -52,7 +52,7 @@ class SettingsUnitsLanguageScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('ENERGY'),
+        SettingsSectionLabel('profile.units_language.section_energy'.tr),
         Obx(
           () => SettingsBinaryToggle(
             leftLabel: 'kcal',
@@ -62,7 +62,7 @@ class SettingsUnitsLanguageScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('DISTANCE'),
+        SettingsSectionLabel('profile.units_language.section_distance'.tr),
         Obx(
           () => SettingsBinaryToggle(
             leftLabel: 'km',
@@ -72,11 +72,11 @@ class SettingsUnitsLanguageScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('WEEK STARTS ON'),
+        SettingsSectionLabel('profile.units_language.section_week_start'.tr),
         Obx(
           () => SettingsBinaryToggle(
-            leftLabel: 'Monday',
-            rightLabel: 'Sunday',
+            leftLabel: 'profile.units_language.monday'.tr,
+            rightLabel: 'profile.units_language.sunday'.tr,
             leftSelected: controller.weekStartsMonday.value,
             onSelect: (v) => controller.weekStartsMonday.value = v,
           ),

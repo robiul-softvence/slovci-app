@@ -4,11 +4,7 @@ import 'package:flutter_tamplate/core/core.dart';
 
 /// Section header with optional coral inline highlight (e.g. "· 3 recommended").
 class OnboardingSectionTitle extends StatelessWidget {
-  const OnboardingSectionTitle({
-    super.key,
-    required this.title,
-    this.accent,
-  });
+  const OnboardingSectionTitle({super.key, required this.title, this.accent});
 
   final String title;
   final String? accent;
@@ -118,11 +114,7 @@ class OnboardingInfoBanner extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(top: 1.h),
-            child: SvgPicture.asset(
-              iconPath,
-              width: 18.r,
-              height: 18.r,
-            ),
+            child: SvgPicture.asset(iconPath, width: 18.r, height: 18.r),
           ),
           Gap.h(10),
           Expanded(

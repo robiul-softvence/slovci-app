@@ -16,16 +16,16 @@ class SignUpScreen extends GetView<SignUpController> {
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
-      title: 'Create your account',
-      subtitle: 'Save your plan and sync it across devices.',
+      title: 'auth.sign_up.title'.tr,
+      subtitle: 'auth.sign_up.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Create Account',
+          label: 'auth.sign_up.button'.tr,
           onPressed: controller.createAccount,
         ),
         secondary: AuthFooterLink(
-          prompt: 'Already have an account?',
-          action: 'Log in',
+          prompt: 'auth.sign_up.have_account_prompt'.tr,
+          action: 'auth.common.log_in_link'.tr,
           onTap: controller.openSignIn,
         ),
       ),
@@ -39,7 +39,7 @@ class SignUpScreen extends GetView<SignUpController> {
           child: Column(
             children: [
               AuthTextField(
-                label: 'Email',
+                label: 'auth.common.email_label'.tr,
                 hint: 'you@example.com',
                 icon: IconPath.mail,
                 controller: controller.emailController,
@@ -50,8 +50,8 @@ class SignUpScreen extends GetView<SignUpController> {
               const SizedBox(height: 16),
               Obx(
                 () => AuthTextField(
-                  label: 'Password',
-                  hint: 'At least 8 characters',
+                  label: 'auth.common.password_label'.tr,
+                  hint: 'auth.common.password_hint'.tr,
                   icon: IconPath.lock,
                   controller: controller.passwordController,
                   obscureText: controller.obscurePassword.value,

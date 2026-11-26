@@ -14,15 +14,15 @@ import 'package:flutter_tamplate/routes/app_routes.dart';
 class SettingsInjuriesScreen extends GetView<ProfileController> {
   const SettingsInjuriesScreen({super.key});
 
-  static const _avoided = [
-    'Push-ups on palms',
-    'Burpees',
-    'High plank holds',
+  static const _avoidedKeys = [
+    'profile.injuries.avoided_push_ups',
+    'profile.injuries.avoided_burpees',
+    'profile.injuries.avoided_high_plank',
   ];
-  static const _instead = [
-    'Forearm plank',
-    'Neutral-grip DB press',
-    'Machine chest press',
+  static const _insteadKeys = [
+    'profile.injuries.instead_forearm_plank',
+    'profile.injuries.instead_db_press',
+    'profile.injuries.instead_machine_press',
   ];
 
   @override
@@ -30,15 +30,15 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Injuries & Sensitive Areas',
+      title: 'profile.injuries.title'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: '+ Add a Sensitive Area',
+          label: 'profile.injuries.add_area'.tr,
           onPressed: () => Get.toNamed(AppRoute.onboardingInjuryBodyMapScreen),
         ),
       ),
       children: [
-        const SettingsSectionLabel('ACTIVE · 1'),
+        SettingsSectionLabel('profile.injuries.section_active'.tr),
         Container(
           width: double.infinity,
           padding: EdgeInsets.all(16.r),
@@ -73,14 +73,14 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Wrists & Hands',
+                          'profile.injuries.wrists_hands'.tr,
                           style: text.boldTextStyle(
                             fontSize: 17,
                             color: AppColors.ink,
                           ),
                         ),
                         Text(
-                          'Carpal Tunnel · Moderate · since Nov 1',
+                          'profile.injuries.wrists_hands_subtitle'.tr,
                           style: text.regularTextStyle(
                             fontSize: 12,
                             color: AppColors.muted,
@@ -115,7 +115,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'AVOIDED',
+                          'profile.injuries.avoided'.tr,
                           style: text.boldTextStyle(
                             fontSize: 10.5,
                             letterSpacing: 0.6,
@@ -123,7 +123,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                           ),
                         ),
                         Gap(8),
-                        ..._avoided.map(
+                        ..._avoidedKeys.map(
                           (item) => Padding(
                             padding: EdgeInsets.only(bottom: 8.h),
                             child: Row(
@@ -146,7 +146,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                                 Gap.h(7),
                                 Expanded(
                                   child: Text(
-                                    item,
+                                    item.tr,
                                     style: text.regularTextStyle(
                                       fontSize: 12.5,
                                       color: AppColors.ink,
@@ -166,7 +166,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'INSTEAD',
+                          'profile.injuries.instead'.tr,
                           style: text.boldTextStyle(
                             fontSize: 10.5,
                             letterSpacing: 0.6,
@@ -174,7 +174,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                           ),
                         ),
                         Gap(8),
-                        ..._instead.map(
+                        ..._insteadKeys.map(
                           (item) => Padding(
                             padding: EdgeInsets.only(bottom: 8.h),
                             child: Row(
@@ -201,7 +201,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                                 Gap.h(7),
                                 Expanded(
                                   child: Text(
-                                    item,
+                                    item.tr,
                                     style: text.regularTextStyle(
                                       fontSize: 12.5,
                                       color: AppColors.ink,
@@ -223,7 +223,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () => AppHelperFunctions.showSnackBar(
-                        'Marked as healed!',
+                        'profile.injuries.marked_healed'.tr,
                       ),
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: AppColors.line),
@@ -233,7 +233,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                         padding: EdgeInsets.symmetric(vertical: 11.h),
                       ),
                       child: Text(
-                        'Mark as healed',
+                        'profile.injuries.mark_healed'.tr,
                         style: text.semiBoldTextStyle(
                           fontSize: 13,
                           color: AppColors.ink,
@@ -244,9 +244,8 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                   Gap.h(10),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () => Get.toNamed(
-                        AppRoute.onboardingInjuryBodyMapScreen,
-                      ),
+                      onPressed: () =>
+                          Get.toNamed(AppRoute.onboardingInjuryBodyMapScreen),
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         backgroundColor: AppColors.pearl,
@@ -256,7 +255,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                         padding: EdgeInsets.symmetric(vertical: 11.h),
                       ),
                       child: Text(
-                        'Update severity',
+                        'profile.injuries.update_severity'.tr,
                         style: text.semiBoldTextStyle(
                           fontSize: 13,
                           color: AppColors.ink,
@@ -270,20 +269,19 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(14),
-        const OnboardingInfoBanner(
+        OnboardingInfoBanner(
           backgroundColor: AppColors.peach,
           textColor: AppColors.ink,
-          text:
-              '12 exercises excluded and 9 swapped across your program to protect your wrists.',
+          text: 'profile.injuries.excluded_info'.tr,
         ),
         Gap(22),
-        const SettingsSectionLabel('HISTORY'),
+        SettingsSectionLabel('profile.injuries.section_history'.tr),
         SettingsCardGroup(
           children: [
             SettingsNavRow(
               iconPath: IconPath.pcHeart,
-              title: 'Knees',
-              subtitle: 'Patellar pain · resolved Oct 2025',
+              title: 'profile.injuries.knees'.tr,
+              subtitle: 'profile.injuries.knees_subtitle'.tr,
               trailing: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
                 decoration: BoxDecoration(
@@ -291,7 +289,7 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
                   borderRadius: BorderRadius.circular(99.r),
                 ),
                 child: Text(
-                  'Healed',
+                  'profile.injuries.healed'.tr,
                   style: text.boldTextStyle(
                     fontSize: 12,
                     color: AppColors.emerald,
@@ -302,11 +300,10 @@ class SettingsInjuriesScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(14),
-        const OnboardingInfoBanner(
+        OnboardingInfoBanner(
           backgroundColor: AppColors.amberSoft,
           textColor: AppColors.ink,
-          text:
-              "MILON isn't a medical device. If pain persists or gets worse, stop and see a health professional.",
+          text: 'profile.injuries.medical_disclaimer'.tr,
         ),
       ],
     );

@@ -16,13 +16,12 @@ class OnboardingAnythingToReportScreen extends GetView<OnboardingController> {
   Widget build(BuildContext context) {
     return OnboardingScaffold(
       stepIndex: 3,
-      eyebrow: 'STEP 3 · SENSITIVE AREAS',
-      title: 'Anything we should know about?',
-      subtitle:
-          "Pain, an injury or a movement that bothers you? I'll adapt your workouts around it.",
+      eyebrow: 'onboarding.report.eyebrow'.tr,
+      title: 'onboarding.report.title'.tr,
+      subtitle: 'onboarding.report.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Continue',
+          label: 'onboarding.common.continue'.tr,
           onPressed: controller.continueFromAnythingToReport,
         ),
       ),
@@ -32,16 +31,16 @@ class OnboardingAnythingToReportScreen extends GetView<OnboardingController> {
           () => Column(
             children: [
               _ReportOptionCard(
-                title: 'No, all good',
-                subtitle: 'No pain, no discomfort',
+                title: 'onboarding.report.no_title'.tr,
+                subtitle: 'onboarding.report.no_subtitle'.tr,
                 iconPath: IconPath.obHeart,
                 selected: !controller.hasInjuriesToReport.value,
                 onTap: () => controller.hasInjuriesToReport.value = false,
               ),
               Gap(12),
               _ReportOptionCard(
-                title: 'Yes, let me show you',
-                subtitle: "I'll point to where it bothers me",
+                title: 'onboarding.report.yes_title'.tr,
+                subtitle: 'onboarding.report.yes_subtitle'.tr,
                 iconPath: IconPath.obHand,
                 selected: controller.hasInjuriesToReport.value,
                 onTap: () => controller.hasInjuriesToReport.value = true,

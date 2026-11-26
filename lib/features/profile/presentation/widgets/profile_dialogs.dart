@@ -51,12 +51,12 @@ class LogOutConfirmDialog extends StatelessWidget {
             ),
             Gap(16),
             Text(
-              'Log out of MILON?',
+              'profile.dialogs.logout_title'.tr,
               style: text.boldTextStyle(fontSize: 20, color: AppColors.ink),
             ),
             Gap(8),
             Text(
-              "Your plan and progress are saved. You'll need to sign in again.",
+              'profile.dialogs.logout_body'.tr,
               textAlign: TextAlign.center,
               style: text.regularTextStyle(
                 fontSize: 13.5,
@@ -76,7 +76,7 @@ class LogOutConfirmDialog extends StatelessWidget {
                   onTap: controller.performLogOut,
                   child: Center(
                     child: Text(
-                      'Log Out',
+                      'profile.dialogs.logout_confirm'.tr,
                       style: text.boldTextStyle(
                         fontSize: 15,
                         color: AppColors.white,
@@ -93,7 +93,7 @@ class LogOutConfirmDialog extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.h),
                 child: Text(
-                  'Cancel',
+                  'profile.dialogs.cancel'.tr,
                   style: text.semiBoldTextStyle(
                     fontSize: 14.5,
                     color: AppColors.ink,
@@ -177,7 +177,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Delete your account?',
+                        'profile.dialogs.delete_title'.tr,
                         style: text.boldTextStyle(
                           fontSize: 20,
                           color: AppColors.ink,
@@ -185,7 +185,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                       ),
                       Gap(2),
                       Text(
-                        "This is permanent and can't be undone.",
+                        'profile.dialogs.delete_subtitle'.tr,
                         style: text.regularTextStyle(
                           fontSize: 13,
                           color: AppColors.muted,
@@ -226,7 +226,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'WHAT WILL BE DELETED',
+                    'profile.dialogs.delete_what'.tr,
                     style: text.boldTextStyle(
                       fontSize: 10.5,
                       letterSpacing: 0.6,
@@ -235,10 +235,10 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                   ),
                   Gap(10),
                   ...[
-                    'Workout history, records and progress',
-                    'Meal plans and grocery lists',
-                    'Health data: injuries, weight, check-ins',
-                    'MILON Coach conversations',
+                    'profile.dialogs.delete_item_workouts',
+                    'profile.dialogs.delete_item_meals',
+                    'profile.dialogs.delete_item_health',
+                    'profile.dialogs.delete_item_coach',
                   ].map(
                     (line) => Padding(
                       padding: EdgeInsets.only(bottom: 7.h),
@@ -255,7 +255,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                           Gap.h(10),
                           Expanded(
                             child: Text(
-                              line,
+                              line.tr,
                               style: text.regularTextStyle(
                                 fontSize: 13,
                                 color: AppColors.ink,
@@ -288,18 +288,20 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                         height: 17.r,
                       ),
                       Gap.h(8),
-                      Text(
-                        'Your Pro subscription is still active',
-                        style: text.boldTextStyle(
-                          fontSize: 13.5,
-                          color: AppColors.ink,
+                      Expanded(
+                        child: Text(
+                          'profile.dialogs.pro_still_active'.tr,
+                          style: text.boldTextStyle(
+                            fontSize: 13.5,
+                            color: AppColors.ink,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   Gap(6),
                   Text(
-                    "It's billed by Apple, so deleting your account doesn't cancel it. Cancel it first in Settings › Apple ID › Subscriptions.",
+                    'profile.dialogs.pro_billed_by_apple'.tr,
                     style: text.regularTextStyle(
                       fontSize: 12.5,
                       lineHeight: 17,
@@ -313,7 +315,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                       controller.openSubscription();
                     },
                     child: Text(
-                      'Manage subscription  ›',
+                      'profile.dialogs.manage_subscription'.tr,
                       style: text.semiBoldTextStyle(
                         fontSize: 13,
                         color: AppColors.cta,
@@ -336,19 +338,24 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                   ),
                 ),
                 Gap.h(8),
-                Text(
-                  'Download a copy of my data first',
-                  style: text.semiBoldTextStyle(
-                    fontSize: 13.5,
-                    color: AppColors.carbsBlue,
+                Expanded(
+                  child: Text(
+                    'profile.dialogs.download_first'.tr,
+                    style: text.semiBoldTextStyle(
+                      fontSize: 13.5,
+                      color: AppColors.carbsBlue,
+                    ),
                   ),
                 ),
               ],
             ),
             Gap(16),
             Text(
-              'Type DELETE to confirm',
-              style: text.semiBoldTextStyle(fontSize: 13.5, color: AppColors.ink),
+              'profile.dialogs.type_delete'.tr,
+              style: text.semiBoldTextStyle(
+                fontSize: 13.5,
+                color: AppColors.ink,
+              ),
             ),
             Gap(8),
             TextField(
@@ -387,7 +394,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                   onTap: controller.performDeleteAccount,
                   child: Center(
                     child: Text(
-                      'Delete My Account Permanently',
+                      'profile.dialogs.delete_confirm'.tr,
                       style: text.boldTextStyle(
                         fontSize: 15,
                         color: AppColors.white,
@@ -404,7 +411,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 6.h),
                   child: Text(
-                    'Keep My Account',
+                    'profile.dialogs.keep_account'.tr,
                     style: text.boldTextStyle(
                       fontSize: 14.5,
                       color: AppColors.ink,

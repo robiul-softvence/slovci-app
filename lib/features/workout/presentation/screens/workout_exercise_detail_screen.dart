@@ -168,7 +168,8 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                                     ),
                                   ),
                                   Text(
-                                    'Demo · 0:45',
+                                    'home_workout.exercise_detail.demo'
+                                        .trParams({'duration': '0:45'}),
                                     style: text.mediumTextStyle(
                                       fontSize: 12,
                                       color: AppColors.white,
@@ -205,18 +206,18 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                         children: [
                           ...ex.primaryMuscles.map(
                             (m) => _DetailTag(
-                              label: m,
+                              label: m.tr,
                               bg: AppColors.peach,
                               fg: AppColors.cta,
                             ),
                           ),
                           _DetailTag(
-                            label: ex.equipmentLabel,
+                            label: ex.equipmentLabel.tr,
                             bg: AppColors.pearl,
                             fg: AppColors.ink,
                           ),
                           _DetailTag(
-                            label: ex.shortTarget,
+                            label: ex.shortTarget.tr,
                             bg: AppColors.pearl,
                             fg: AppColors.ink,
                           ),
@@ -255,7 +256,7 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'PRO TIP',
+                                    'home_workout.exercise_detail.pro_tip'.tr,
                                     style: text.boldTextStyle(
                                       fontSize: 11,
                                       letterSpacing: 0.6,
@@ -264,7 +265,7 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                                   ),
                                   Gap(4),
                                   Text(
-                                    ex.proTip,
+                                    ex.proTip.tr,
                                     style: text.regularTextStyle(
                                       fontSize: 13.5,
                                       lineHeight: 19,
@@ -279,7 +280,7 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                       ),
                       Gap(24),
                       Text(
-                        'How to do it',
+                        'home_workout.exercise_detail.how_to'.tr,
                         style: text.boldTextStyle(
                           fontSize: 18,
                           lineHeight: 22,
@@ -307,7 +308,7 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                               ),
                               Expanded(
                                 child: Text(
-                                  ex.steps[i],
+                                  ex.steps[i].tr,
                                   style: text.regularTextStyle(
                                     fontSize: 14,
                                     lineHeight: 20,
@@ -321,7 +322,7 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                       }),
                       Gap(10),
                       Text(
-                        'Muscles worked',
+                        'home_workout.exercise_detail.muscles_worked'.tr,
                         style: text.boldTextStyle(
                           fontSize: 18,
                           lineHeight: 22,
@@ -333,14 +334,14 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                         children: [
                           Expanded(
                             child: _AnatomyCard(
-                              title: 'FRONT',
+                              title: 'home_workout.exercise_detail.front'.tr,
                               svgPath: IconPath.obBodyMapFront,
                             ),
                           ),
                           Gap.h(12),
                           Expanded(
                             child: _AnatomyCard(
-                              title: 'BACK',
+                              title: 'home_workout.exercise_detail.back'.tr,
                               svgPath: IconPath.obBodyMapBack,
                             ),
                           ),
@@ -360,7 +361,7 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                           ),
                           Gap.h(6),
                           Text(
-                            'Primary · Quads, Glutes',
+                            'home_workout.exercise_detail.primary'.tr,
                             style: text.regularTextStyle(
                               fontSize: 12,
                               color: AppColors.muted,
@@ -377,7 +378,7 @@ class WorkoutExerciseDetailScreen extends GetView<WorkoutController> {
                           ),
                           Gap.h(6),
                           Text(
-                            'Assisted · Core, Calves',
+                            'home_workout.exercise_detail.assisted'.tr,
                             style: text.regularTextStyle(
                               fontSize: 12,
                               color: AppColors.muted,

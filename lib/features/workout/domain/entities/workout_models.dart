@@ -15,6 +15,9 @@ class WorkoutExercise {
 
   final String indexLabel;
   final String name;
+
+  // The label fields below (and [primaryMuscles], [proTip], [steps]) hold
+  // translation keys; the UI resolves them with `.tr`.
   final String setsRepsLabel;
   final String imagePath;
   final List<String> primaryMuscles;
@@ -61,6 +64,8 @@ class SetLogEntry {
 
 class CoachAnalysisItem {
   const CoachAnalysisItem({required this.title, required this.body});
+
+  /// Translation keys.
 
   final String title;
   final String body;

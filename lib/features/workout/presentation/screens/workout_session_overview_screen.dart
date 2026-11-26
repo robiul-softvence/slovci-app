@@ -106,7 +106,8 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                                   ),
                                   Gap.h(5),
                                   Text(
-                                    'MILON PLAN · WEEK 2 · DAY 3',
+                                    'home_workout.overview.plan_badge'
+                                        .trParams({'week': '2', 'day': '3'}),
                                     style: text.boldTextStyle(
                                       fontSize: 10.5,
                                       lineHeight: 13,
@@ -138,7 +139,7 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Text(
-                                '45 min · Home · 6 exercises · Intermediate',
+                                'home_workout.overview.meta'.tr,
                                 style: text.mediumTextStyle(
                                   fontSize: 12.5,
                                   lineHeight: 16,
@@ -160,7 +161,7 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Targeted muscles',
+                      'home_workout.overview.targeted_muscles'.tr,
                       style: text.boldTextStyle(
                         fontSize: 17,
                         lineHeight: 22,
@@ -223,19 +224,23 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                       children: const [
                         _MuscleLegendPill(
                           color: AppColors.coral,
-                          label: 'Quadriceps 45%',
+                          muscleKey: 'home_workout.muscles.quadriceps',
+                          percent: 45,
                         ),
                         _MuscleLegendPill(
                           color: AppColors.ink,
-                          label: 'Core 25%',
+                          muscleKey: 'home_workout.muscles.core',
+                          percent: 25,
                         ),
                         _MuscleLegendPill(
                           color: AppColors.amber,
-                          label: 'Glutes 15%',
+                          muscleKey: 'home_workout.muscles.glutes',
+                          percent: 15,
                         ),
                         _MuscleLegendPill(
                           color: AppColors.line,
-                          label: 'Other 15%',
+                          muscleKey: 'home_workout.muscles.other',
+                          percent: 15,
                         ),
                       ],
                     ),
@@ -272,7 +277,7 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Adapted to protect your wrists',
+                                  'home_workout.overview.wrist_title'.tr,
                                   style: text.boldTextStyle(
                                     fontSize: 14,
                                     lineHeight: 18,
@@ -281,7 +286,7 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                                 ),
                                 Gap(3),
                                 Text(
-                                  'Push-ups swapped for neutral-grip press. Planks done on forearms.',
+                                  'home_workout.overview.wrist_body'.tr,
                                   style: text.regularTextStyle(
                                     fontSize: 12.5,
                                     lineHeight: 17,
@@ -300,7 +305,7 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Exercises',
+                          'home_workout.overview.exercises'.tr,
                           style: text.boldTextStyle(
                             fontSize: 18,
                             lineHeight: 22,
@@ -308,7 +313,10 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                           ),
                         ),
                         Text(
-                          '6 moves · 18 sets',
+                          'home_workout.overview.moves_sets'.trParams({
+                            'moves': '6',
+                            'sets': '18',
+                          }),
                           style: text.regularTextStyle(
                             fontSize: 12.5,
                             color: AppColors.muted,
@@ -366,7 +374,7 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                                       ),
                                       Gap(2),
                                       Text(
-                                        ex.setsRepsLabel,
+                                        ex.setsRepsLabel.tr,
                                         style: text.regularTextStyle(
                                           fontSize: 12.5,
                                           lineHeight: 16,
@@ -399,7 +407,7 @@ class WorkoutSessionOverviewScreen extends GetView<WorkoutController> {
                     }),
                     Gap(12),
                     AppPrimaryButton(
-                      label: 'Start Workout',
+                      label: 'home_workout.overview.start_workout'.tr,
                       onPressed: controller.openActiveSet,
                     ),
                   ],
@@ -447,10 +455,15 @@ class _HeroCircleButton extends StatelessWidget {
 }
 
 class _MuscleLegendPill extends StatelessWidget {
-  const _MuscleLegendPill({required this.color, required this.label});
+  const _MuscleLegendPill({
+    required this.color,
+    required this.muscleKey,
+    required this.percent,
+  });
 
   final Color color;
-  final String label;
+  final String muscleKey;
+  final int percent;
 
   @override
   Widget build(BuildContext context) {
@@ -472,7 +485,10 @@ class _MuscleLegendPill extends StatelessWidget {
           ),
           Gap.h(6),
           Text(
-            label,
+            'home_workout.overview.muscle_share'.trParams({
+              'muscle': muscleKey.tr,
+              'percent': '$percent',
+            }),
             style: text.mediumTextStyle(
               fontSize: 12,
               lineHeight: 15,

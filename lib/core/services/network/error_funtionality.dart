@@ -34,7 +34,9 @@ class InternetToastListenerState extends State<InternetToastListener> {
     Get.rawSnackbar(
       animationDuration: Duration(seconds: 1),
       titleText: Text(
-        isConnected ? 'Connection Restored' : 'No Internet Connection',
+        isConnected
+            ? 'common.internet.restored_title'.tr
+            : 'common.internet.lost_title'.tr,
         style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
@@ -42,8 +44,8 @@ class InternetToastListenerState extends State<InternetToastListener> {
       ),
       messageText: Text(
         isConnected
-            ? 'You are back online now.'
-            : 'Please check your data or Wi-Fi settings.',
+            ? 'common.internet.restored_message'.tr
+            : 'common.internet.lost_message'.tr,
         style: const TextStyle(color: Colors.white70),
       ),
       icon: Icon(

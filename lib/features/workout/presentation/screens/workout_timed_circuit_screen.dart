@@ -33,7 +33,7 @@ class WorkoutTimedCircuitScreen extends GetView<WorkoutController> {
                       child: Column(
                         children: [
                           Text(
-                            'HIIT CIRCUIT · LOW IMPACT',
+                            'home_workout.circuit.eyebrow'.tr,
                             style: text.boldTextStyle(
                               fontSize: 10.5,
                               letterSpacing: 0.7,
@@ -74,7 +74,10 @@ class WorkoutTimedCircuitScreen extends GetView<WorkoutController> {
                           borderRadius: BorderRadius.circular(99.r),
                         ),
                         child: Text(
-                          'ROUND ${controller.circuitRound.value} / 4',
+                          'home_workout.circuit.round'.trParams({
+                            'round': '${controller.circuitRound.value}',
+                            'total': '4',
+                          }),
                           style: text.boldTextStyle(
                             fontSize: 11,
                             letterSpacing: 0.6,
@@ -100,7 +103,7 @@ class WorkoutTimedCircuitScreen extends GetView<WorkoutController> {
                 ),
                 Gap(14),
                 Text(
-                  'TOTAL TIME',
+                  'home_workout.circuit.total_time'.tr,
                   style: text.boldTextStyle(
                     fontSize: 11,
                     letterSpacing: 0.8,
@@ -162,7 +165,7 @@ class WorkoutTimedCircuitScreen extends GetView<WorkoutController> {
                                   borderRadius: BorderRadius.circular(99.r),
                                 ),
                                 child: Text(
-                                  'NOW · WORK',
+                                  'home_workout.circuit.now_work'.tr,
                                   style: text.boldTextStyle(
                                     fontSize: 11,
                                     letterSpacing: 0.6,
@@ -254,7 +257,8 @@ class WorkoutTimedCircuitScreen extends GetView<WorkoutController> {
                                       ),
                                       Gap(3),
                                       Text(
-                                        'Step-out variation · no wrist load',
+                                        'home_workout.circuit.current_variation'
+                                            .tr,
                                         style: text.regularTextStyle(
                                           fontSize: 12,
                                           color: AppColors.white.withValues(
@@ -322,7 +326,7 @@ class WorkoutTimedCircuitScreen extends GetView<WorkoutController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'UP NEXT',
+                              'home_workout.circuit.up_next'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 10.5,
                                 letterSpacing: 0.6,
@@ -331,7 +335,9 @@ class WorkoutTimedCircuitScreen extends GetView<WorkoutController> {
                             ),
                             Gap(2),
                             Text(
-                              'Mountain Climbers · Forearms',
+                              'home_workout.circuit.next_exercise'.trParams({
+                                'name': 'Mountain Climbers',
+                              }),
                               style: text.boldTextStyle(
                                 fontSize: 14,
                                 lineHeight: 18,
@@ -340,7 +346,10 @@ class WorkoutTimedCircuitScreen extends GetView<WorkoutController> {
                             ),
                             Gap(2),
                             Text(
-                              '40 sec work · 20 sec rest',
+                              'home_workout.circuit.work_rest'.trParams({
+                                'work': '40',
+                                'rest': '20',
+                              }),
                               style: text.regularTextStyle(
                                 fontSize: 12,
                                 color: AppColors.muted,

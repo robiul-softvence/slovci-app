@@ -11,15 +11,16 @@ import 'package:flutter_tamplate/features/bottom_nav/presentaion/UI/bottom_nav_s
 /// Figma "S3 · State — Empty".
 /// Reusable empty state for Progress (before first workout is completed).
 class StateEmptyScreen extends StatelessWidget {
+  /// String defaults are translation keys; every text is resolved with `.tr`
+  /// at build time (plain strings passed by callers are shown unchanged).
   const StateEmptyScreen({
     super.key,
-    this.headerTitle = 'Progress',
-    this.title = 'Your progress starts here',
-    this.subtitle =
-        "Complete your first workout to see your consistency, records and recovery. No pressure, start whenever you're ready.",
-    this.upNextTitle = 'Up next: Full Body A',
-    this.upNextSubtitle = '45 min · Home · Today',
-    this.ctaLabel = 'Start First Workout',
+    this.headerTitle = 'system_states.empty.header_title',
+    this.title = 'system_states.empty.title',
+    this.subtitle = 'system_states.empty.subtitle',
+    this.upNextTitle = 'system_states.empty.up_next_title',
+    this.upNextSubtitle = 'system_states.empty.up_next_subtitle',
+    this.ctaLabel = 'system_states.empty.cta',
     this.showBottomNav = true,
     this.onUpNextTap,
     this.onCtaTap,
@@ -62,7 +63,7 @@ class StateEmptyScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
                 child: Text(
-                  headerTitle,
+                  headerTitle.tr,
                   style: text.boldTextStyle(
                     fontSize: 26,
                     lineHeight: 32,
@@ -95,7 +96,7 @@ class StateEmptyScreen extends StatelessWidget {
                       ),
                       Gap(16),
                       Text(
-                        title,
+                        title.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 22,
@@ -105,7 +106,7 @@ class StateEmptyScreen extends StatelessWidget {
                       ),
                       Gap(16),
                       Text(
-                        subtitle,
+                        subtitle.tr,
                         textAlign: TextAlign.center,
                         style: text.regularTextStyle(
                           fontSize: 14,
@@ -150,7 +151,7 @@ class StateEmptyScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        upNextTitle,
+                                        upNextTitle.tr,
                                         style: text.boldTextStyle(
                                           fontSize: 14,
                                           lineHeight: 20,
@@ -158,7 +159,7 @@ class StateEmptyScreen extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        upNextSubtitle,
+                                        upNextSubtitle.tr,
                                         style: text.mediumTextStyle(
                                           fontSize: 12,
                                           lineHeight: 16,
@@ -206,7 +207,7 @@ class StateEmptyScreen extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            ctaLabel,
+                            ctaLabel.tr,
                             style: text.boldTextStyle(
                               fontSize: 16,
                               lineHeight: 20,
@@ -246,11 +247,11 @@ class _EmptyStateNavBar extends StatelessWidget {
       14.0,
     );
     const tabs = [
-      (IconPath.hwHome, 'Home'),
-      (IconPath.hwDumbbell, 'Workout'),
-      (IconPath.hwFood, 'Nutrition'),
-      (IconPath.hwChart, 'Progress'),
-      (IconPath.hwSpark, 'AI Coach'),
+      (IconPath.hwHome, 'system_states.nav.home'),
+      (IconPath.hwDumbbell, 'system_states.nav.workout'),
+      (IconPath.hwFood, 'system_states.nav.nutrition'),
+      (IconPath.hwChart, 'system_states.nav.progress'),
+      (IconPath.hwSpark, 'system_states.nav.ai_coach'),
     ];
 
     return Padding(
@@ -298,7 +299,7 @@ class _EmptyStateNavBar extends StatelessWidget {
                   if (isSelected) ...[
                     Gap.h(6),
                     Text(
-                      tabs[i].$2,
+                      tabs[i].$2.tr,
                       style: text.boldTextStyle(
                         fontSize: 13,
                         lineHeight: 16,

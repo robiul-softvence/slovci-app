@@ -97,7 +97,7 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                                         ),
                                         Gap.h(5),
                                         Text(
-                                          'Photo Scan',
+                                          'nutrition.add_meal.photo_scan_title'.tr,
                                           style: text.semiBoldTextStyle(
                                             fontSize: 12.5,
                                             color: AppColors.ink,
@@ -114,17 +114,23 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                           Positioned(
                             top: 44.h,
                             left: 124.w,
-                            child: const _DetectionPill(label: 'Quinoa 88%'),
+                            child: _DetectionPill(
+                              label: 'nutrition.mock.detect_quinoa'.tr,
+                            ),
                           ),
                           Positioned(
                             top: 102.h,
                             left: 38.w,
-                            child: const _DetectionPill(label: 'Chicken 92%'),
+                            child: _DetectionPill(
+                              label: 'nutrition.mock.detect_chicken'.tr,
+                            ),
                           ),
                           Positioned(
                             top: 122.h,
                             right: 92.w,
-                            child: const _DetectionPill(label: 'Broccoli 95%'),
+                            child: _DetectionPill(
+                              label: 'nutrition.mock.detect_broccoli'.tr,
+                            ),
                           ),
                         ],
                       ),
@@ -139,7 +145,9 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                             children: [
                               Obx(
                                 () => Text(
-                                  'We found ${controller.scannedItems.length} items',
+                                  'nutrition.photo_scan.found_items'.trParams({
+                                    'count': '${controller.scannedItems.length}',
+                                  }),
                                   style: text.boldTextStyle(
                                     fontSize: 20,
                                     color: AppColors.ink,
@@ -149,7 +157,7 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                               GestureDetector(
                                 onTap: Get.back,
                                 child: Text(
-                                  'Retake',
+                                  'nutrition.photo_scan.retake'.tr,
                                   style: text.semiBoldTextStyle(
                                     fontSize: 14,
                                     color: AppColors.cta,
@@ -222,7 +230,7 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      item.name,
+                                                      item.name.tr,
                                                       style: text
                                                           .semiBoldTextStyle(
                                                             fontSize: 14.5,
@@ -231,7 +239,7 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                                                     ),
                                                     Gap(2),
                                                     Text(
-                                                      item.macroSummary,
+                                                      item.macroSummary.tr,
                                                       style: text
                                                           .regularTextStyle(
                                                             fontSize: 12.5,
@@ -293,7 +301,7 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                                       ),
                                       Gap.h(8),
                                       Text(
-                                        'Add a missing item',
+                                        'nutrition.photo_scan.add_missing'.tr,
                                         style: text.semiBoldTextStyle(
                                           fontSize: 13.5,
                                           color: AppColors.cta,
@@ -327,7 +335,7 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'TOTAL',
+                                        'nutrition.photo_scan.total'.tr,
                                         style: text.boldTextStyle(
                                           fontSize: 10.5,
                                           letterSpacing: 0.7,
@@ -351,7 +359,18 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(
-                                        'P ${controller.scannedTotalProtein}g · C ${controller.scannedTotalCarbs}g · F ${controller.scannedTotalFats}g',
+                                        'nutrition.photo_scan.total_macros'
+                                            .trParams({
+                                              'protein': controller.grams(
+                                                controller.scannedTotalProtein,
+                                              ),
+                                              'carbs': controller.grams(
+                                                controller.scannedTotalCarbs,
+                                              ),
+                                              'fats': controller.grams(
+                                                controller.scannedTotalFats,
+                                              ),
+                                            }),
                                         style: text.semiBoldTextStyle(
                                           fontSize: 13,
                                           color: AppColors.white,
@@ -359,7 +378,7 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                                       ),
                                       Gap(4),
                                       Text(
-                                        'Fits your lunch budget',
+                                        'nutrition.photo_scan.fits_budget'.tr,
                                         style: text.semiBoldTextStyle(
                                           fontSize: 12,
                                           color: AppColors.lime,
@@ -391,7 +410,7 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
                                 Gap.h(10),
                                 Expanded(
                                   child: Text(
-                                    'Photo estimates can be off by 10–20%. Adjust portions for accuracy.',
+                                    'nutrition.photo_scan.disclaimer'.tr,
                                     style: text.regularTextStyle(
                                       fontSize: 12.5,
                                       lineHeight: 17,
@@ -420,8 +439,12 @@ class NutritionPhotoScanScreen extends GetView<NutritionController> {
               ),
               child: Obx(
                 () => AppPrimaryButton(
-                  label:
-                      'Log ${controller.scannedTotalKcal} kcal to ${NutritionController.mealSlotTabs[controller.addMealSlotIndex.value]}',
+                  label: 'nutrition.photo_scan.log_cta'.trParams({
+                    'kcal': '${controller.scannedTotalKcal}',
+                    'slot': NutritionController
+                        .mealSlotTabs[controller.addMealSlotIndex.value]
+                        .tr,
+                  }),
                   onPressed: controller.logPhotoScanToMeal,
                 ),
               ),

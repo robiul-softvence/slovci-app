@@ -18,19 +18,20 @@ class OnboardingNutritionBudgetScreen extends GetView<OnboardingController> {
   Widget build(BuildContext context) {
     return OnboardingScaffold(
       stepIndex: 6,
-      eyebrow: 'STEP 6 · NUTRITION',
-      title: 'Your food, your budget',
-      subtitle:
-          "We'll match recipes to your diet and generate a grocery list within budget.",
+      eyebrow: 'onboarding.nutrition_budget.eyebrow'.tr,
+      title: 'onboarding.nutrition_budget.title'.tr,
+      subtitle: 'onboarding.nutrition_budget.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Generate My Plan',
+          label: 'onboarding.nutrition_budget.cta'.tr,
           onPressed: controller.goToGeneratingPlan,
         ),
       ),
       children: [
         Gap(22),
-        const OnboardingSectionTitle(title: 'Dietary preferences'),
+        OnboardingSectionTitle(
+          title: 'onboarding.nutrition_budget.diet_title'.tr,
+        ),
         Gap(12),
         Obx(
           () => Wrap(
@@ -38,7 +39,7 @@ class OnboardingNutritionBudgetScreen extends GetView<OnboardingController> {
             runSpacing: 8.h,
             children: OnboardingController.dietaryOptions.map((diet) {
               return OnboardingTagChip(
-                label: diet,
+                label: OnboardingController.optionLabel(diet),
                 selected: controller.selectedDiets.contains(diet),
                 onTap: () => controller.toggleDiet(diet),
               );
@@ -46,7 +47,9 @@ class OnboardingNutritionBudgetScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'Meals per week'),
+        OnboardingSectionTitle(
+          title: 'onboarding.nutrition_budget.meals_title'.tr,
+        ),
         Gap(12),
         Obx(
           () => OnboardingSegmentedControl<int>(
@@ -54,11 +57,14 @@ class OnboardingNutritionBudgetScreen extends GetView<OnboardingController> {
             selected: controller.mealsPerWeek.value,
             onSelect: (m) => controller.mealsPerWeek.value = m,
             labelBuilder: (m) => '$m',
-            subtitleBuilder: (m) => '${m ~/ 7} / day',
+            subtitleBuilder: (m) => 'onboarding.nutrition_budget.per_day'
+                .trParams({'count': '${m ~/ 7}'}),
           ),
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'Weekly grocery budget'),
+        OnboardingSectionTitle(
+          title: 'onboarding.nutrition_budget.budget_title'.tr,
+        ),
         Gap(12),
         Obx(
           () => BudgetArcDial(

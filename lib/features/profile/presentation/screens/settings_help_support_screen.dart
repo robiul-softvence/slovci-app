@@ -13,31 +13,19 @@ import 'package:flutter_tamplate/features/profile/presentation/widgets/settings_
 class SettingsHelpSupportScreen extends GetView<ProfileController> {
   const SettingsHelpSupportScreen({super.key});
 
-  static const _faqs = [
-    (
-      'How does MILON adapt to my injuries?',
-      'MILON excludes movements that load flagged joints and swaps in safe alternatives automatically.',
-    ),
-    (
-      'Why are only lunch and dinner planned?',
-      'Most users prefer keeping breakfast and snacks flexible while getting structured macros for main meals.',
-    ),
-    (
-      'How do I cancel my subscription?',
-      'Go to Settings › Subscription › Manage in App Store to cancel anytime before renewal.',
-    ),
-    (
-      'Can I change my grocery budget?',
-      'Yes! Open Diet & Grocery Budget anytime to adjust your weekly budget between €20 and €150.',
-    ),
+  static const _faqKeys = [
+    ('profile.help_support.faq1_q', 'profile.help_support.faq1_a'),
+    ('profile.help_support.faq2_q', 'profile.help_support.faq2_a'),
+    ('profile.help_support.faq3_q', 'profile.help_support.faq3_a'),
+    ('profile.help_support.faq4_q', 'profile.help_support.faq4_a'),
   ];
 
-  static const _topics = [
-    'Account',
-    'Billing',
-    'Workouts',
-    'Nutrition',
-    'Report a bug',
+  static const _topicKeys = [
+    'profile.help_support.topic_account',
+    'profile.help_support.topic_billing',
+    'profile.help_support.topic_workouts',
+    'profile.help_support.topic_nutrition',
+    'profile.help_support.topic_report_bug',
   ];
 
   @override
@@ -45,14 +33,14 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Help & Support',
+      title: 'profile.help_support.title'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Send Message',
+          label: 'profile.help_support.send_message'.tr,
           onPressed: () {
             Get.back();
             AppHelperFunctions.showSnackBar(
-              'Support message sent! We will reply within 24 hours.',
+              'profile.help_support.message_sent'.tr,
             );
           },
         ),
@@ -63,7 +51,7 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
           controller: controller.helpSearchController,
           style: text.regularTextStyle(fontSize: 14, color: AppColors.ink),
           decoration: InputDecoration(
-            hintText: 'How can we help?',
+            hintText: 'profile.help_support.search_hint'.tr,
             hintStyle: text.regularTextStyle(
               fontSize: 14,
               color: AppColors.subtle,
@@ -89,10 +77,10 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('POPULAR QUESTIONS'),
+        SettingsSectionLabel('profile.help_support.section_popular'.tr),
         SettingsCardGroup(
-          children: List.generate(_faqs.length, (i) {
-            final (q, a) = _faqs[i];
+          children: List.generate(_faqKeys.length, (i) {
+            final (q, a) = _faqKeys[i];
             return Obx(() {
               final expanded = controller.expandedFaqIndex.value == i;
               return GestureDetector(
@@ -108,7 +96,7 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
                         children: [
                           Expanded(
                             child: Text(
-                              q,
+                              q.tr,
                               style: text.semiBoldTextStyle(
                                 fontSize: 14,
                                 color: AppColors.ink,
@@ -126,7 +114,7 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
                       if (expanded) ...[
                         Gap(8),
                         Text(
-                          a,
+                          a.tr,
                           style: text.regularTextStyle(
                             fontSize: 13,
                             lineHeight: 19,
@@ -142,9 +130,9 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
           }),
         ),
         Gap(22),
-        const SettingsSectionLabel('CONTACT US'),
+        SettingsSectionLabel('profile.help_support.section_contact'.tr),
         Text(
-          'Topic',
+          'profile.help_support.topic'.tr,
           style: text.mediumTextStyle(fontSize: 12.5, color: AppColors.muted),
         ),
         Gap(8),
@@ -152,9 +140,9 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
           () => Wrap(
             spacing: 8.w,
             runSpacing: 8.h,
-            children: List.generate(_topics.length, (i) {
+            children: List.generate(_topicKeys.length, (i) {
               return OnboardingTagChip(
-                label: _topics[i],
+                label: _topicKeys[i].tr,
                 selected: controller.supportTopicIndex.value == i,
                 unselectedBg: AppColors.white,
                 onTap: () => controller.supportTopicIndex.value = i,
@@ -164,7 +152,7 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
         ),
         Gap(16),
         Text(
-          'Message',
+          'profile.help_support.message'.tr,
           style: text.mediumTextStyle(fontSize: 12.5, color: AppColors.muted),
         ),
         Gap(8),
@@ -213,7 +201,7 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
                         ),
                         Gap.h(6),
                         Text(
-                          'Attach screenshot',
+                          'profile.help_support.attach_screenshot'.tr,
                           style: text.mediumTextStyle(
                             fontSize: 12.5,
                             color: AppColors.ink,
@@ -239,9 +227,14 @@ class SettingsHelpSupportScreen extends GetView<ProfileController> {
           children: [
             SvgPicture.asset(IconPath.hwClock, width: 15.r, height: 15.r),
             Gap.h(8),
-            Text(
-              'We usually reply within 24 hours, in English or French.',
-              style: text.regularTextStyle(fontSize: 12, color: AppColors.muted),
+            Expanded(
+              child: Text(
+                'profile.help_support.reply_info'.tr,
+                style: text.regularTextStyle(
+                  fontSize: 12,
+                  color: AppColors.muted,
+                ),
+              ),
             ),
           ],
         ),

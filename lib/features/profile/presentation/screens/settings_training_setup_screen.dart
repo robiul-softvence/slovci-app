@@ -21,32 +21,48 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
     'Pull-up Bar',
     'Bench',
   ];
-  static const _days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  static const _equipLabelKeys = {
+    'Bodyweight': 'profile.training_setup.equip_bodyweight',
+    'Dumbbells': 'profile.training_setup.equip_dumbbells',
+    'Kettlebells': 'profile.training_setup.equip_kettlebells',
+    'Resistance Bands': 'profile.training_setup.equip_resistance_bands',
+    'Pull-up Bar': 'profile.training_setup.equip_pull_up_bar',
+    'Bench': 'profile.training_setup.equip_bench',
+  };
+  static const _dayKeys = [
+    'profile.training_setup.day_mon',
+    'profile.training_setup.day_tue',
+    'profile.training_setup.day_wed',
+    'profile.training_setup.day_thu',
+    'profile.training_setup.day_fri',
+    'profile.training_setup.day_sat',
+    'profile.training_setup.day_sun',
+  ];
 
   @override
   Widget build(BuildContext context) {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Training Setup',
+      title: 'profile.training_setup.title'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Save & Update Plan',
+          label: 'profile.training_setup.save_update'.tr,
           onPressed: () {
             Get.back();
-            AppHelperFunctions.showSnackBar('Training setup saved!');
+            AppHelperFunctions.showSnackBar('profile.training_setup.saved'.tr);
           },
         ),
       ),
       children: [
-        const SettingsSectionLabel('WHERE YOU TRAIN'),
+        SettingsSectionLabel('profile.training_setup.section_where'.tr),
         Obx(
           () => Row(
             children: [
               Expanded(
                 child: _EnvTile(
                   iconPath: IconPath.obBuilding,
-                  label: 'Gym',
+                  label: 'profile.training_setup.env_gym'.tr,
                   selected: controller.trainEnvIdx.value == 0,
                   onTap: () => controller.trainEnvIdx.value = 0,
                 ),
@@ -55,7 +71,7 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
               Expanded(
                 child: _EnvTile(
                   iconPath: IconPath.obHome,
-                  label: 'Home',
+                  label: 'profile.training_setup.env_home'.tr,
                   selected: controller.trainEnvIdx.value == 1,
                   onTap: () => controller.trainEnvIdx.value = 1,
                 ),
@@ -64,7 +80,7 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
               Expanded(
                 child: _EnvTile(
                   iconPath: IconPath.obRefresh,
-                  label: 'Hybrid',
+                  label: 'profile.training_setup.env_hybrid'.tr,
                   selected: controller.trainEnvIdx.value == 2,
                   onTap: () => controller.trainEnvIdx.value = 2,
                 ),
@@ -73,14 +89,14 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('EQUIPMENT'),
+        SettingsSectionLabel('profile.training_setup.section_equipment'.tr),
         Obx(
           () => Wrap(
             spacing: 8.w,
             runSpacing: 8.h,
             children: _equipList.map((eq) {
               return OnboardingTagChip(
-                label: eq,
+                label: _equipLabelKeys[eq]!.tr,
                 selected: controller.trainEquipment.contains(eq),
                 unselectedBg: AppColors.white,
                 onTap: () => controller.toggleEquipment(eq),
@@ -90,7 +106,7 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
         ),
         Gap(14),
         Text(
-          'Dumbbell weights available',
+          'profile.training_setup.dumbbell_weights'.tr,
           style: text.mediumTextStyle(fontSize: 12.5, color: AppColors.muted),
         ),
         Gap(6),
@@ -103,12 +119,12 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
             border: Border.all(color: AppColors.line),
           ),
           child: Text(
-            '2 – 12 kg (pairs)',
+            'profile.training_setup.dumbbell_weights_value'.tr,
             style: text.mediumTextStyle(fontSize: 14.5, color: AppColors.ink),
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('SCHEDULE'),
+        SettingsSectionLabel('profile.training_setup.section_schedule'.tr),
         Obx(
           () => Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,7 +142,7 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
                     border: selected ? null : Border.all(color: AppColors.line),
                   ),
                   child: Text(
-                    _days[i],
+                    _dayKeys[i].tr,
                     style: text.boldTextStyle(
                       fontSize: 13.5,
                       color: selected ? AppColors.white : AppColors.muted,
@@ -141,33 +157,36 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
         Row(
           children: [
             Expanded(
-              child: _ReadOnlyBox(label: 'Session length', value: '45 min'),
+              child: _ReadOnlyBox(
+                label: 'profile.training_setup.session_length'.tr,
+                value: 'profile.training_setup.session_length_value'.tr,
+              ),
             ),
             Gap.h(12),
             Expanded(
               child: _ReadOnlyBox(
-                label: 'Preferred time',
-                value: 'Morning · 7:00 AM',
+                label: 'profile.training_setup.preferred_time'.tr,
+                value: 'profile.training_setup.preferred_time_value'.tr,
               ),
             ),
           ],
         ),
         Gap(22),
-        const SettingsSectionLabel('OPTIONS'),
+        SettingsSectionLabel('profile.training_setup.section_options'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
-                title: 'Cardio finisher',
-                subtitle: 'Add 9 min of low-impact cardio to sessions',
+                title: 'profile.training_setup.cardio_finisher'.tr,
+                subtitle: 'profile.training_setup.cardio_finisher_subtitle'.tr,
                 value: controller.cardioFinisher.value,
                 onChanged: (v) => controller.cardioFinisher.value = v,
               ),
             ),
             Obx(
               () => SettingsToggleRow(
-                title: 'Warm-up',
-                subtitle: '5-min mobility warm-up before each session',
+                title: 'profile.training_setup.warm_up'.tr,
+                subtitle: 'profile.training_setup.warm_up_subtitle'.tr,
                 value: controller.warmUpEnabled.value,
                 onChanged: (v) => controller.warmUpEnabled.value = v,
               ),
@@ -175,11 +194,10 @@ class SettingsTrainingSetupScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(16),
-        const OnboardingInfoBanner(
+        OnboardingInfoBanner(
           backgroundColor: AppColors.infoSoft,
           textColor: AppColors.ink,
-          text:
-              'Changes apply from your next session. Completed workouts are not affected.',
+          text: 'profile.training_setup.changes_info'.tr,
         ),
       ],
     );
@@ -227,10 +245,9 @@ class _EnvTile extends StatelessWidget {
             Gap(8),
             Text(
               label,
-              style: AppTextStyle(context).boldTextStyle(
-                fontSize: 14,
-                color: AppColors.ink,
-              ),
+              style: AppTextStyle(
+                context,
+              ).boldTextStyle(fontSize: 14, color: AppColors.ink),
             ),
           ],
         ),

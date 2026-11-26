@@ -12,14 +12,14 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return SettingsScaffold(
-      title: 'Notifications',
+      title: 'profile.notifications.title'.tr,
       children: [
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
-                title: 'Allow notifications',
-                subtitle: 'You can change this anytime',
+                title: 'profile.notifications.allow'.tr,
+                subtitle: 'profile.notifications.allow_subtitle'.tr,
                 value: controller.allowNotifications.value,
                 onChanged: (v) => controller.allowNotifications.value = v,
               ),
@@ -27,14 +27,14 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('WORKOUTS'),
+        SettingsSectionLabel('profile.notifications.section_workouts'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.hwDumbbell,
-                title: 'Session reminders',
-                subtitle: 'Mon, Wed, Fri, Sat · 7:00 AM',
+                title: 'profile.notifications.session_reminders'.tr,
+                subtitle: 'profile.notifications.session_reminders_subtitle'.tr,
                 value: controller.sessionReminders.value,
                 onChanged: (v) => controller.sessionReminders.value = v,
               ),
@@ -42,8 +42,8 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.pcMoon,
-                title: 'Rest-day tips',
-                subtitle: 'Mobility and recovery ideas',
+                title: 'profile.notifications.rest_day_tips'.tr,
+                subtitle: 'profile.notifications.rest_day_tips_subtitle'.tr,
                 value: controller.restDayTips.value,
                 onChanged: (v) => controller.restDayTips.value = v,
               ),
@@ -51,14 +51,14 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('NUTRITION'),
+        SettingsSectionLabel('profile.notifications.section_nutrition'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.hwFood,
-                title: 'Meal reminders',
-                subtitle: 'Lunch 12:15 PM · Dinner 7:00 PM',
+                title: 'profile.notifications.meal_reminders'.tr,
+                subtitle: 'profile.notifications.meal_reminders_subtitle'.tr,
                 value: controller.mealReminders.value,
                 onChanged: (v) => controller.mealReminders.value = v,
               ),
@@ -66,8 +66,8 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.pcDrop,
-                title: 'Water nudges',
-                subtitle: 'Every 2 hours, 9 AM – 8 PM',
+                title: 'profile.notifications.water_nudges'.tr,
+                subtitle: 'profile.notifications.water_nudges_subtitle'.tr,
                 value: controller.waterNudges.value,
                 onChanged: (v) => controller.waterNudges.value = v,
               ),
@@ -75,14 +75,14 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('PROGRESS'),
+        SettingsSectionLabel('profile.notifications.section_progress'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.nutCal,
-                title: 'Weekly check-in',
-                subtitle: 'Sunday · 6:00 PM',
+                title: 'profile.notifications.weekly_checkin'.tr,
+                subtitle: 'profile.notifications.weekly_checkin_subtitle'.tr,
                 value: controller.weeklyCheckinNotif.value,
                 onChanged: (v) => controller.weeklyCheckinNotif.value = v,
               ),
@@ -90,8 +90,8 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.hwTrophy,
-                title: 'Achievements & records',
-                subtitle: 'New PRs and streaks',
+                title: 'profile.notifications.achievements'.tr,
+                subtitle: 'profile.notifications.achievements_subtitle'.tr,
                 value: controller.achievementsNotif.value,
                 onChanged: (v) => controller.achievementsNotif.value = v,
               ),
@@ -99,14 +99,14 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('COACH & NEWS'),
+        SettingsSectionLabel('profile.notifications.section_coach_news'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.pcChat,
-                title: 'MILON Coach messages',
-                subtitle: 'Plan updates and replies',
+                title: 'profile.notifications.coach_messages'.tr,
+                subtitle: 'profile.notifications.coach_messages_subtitle'.tr,
                 value: controller.coachMessagesNotif.value,
                 onChanged: (v) => controller.coachMessagesNotif.value = v,
               ),
@@ -114,8 +114,8 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.prTag,
-                title: 'Offers & news',
-                subtitle: 'Promotions and new features',
+                title: 'profile.notifications.offers_news'.tr,
+                subtitle: 'profile.notifications.offers_news_subtitle'.tr,
                 value: controller.offersNewsNotif.value,
                 onChanged: (v) => controller.offersNewsNotif.value = v,
               ),
@@ -123,14 +123,14 @@ class SettingsNotificationsScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('QUIET HOURS'),
+        SettingsSectionLabel('profile.notifications.section_quiet_hours'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.pcMoon,
-                title: 'Do not disturb',
-                subtitle: '10:00 PM – 7:00 AM',
+                title: 'profile.notifications.do_not_disturb'.tr,
+                subtitle: 'profile.notifications.do_not_disturb_subtitle'.tr,
                 value: controller.quietHoursEnabled.value,
                 onChanged: (v) => controller.quietHoursEnabled.value = v,
               ),

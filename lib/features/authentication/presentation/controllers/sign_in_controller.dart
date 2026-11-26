@@ -11,18 +11,18 @@ class SignInController extends GetxController {
 
   void togglePasswordVisibility() => obscurePassword.toggle();
 
-  void continueWithApple() => AppHelperFunctions.showSnackBar(
-    'Sign in with Apple is not connected yet.',
-  );
+  void continueWithApple() =>
+      AppHelperFunctions.showSnackBar('auth.social.apple_unavailable'.tr);
 
-  void continueWithGoogle() => AppHelperFunctions.showSnackBar(
-    'Sign in with Google is not connected yet.',
-  );
+  void continueWithGoogle() =>
+      AppHelperFunctions.showSnackBar('auth.social.google_unavailable'.tr);
 
   void logIn() {
     final error =
         AppValidator.validateEmail(emailController.text.trim()) ??
-        (passwordController.text.isEmpty ? 'Password is required.' : null);
+        (passwordController.text.isEmpty
+            ? 'common.validation.password_required'.tr
+            : null);
     if (error != null) {
       AppHelperFunctions.showSnackBar(error);
       return;

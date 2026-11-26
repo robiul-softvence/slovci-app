@@ -17,25 +17,25 @@ class VerifyEmailScreen extends GetView<VerifyEmailController> {
     final email = controller.args.email;
 
     return AuthScaffold(
-      title: 'Check your email',
-      subtitle:
-          'We sent a 6-digit code to ${email.isEmpty ? 'your email' : email}. '
-          'Enter it below to verify your account.',
+      title: 'auth.verify_email.title'.tr,
+      subtitle: 'auth.verify_email.subtitle'.trParams({
+        'email': email.isEmpty ? 'auth.verify_email.your_email'.tr : email,
+      }),
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Verify Email',
+          label: 'auth.verify_email.button'.tr,
           onPressed: controller.verify,
         ),
         secondary: AuthFooterLink(
-          prompt: 'Wrong email?',
-          action: 'Change it',
+          prompt: 'auth.verify_email.wrong_email_prompt'.tr,
+          action: 'auth.verify_email.change_link'.tr,
           onTap: controller.changeEmail,
         ),
       ),
       children: [
         const SizedBox(height: 20),
         Text(
-          'Verification code',
+          'auth.verify_email.code_label'.tr,
           style: text.semiBoldTextStyle(
             fontSize: AppTextStyle.md,
             lineHeight: 20,
@@ -63,15 +63,17 @@ class VerifyEmailScreen extends GetView<VerifyEmailController> {
             behavior: HitTestBehavior.opaque,
             child: Text.rich(
               TextSpan(
-                text: "Didn't get it? ",
+                text: 'auth.verify_email.not_received'.tr,
                 style: base,
                 children: [
                   waiting
                       ? TextSpan(
-                          text: 'Resend code in ${controller.countdownLabel}',
+                          text: 'auth.verify_email.resend_in'.trParams({
+                            'time': controller.countdownLabel,
+                          }),
                         )
                       : TextSpan(
-                          text: 'Resend code',
+                          text: 'auth.verify_email.resend'.tr,
                           style: text.semiBoldTextStyle(
                             fontSize: AppTextStyle.md,
                             lineHeight: 20,

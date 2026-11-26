@@ -100,7 +100,7 @@ class MilonFloatingNavBar extends StatelessWidget {
                       if (isSelected) ...[
                         Gap.h(6),
                         Text(
-                          item.title,
+                          item.titleKey.tr,
                           style: text.boldTextStyle(
                             fontSize: 13,
                             lineHeight: 16,

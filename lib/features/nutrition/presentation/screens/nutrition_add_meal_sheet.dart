@@ -50,7 +50,7 @@ class NutritionAddMealSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Add a Meal',
+                  'nutrition.add_meal.title'.tr,
                   style: text.boldTextStyle(
                     fontSize: 22,
                     color: AppColors.ink,
@@ -85,7 +85,7 @@ class NutritionAddMealSheet extends StatelessWidget {
                   (i) => Padding(
                     padding: EdgeInsets.only(right: 8.w),
                     child: OnboardingTagChip(
-                      label: NutritionController.mealSlotTabs[i],
+                      label: NutritionController.mealSlotTabs[i].tr,
                       selected: controller.addMealSlotIndex.value == i,
                       onTap: () => controller.addMealSlotIndex.value = i,
                     ),
@@ -99,8 +99,8 @@ class NutritionAddMealSheet extends StatelessWidget {
               children: [
                 Expanded(
                   child: _LogModeCard(
-                    title: 'Photo Scan',
-                    subtitle: 'Snap your plate',
+                    title: 'nutrition.add_meal.photo_scan_title'.tr,
+                    subtitle: 'nutrition.add_meal.photo_scan_subtitle'.tr,
                     iconPath: IconPath.nutCamera,
                     highlighted: true,
                     onTap: () {
@@ -112,8 +112,8 @@ class NutritionAddMealSheet extends StatelessWidget {
                 Gap.h(12),
                 Expanded(
                   child: _LogModeCard(
-                    title: 'Barcode Scanner',
-                    subtitle: 'Packaged foods',
+                    title: 'nutrition.add_meal.barcode_title'.tr,
+                    subtitle: 'nutrition.add_meal.barcode_subtitle'.tr,
                     iconPath: IconPath.nutBarcode,
                     onTap: () {
                       Get.back();
@@ -128,8 +128,8 @@ class NutritionAddMealSheet extends StatelessWidget {
               children: [
                 Expanded(
                   child: _LogModeCard(
-                    title: 'Gallery Upload',
-                    subtitle: 'From your photos',
+                    title: 'nutrition.add_meal.gallery_title'.tr,
+                    subtitle: 'nutrition.add_meal.gallery_subtitle'.tr,
                     iconPath: IconPath.nutImage,
                     onTap: () {
                       Get.back();
@@ -140,8 +140,8 @@ class NutritionAddMealSheet extends StatelessWidget {
                 Gap.h(12),
                 Expanded(
                   child: _LogModeCard(
-                    title: 'Manual Entry',
-                    subtitle: 'Search the database',
+                    title: 'nutrition.add_meal.manual_title'.tr,
+                    subtitle: 'nutrition.add_meal.manual_subtitle'.tr,
                     iconPath: IconPath.nutEdit,
                     onTap: () {
                       Get.back();
@@ -158,7 +158,7 @@ class NutritionAddMealSheet extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.w),
                   child: Text(
-                    'or describe it',
+                    'nutrition.add_meal.or_describe'.tr,
                     style: text.regularTextStyle(
                       fontSize: 12.5,
                       color: AppColors.muted,
@@ -191,8 +191,7 @@ class NutritionAddMealSheet extends StatelessWidget {
                             color: AppColors.ink,
                           ),
                           decoration: InputDecoration(
-                            hintText:
-                                'e.g. "2 eggs, a slice of toast and an orange juice"',
+                            hintText: 'nutrition.add_meal.describe_hint'.tr,
                             hintStyle: text.regularTextStyle(
                               fontSize: 13.5,
                               lineHeight: 19,
@@ -248,7 +247,7 @@ class NutritionAddMealSheet extends StatelessWidget {
                             ),
                             Gap.h(8),
                             Text(
-                              'Estimate from a photo',
+                              'nutrition.add_meal.estimate_cta'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 14.5,
                                 color: AppColors.white,

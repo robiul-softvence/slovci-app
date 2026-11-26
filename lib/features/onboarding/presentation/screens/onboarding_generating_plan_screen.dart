@@ -68,7 +68,7 @@ class OnboardingGeneratingPlanScreen extends GetView<OnboardingController> {
                 ),
                 Gap(10),
                 Text(
-                  'Building your plan...',
+                  'onboarding.generating.title'.tr,
                   style: text.boldTextStyle(
                     fontSize: 28,
                     lineHeight: 34,
@@ -78,7 +78,7 @@ class OnboardingGeneratingPlanScreen extends GetView<OnboardingController> {
                 ),
                 Gap(8),
                 Text(
-                  'This takes about 20 seconds.',
+                  'onboarding.generating.duration'.tr,
                   style: text.regularTextStyle(
                     fontSize: AppTextStyle.md,
                     lineHeight: 20,
@@ -96,32 +96,47 @@ class OnboardingGeneratingPlanScreen extends GetView<OnboardingController> {
                   ),
                   child: Obx(() {
                     final p = controller.generationProgress.value;
-                    final diets = controller.selectedDiets.join(' · ');
+                    final diets = controller.selectedDiets
+                        .map(OnboardingController.optionLabel)
+                        .join(' · ');
                     final injuriesCount = controller.selectedInjuries.length;
                     final injurySub = injuriesCount == 0
-                        ? 'No restrictions · full exercise library'
-                        : '${controller.selectedInjuries.keys.first} · 12 exercises excluded, 9 swapped';
+                        ? 'onboarding.generating.injuries_none'.tr
+                        : 'onboarding.generating.injuries_some'.trParams({
+                            'zone': OnboardingController.optionLabel(
+                              controller.selectedInjuries.keys.first,
+                            ),
+                          });
 
                     final steps = [
                       (
-                        'Analyzing your profile & goal',
+                        'onboarding.generating.step_profile'.tr,
                         '${controller.goalLabel} · ${controller.currentWeightKg.value} kg → ${controller.targetWeightKg.value} kg',
                         0.2,
                       ),
-                      ('Applying injury rules', injurySub, 0.4),
                       (
-                        'Scheduling your sessions',
+                        'onboarding.generating.step_injuries'.tr,
+                        injurySub,
+                        0.4,
+                      ),
+                      (
+                        'onboarding.generating.step_schedule'.tr,
                         '${controller.selectedDayIndices.length} × ${controller.sessionLengthMinutes.value} min · ${controller.selectedDaysSummary}',
                         0.6,
                       ),
                       (
-                        'Matching recipes to your budget',
-                        '$diets · €${controller.weeklyBudgetEur.value} / week',
+                        'onboarding.generating.step_recipes'.tr,
+                        'onboarding.generating.recipes_subtitle'.trParams({
+                          'diets': diets,
+                          'budget': '${controller.weeklyBudgetEur.value}',
+                        }),
                         0.82,
                       ),
                       (
-                        'Generating your grocery list',
-                        '${controller.mealsPerWeek.value} meals for your first week',
+                        'onboarding.generating.step_grocery'.tr,
+                        'onboarding.generating.grocery_subtitle'.trParams({
+                          'count': '${controller.mealsPerWeek.value}',
+                        }),
                         0.98,
                       ),
                     ];
@@ -165,7 +180,7 @@ class OnboardingGeneratingPlanScreen extends GetView<OnboardingController> {
                     ),
                     Gap.h(6),
                     Text(
-                      'Built by MILON from your answers',
+                      'onboarding.generating.built_by'.tr,
                       style: text.mediumTextStyle(
                         fontSize: 13,
                         lineHeight: 16,

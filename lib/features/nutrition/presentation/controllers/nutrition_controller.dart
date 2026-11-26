@@ -11,10 +11,11 @@ class NutritionController extends GetxController {
   static const int targetCarbs = 145;
   static const int targetFats = 45;
 
+  /// Translation keys — resolve with `.tr` in the UI.
   final List<String> dateLabels = const [
-    'Yesterday, Tue Nov 17',
-    'Today, Wed Nov 18',
-    'Tomorrow, Thu Nov 19',
+    'nutrition.dashboard.date_yesterday',
+    'nutrition.dashboard.date_today',
+    'nutrition.dashboard.date_tomorrow',
   ];
   final RxInt dateIndex = 1.obs;
 
@@ -27,59 +28,61 @@ class NutritionController extends GetxController {
   final RxList<NutritionMeal> todayMeals = <NutritionMeal>[
     const NutritionMeal(
       id: 'breakfast',
-      slotLabel: 'BREAKFAST · YOUR CHOICE',
-      timeLabel: 'BREAKFAST · 8:00 AM',
-      title: 'Soy Yogurt Power Bowl',
+      slotLabel: 'nutrition.mock.slot_breakfast',
+      timeLabel: 'nutrition.mock.time_breakfast',
+      title: 'nutrition.mock.dish_soy_yogurt_bowl',
       imagePath: ImagePath.nutYogurtBowl,
       kcal: 380,
       proteinG: 26,
       carbsG: 46,
       fatsG: 10,
-      prepLabel: 'Prep 5 min',
+      prepMin: 5,
       costEur: 1.90,
-      dietTags: 'Vegan · Lactose-Free',
+      dietTags: 'nutrition.mock.tags_vegan_lactose_free',
     ),
     const NutritionMeal(
       id: 'lunch',
-      slotLabel: 'LUNCH · PLANNED',
-      timeLabel: 'LUNCH · 12:30 PM',
-      title: 'Grilled Tofu & Hard-Boiled Egg Salad',
+      slotLabel: 'nutrition.mock.slot_lunch',
+      timeLabel: 'nutrition.mock.time_lunch',
+      title: 'nutrition.mock.dish_tofu_egg_salad',
       imagePath: ImagePath.nutTofuSalad,
       kcal: 423,
       proteinG: 32,
       carbsG: 28,
       fatsG: 19,
-      prepLabel: 'Prep 10 · Cook 5 min',
+      prepMin: 10,
+      cookMin: 5,
       costEur: 2.40,
-      dietTags: 'Vegetarian · Lactose-Free',
+      dietTags: 'nutrition.mock.tags_vegetarian_lactose_free',
     ),
     const NutritionMeal(
       id: 'snack',
-      slotLabel: 'SNACK · YOUR CHOICE',
-      timeLabel: 'SNACK · 4:00 PM',
-      title: 'Apple & Almond Butter',
+      slotLabel: 'nutrition.mock.slot_snack',
+      timeLabel: 'nutrition.mock.time_snack',
+      title: 'nutrition.mock.dish_apple_almond_butter',
       imagePath: ImagePath.nutAppleAlmond,
       kcal: 190,
       proteinG: 8,
       carbsG: 22,
       fatsG: 9,
-      prepLabel: 'Prep 2 min',
+      prepMin: 2,
       costEur: 1.10,
-      dietTags: 'Vegan · Gluten-Free',
+      dietTags: 'nutrition.mock.tags_vegan_gluten_free',
     ),
     const NutritionMeal(
       id: 'dinner',
-      slotLabel: 'DINNER · PLANNED',
-      timeLabel: 'DINNER · 7:30 PM',
-      title: 'Chicken Quinoa Stir-fry',
+      slotLabel: 'nutrition.mock.slot_dinner',
+      timeLabel: 'nutrition.mock.time_dinner',
+      title: 'nutrition.mock.dish_chicken_quinoa_stir_fry',
       imagePath: ImagePath.nutChickenQuinoa,
       kcal: 492,
       proteinG: 49,
       carbsG: 49,
       fatsG: 11,
-      prepLabel: 'Prep 10 · Cook 15 min',
+      prepMin: 10,
+      cookMin: 15,
       costEur: 3.10,
-      dietTags: 'High-Protein · Lactose-Free',
+      dietTags: 'nutrition.mock.tags_high_protein_lactose_free',
     ),
   ].obs;
 
@@ -102,20 +105,21 @@ class NutritionController extends GetxController {
       extraLoggedFats.value;
 
   // ─── 13 · Meal Planner & Recipe Swap ───
+  /// Translation keys — resolve with `.tr` in the UI.
   static const List<String> mealSlotTabs = [
-    'Breakfast',
-    'Lunch',
-    'Snack',
-    'Dinner',
+    'nutrition.meal_slot.breakfast',
+    'nutrition.meal_slot.lunch',
+    'nutrition.meal_slot.snack',
+    'nutrition.meal_slot.dinner',
   ];
   final RxInt selectedSlotTab = 1.obs; // Lunch
   final RxBool recipeSaved = true.obs;
 
   final List<RecipeAlternative> alternatives = const [
     RecipeAlternative(
-      title: 'Chickpea Quinoa Bowl',
+      title: 'nutrition.mock.dish_chickpea_quinoa_bowl',
       imagePath: ImagePath.nutChickpeaBowl,
-      prepMin: '10 min',
+      prepMin: 10,
       costEur: 2.00,
       kcal: 410,
       proteinG: 21,
@@ -123,9 +127,9 @@ class NutritionController extends GetxController {
       fatsG: 14,
     ),
     RecipeAlternative(
-      title: 'Turkey Hummus Wrap',
+      title: 'nutrition.mock.dish_turkey_hummus_wrap',
       imagePath: ImagePath.nutAppleAlmond,
-      prepMin: '8 min',
+      prepMin: 8,
       costEur: 2.60,
       kcal: 430,
       proteinG: 34,
@@ -133,9 +137,9 @@ class NutritionController extends GetxController {
       fatsG: 14,
     ),
     RecipeAlternative(
-      title: 'Lentil & Avocado Salad',
+      title: 'nutrition.mock.dish_lentil_avocado_salad',
       imagePath: ImagePath.nutTofuSalad,
-      prepMin: '12 min',
+      prepMin: 12,
       costEur: 1.80,
       kcal: 398,
       proteinG: 24,
@@ -143,9 +147,9 @@ class NutritionController extends GetxController {
       fatsG: 16,
     ),
     RecipeAlternative(
-      title: 'Salmon Rice Bowl',
+      title: 'nutrition.mock.dish_salmon_rice_bowl',
       imagePath: ImagePath.nutChickenQuinoa,
-      prepMin: '15 min',
+      prepMin: 15,
       costEur: 3.40,
       kcal: 452,
       proteinG: 31,
@@ -161,48 +165,49 @@ class NutritionController extends GetxController {
 
   final RxList<RecipeIngredient> ingredients = <RecipeIngredient>[
     const RecipeIngredient(
-      name: 'Firm tofu',
+      name: 'nutrition.mock.ingredient_firm_tofu',
       quantity: '125 g',
       inGroceryList: true,
     ),
     const RecipeIngredient(
-      name: 'Eggs, hard-boiled',
+      name: 'nutrition.mock.ingredient_eggs_hard_boiled',
       quantity: '2',
       inGroceryList: true,
     ),
     const RecipeIngredient(
-      name: 'Baby spinach',
+      name: 'nutrition.mock.ingredient_baby_spinach',
       quantity: '60 g',
       inGroceryList: true,
     ),
     const RecipeIngredient(
-      name: 'Cherry tomatoes',
+      name: 'nutrition.mock.ingredient_cherry_tomatoes',
       quantity: '100 g',
       inGroceryList: true,
     ),
     const RecipeIngredient(
-      name: 'Cucumber',
+      name: 'nutrition.mock.ingredient_cucumber',
       quantity: '½',
       inGroceryList: false,
     ),
     const RecipeIngredient(
-      name: 'Olive oil',
-      quantity: '1 tbsp',
+      name: 'nutrition.mock.ingredient_olive_oil',
+      quantity: 'nutrition.mock.qty_1_tbsp',
       inGroceryList: true,
     ),
     const RecipeIngredient(
-      name: 'Lemon juice',
-      quantity: '1 tbsp',
+      name: 'nutrition.mock.ingredient_lemon_juice',
+      quantity: 'nutrition.mock.qty_1_tbsp',
       inGroceryList: false,
     ),
   ].obs;
 
+  /// Translation keys — resolve with `.tr` in the UI.
   final List<String> recipeSteps = const [
-    'Press the tofu for 10 min, then cut into 2 cm cubes.',
-    'Grill the tofu 4–5 min per side until golden.',
-    'Boil the eggs for 9 min, cool in cold water and slice.',
-    'Toss spinach, tomatoes and cucumber with olive oil and lemon.',
-    'Top with tofu and eggs. Season with salt & pepper.',
+    'nutrition.mock.step_1',
+    'nutrition.mock.step_2',
+    'nutrition.mock.step_3',
+    'nutrition.mock.step_4',
+    'nutrition.mock.step_5',
   ];
 
   // ─── 14 · Add a Meal Modal ───
@@ -212,28 +217,28 @@ class NutritionController extends GetxController {
   // ─── 14b · Photo Scan Result ───
   final RxList<ScannedFoodItem> scannedItems = <ScannedFoodItem>[
     const ScannedFoodItem(
-      name: 'Grilled chicken breast',
+      name: 'nutrition.mock.scan_chicken',
       grams: 120,
       kcal: 198,
-      macroSummary: '198 kcal · P 37g',
+      macroSummary: 'nutrition.mock.scan_chicken_summary',
       proteinG: 37,
       carbsG: 0,
       fatsG: 5,
     ),
     const ScannedFoodItem(
-      name: 'Quinoa, cooked',
+      name: 'nutrition.mock.scan_quinoa',
       grams: 150,
       kcal: 180,
-      macroSummary: '180 kcal · C 32g',
+      macroSummary: 'nutrition.mock.scan_quinoa_summary',
       proteinG: 4,
       carbsG: 32,
       fatsG: 3,
     ),
     const ScannedFoodItem(
-      name: 'Steamed broccoli',
+      name: 'nutrition.mock.scan_broccoli',
       grams: 80,
       kcal: 28,
-      macroSummary: '28 kcal · C 4g',
+      macroSummary: 'nutrition.mock.scan_broccoli_summary',
       proteinG: 1,
       carbsG: 4,
       fatsG: 0,
@@ -254,58 +259,58 @@ class NutritionController extends GetxController {
     // Produce
     const GroceryItem(
       category: 'Produce',
-      name: 'Baby spinach',
-      detail: '200 g · 3 recipes',
+      name: 'nutrition.mock.grocery_baby_spinach',
+      detail: 'nutrition.mock.grocery_baby_spinach_detail',
       priceEur: 2.49,
     ),
     const GroceryItem(
       category: 'Produce',
-      name: 'Cherry tomatoes',
-      detail: '250 g · 2 recipes',
+      name: 'nutrition.mock.grocery_cherry_tomatoes',
+      detail: 'nutrition.mock.grocery_cherry_tomatoes_detail',
       priceEur: 2.99,
     ),
     const GroceryItem(
       category: 'Produce',
-      name: 'Avocado',
-      detail: '× 2 · 2 recipes',
+      name: 'nutrition.mock.grocery_avocado',
+      detail: 'nutrition.mock.grocery_avocado_detail',
       priceEur: 2.40,
     ),
     const GroceryItem(
       category: 'Produce',
-      name: 'Bananas',
-      detail: '× 6 · Breakfast',
+      name: 'nutrition.mock.grocery_bananas',
+      detail: 'nutrition.mock.grocery_bananas_detail',
       priceEur: 1.50,
     ),
     // Protein
     const GroceryItem(
       category: 'Protein',
-      name: 'Firm tofu',
-      detail: '400 g · Lunch · 2×',
+      name: 'nutrition.mock.grocery_firm_tofu',
+      detail: 'nutrition.mock.grocery_firm_tofu_detail',
       priceEur: 2.79,
     ),
     const GroceryItem(
       category: 'Protein',
-      name: 'Chicken breast',
-      detail: '600 g · Dinner · 3×',
+      name: 'nutrition.mock.grocery_chicken_breast',
+      detail: 'nutrition.mock.grocery_chicken_breast_detail',
       priceEur: 6.90,
     ),
     const GroceryItem(
       category: 'Protein',
-      name: 'Free-range eggs',
-      detail: '× 12 · 4 recipes',
+      name: 'nutrition.mock.grocery_eggs',
+      detail: 'nutrition.mock.grocery_eggs_detail',
       priceEur: 3.99,
     ),
     // Pantry & Dairy
     const GroceryItem(
       category: 'Pantry & Dairy',
-      name: 'Quinoa',
-      detail: '500 g · 2 recipes',
+      name: 'nutrition.mock.grocery_quinoa',
+      detail: 'nutrition.mock.grocery_quinoa_detail',
       priceEur: 3.49,
     ),
     const GroceryItem(
       category: 'Pantry & Dairy',
-      name: 'Soy yogurt (lactose-free)',
-      detail: '1 kg · Breakfast · 5×',
+      name: 'nutrition.mock.grocery_soy_yogurt',
+      detail: 'nutrition.mock.grocery_soy_yogurt_detail',
       priceEur: 4.29,
     ),
   ].obs;
@@ -315,6 +320,31 @@ class NutritionController extends GetxController {
   double get checkedGroceryEur => groceryItems
       .where((g) => g.checked)
       .fold(0.0, (sum, g) => sum + g.priceEur);
+
+  // ─── Display helpers (translate at call time) ───
+  /// "Prep 5 min" / "Prep 10 · Cook 15 min".
+  String prepText(NutritionMeal meal) => meal.cookMin == null
+      ? 'nutrition.common.prep'.trParams({'prep': '${meal.prepMin}'})
+      : 'nutrition.common.prep_cook'.trParams({
+          'prep': '${meal.prepMin}',
+          'cook': '${meal.cookMin}',
+        });
+
+  /// Amount with the locale's decimal separator, e.g. "2.40" / "2,40".
+  String amount(double value) => value
+      .toStringAsFixed(2)
+      .replaceAll('.', 'nutrition.common.decimal_separator'.tr);
+
+  /// "€2.40" / "2,40 €".
+  String price(double value) =>
+      'nutrition.common.price'.trParams({'amount': amount(value)});
+
+  /// "≈ €2.40" / "≈ 2,40 €".
+  String approxPrice(double value) =>
+      'nutrition.common.price_approx'.trParams({'amount': amount(value)});
+
+  /// "26g" / "26 g".
+  String grams(num value) => '$value${'nutrition.common.unit_g'.tr}';
 
   // ─── Actions ───
   void prevDate() {
@@ -328,7 +358,11 @@ class NutritionController extends GetxController {
   void logFeaturedMealAsEaten() {
     final idx = selectedSlotTab.value;
     todayMeals[idx] = todayMeals[idx].copyWith(eaten: true);
-    AppHelperFunctions.showSnackBar('${todayMeals[idx].title} logged!');
+    AppHelperFunctions.showSnackBar(
+      'nutrition.meal_plan.snack_logged'.trParams({
+        'meal': todayMeals[idx].title.tr,
+      }),
+    );
   }
 
   void swapWithAlternative(RecipeAlternative alt) {
@@ -340,10 +374,13 @@ class NutritionController extends GetxController {
       proteinG: alt.proteinG,
       carbsG: alt.carbsG,
       fatsG: alt.fatsG,
-      prepLabel: 'Prep ${alt.prepMin}',
+      prepMin: alt.prepMin,
+      cookMin: () => null,
       costEur: alt.costEur,
     );
-    AppHelperFunctions.showSnackBar('Swapped to ${alt.title}');
+    AppHelperFunctions.showSnackBar(
+      'nutrition.meal_plan.snack_swapped'.trParams({'meal': alt.title.tr}),
+    );
   }
 
   void adjustPortion(double delta) {
@@ -367,7 +404,10 @@ class NutritionController extends GetxController {
     extraLoggedFats.value += scannedTotalFats;
     Get.back();
     AppHelperFunctions.showSnackBar(
-      'Logged $scannedTotalKcal kcal to ${mealSlotTabs[addMealSlotIndex.value]}!',
+      'nutrition.photo_scan.snack_logged'.trParams({
+        'kcal': '$scannedTotalKcal',
+        'slot': mealSlotTabs[addMealSlotIndex.value].tr,
+      }),
     );
   }
 

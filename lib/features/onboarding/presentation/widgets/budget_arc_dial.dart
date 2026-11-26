@@ -2,7 +2,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
+import 'package:flutter_tamplate/features/onboarding/presentation/controllers/onboarding_controller.dart';
 
 /// Interactive radial arc dial for "04 · Nutrition & Budget" (€20 – €150).
 class BudgetArcDial extends StatelessWidget {
@@ -41,10 +43,7 @@ class BudgetArcDial extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _CircleStepButton(
-                iconPath: IconPath.obMinus,
-                onTap: onDecrease,
-              ),
+              _CircleStepButton(iconPath: IconPath.obMinus, onTap: onDecrease),
               SizedBox(
                 width: 214.r,
                 height: 204.r,
@@ -59,7 +58,7 @@ class BudgetArcDial extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'WEEKLY BUDGET',
+                          'onboarding.nutrition_budget.weekly_budget'.tr,
                           style: text.boldTextStyle(
                             fontSize: 11,
                             lineHeight: 14,
@@ -69,7 +68,9 @@ class BudgetArcDial extends StatelessWidget {
                         ),
                         Gap(4),
                         Text(
-                          '€$budgetEur',
+                          'onboarding.common.euro'.trParams({
+                            'amount': '$budgetEur',
+                          }),
                           style: text.boldTextStyle(
                             fontSize: 44,
                             lineHeight: 48,
@@ -88,7 +89,12 @@ class BudgetArcDial extends StatelessWidget {
                             borderRadius: BorderRadius.circular(99.r),
                           ),
                           child: Text(
-                            '≈ €${costPerMealEur.toStringAsFixed(2)} / meal',
+                            'onboarding.nutrition_budget.per_meal'.trParams({
+                              'cost': OnboardingController.formatDecimal(
+                                costPerMealEur,
+                                2,
+                              ),
+                            }),
                             style: text.semiBoldTextStyle(
                               fontSize: 13,
                               lineHeight: 16,
@@ -101,15 +107,15 @@ class BudgetArcDial extends StatelessWidget {
                   ],
                 ),
               ),
-              _CircleStepButton(
-                iconPath: IconPath.obPlus,
-                onTap: onIncrease,
-              ),
+              _CircleStepButton(iconPath: IconPath.obPlus, onTap: onIncrease),
             ],
           ),
           Gap(4),
           Text(
-            '€$minEur ———————— €$maxEur',
+            'onboarding.nutrition_budget.range'.trParams({
+              'min': '$minEur',
+              'max': '$maxEur',
+            }),
             style: text.mediumTextStyle(
               fontSize: 12,
               lineHeight: 16,
@@ -139,11 +145,7 @@ class _CircleStepButton extends StatelessWidget {
         child: SizedBox.square(
           dimension: 42.r,
           child: Center(
-            child: SvgPicture.asset(
-              iconPath,
-              width: 18.r,
-              height: 18.r,
-            ),
+            child: SvgPicture.asset(iconPath, width: 18.r, height: 18.r),
           ),
         ),
       ),

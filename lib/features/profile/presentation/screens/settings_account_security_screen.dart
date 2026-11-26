@@ -15,9 +15,9 @@ class SettingsAccountSecurityScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Account & Security',
+      title: 'profile.account_security.title'.tr,
       children: [
-        const SettingsSectionLabel('SIGN-IN'),
+        SettingsSectionLabel('profile.account_security.section_sign_in'.tr),
         SettingsCardGroup(
           children: [
             Padding(
@@ -29,7 +29,7 @@ class SettingsAccountSecurityScreen extends GetView<ProfileController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Sign in with Apple',
+                          'profile.account_security.sign_in_apple'.tr,
                           style: text.boldTextStyle(
                             fontSize: 14.5,
                             color: AppColors.ink,
@@ -37,7 +37,7 @@ class SettingsAccountSecurityScreen extends GetView<ProfileController> {
                         ),
                         Gap(2),
                         Text(
-                          'Connected · Hide My Email off',
+                          'profile.account_security.apple_status'.tr,
                           style: text.regularTextStyle(
                             fontSize: 12,
                             color: AppColors.muted,
@@ -56,7 +56,7 @@ class SettingsAccountSecurityScreen extends GetView<ProfileController> {
                       borderRadius: BorderRadius.circular(99.r),
                     ),
                     child: Text(
-                      'Connected',
+                      'profile.account_security.connected'.tr,
                       style: text.boldTextStyle(
                         fontSize: 12,
                         color: AppColors.emerald,
@@ -68,45 +68,45 @@ class SettingsAccountSecurityScreen extends GetView<ProfileController> {
             ),
             SettingsNavRow(
               iconPath: IconPath.mail,
-              title: 'Email',
+              title: 'profile.account_security.email'.tr,
               subtitle: 'solene.martin@example.com',
               trailing: Text(
-                'Change',
+                'profile.account_security.change'.tr,
                 style: text.semiBoldTextStyle(
                   fontSize: 13.5,
                   color: AppColors.cta,
                 ),
               ),
               onTap: () => AppHelperFunctions.showSnackBar(
-                'Email change link sent.',
+                'profile.account_security.email_link_sent'.tr,
               ),
             ),
             SettingsNavRow(
               iconPath: IconPath.lock,
-              title: 'Password',
-              subtitle: 'Not set. You sign in with Apple',
+              title: 'profile.account_security.password'.tr,
+              subtitle: 'profile.account_security.password_subtitle'.tr,
               trailing: Text(
-                'Set',
+                'profile.account_security.set'.tr,
                 style: text.semiBoldTextStyle(
                   fontSize: 13.5,
                   color: AppColors.cta,
                 ),
               ),
               onTap: () => AppHelperFunctions.showSnackBar(
-                'Set password flow opened.',
+                'profile.account_security.set_password_opened'.tr,
               ),
             ),
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('SECURITY'),
+        SettingsSectionLabel('profile.account_security.section_security'.tr),
         SettingsCardGroup(
           children: [
             Obx(
               () => SettingsToggleRow(
                 iconPath: IconPath.hwShield,
-                title: 'Two-step verification',
-                subtitle: 'Extra code when signing in on a new device',
+                title: 'profile.account_security.two_step'.tr,
+                subtitle: 'profile.account_security.two_step_subtitle'.tr,
                 value: controller.twoStepEnabled.value,
                 onChanged: (v) => controller.twoStepEnabled.value = v,
               ),
@@ -114,28 +114,30 @@ class SettingsAccountSecurityScreen extends GetView<ProfileController> {
           ],
         ),
         Gap(20),
-        const SettingsSectionLabel('ACTIVE SESSIONS'),
+        SettingsSectionLabel(
+          'profile.account_security.section_active_sessions'.tr,
+        ),
         SettingsCardGroup(
           children: [
-            const SettingsNavRow(
+            SettingsNavRow(
               iconPath: IconPath.prPhone,
-              title: 'iPhone 16 · This device',
-              subtitle: 'Paris, France · active now',
+              title: 'profile.account_security.this_device'.tr,
+              subtitle: 'profile.account_security.this_device_subtitle'.tr,
               trailing: SizedBox.shrink(),
             ),
             SettingsNavRow(
               iconPath: IconPath.prTablet,
               title: 'iPad Air',
-              subtitle: 'Paris, France · 3 days ago',
+              subtitle: 'profile.account_security.ipad_subtitle'.tr,
               trailing: Text(
-                'Sign out',
+                'profile.account_security.sign_out'.tr,
                 style: text.semiBoldTextStyle(
                   fontSize: 13.5,
                   color: AppColors.cta,
                 ),
               ),
               onTap: () => AppHelperFunctions.showSnackBar(
-                'Signed out of iPad Air.',
+                'profile.account_security.signed_out_ipad'.tr,
               ),
             ),
           ],
@@ -144,12 +146,12 @@ class SettingsAccountSecurityScreen extends GetView<ProfileController> {
         Center(
           child: GestureDetector(
             onTap: () => AppHelperFunctions.showSnackBar(
-              'Signed out of all other devices.',
+              'profile.account_security.signed_out_all'.tr,
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 6.h),
               child: Text(
-                'Sign out of all other devices',
+                'profile.account_security.sign_out_all'.tr,
                 style: text.semiBoldTextStyle(
                   fontSize: 14,
                   color: AppColors.cta,
@@ -163,8 +165,8 @@ class SettingsAccountSecurityScreen extends GetView<ProfileController> {
           children: [
             SettingsNavRow(
               iconPath: IconPath.prTrash,
-              title: 'Delete my account',
-              subtitle: 'Permanently erase your data',
+              title: 'profile.account_security.delete_account'.tr,
+              subtitle: 'profile.account_security.delete_account_subtitle'.tr,
               isDanger: true,
               onTap: () => DeleteAccountConfirmSheet.show(context),
             ),

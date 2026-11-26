@@ -8,9 +8,10 @@ import 'package:flutter_tamplate/features/progress/presentation/screens/progress
 import 'package:flutter_tamplate/features/workout/presentation/screens/workout_session_overview_screen.dart';
 
 class MilonNavItem {
-  const MilonNavItem({required this.title, required this.iconPath});
+  const MilonNavItem({required this.titleKey, required this.iconPath});
 
-  final String title;
+  /// Translation key; resolve with `.tr` at build time.
+  final String titleKey;
   final String iconPath;
 }
 
@@ -19,11 +20,23 @@ class BottomNavController extends GetxController {
   final RxInt currentIndex = 0.obs;
 
   final List<MilonNavItem> items = const [
-    MilonNavItem(title: 'Home', iconPath: IconPath.hwHome),
-    MilonNavItem(title: 'Workout', iconPath: IconPath.hwDumbbell),
-    MilonNavItem(title: 'Nutrition', iconPath: IconPath.hwFood),
-    MilonNavItem(title: 'Progress', iconPath: IconPath.hwChart),
-    MilonNavItem(title: 'MILON Coach', iconPath: IconPath.hwSpark),
+    MilonNavItem(titleKey: 'common.bottom_nav.home', iconPath: IconPath.hwHome),
+    MilonNavItem(
+      titleKey: 'common.bottom_nav.workout',
+      iconPath: IconPath.hwDumbbell,
+    ),
+    MilonNavItem(
+      titleKey: 'common.bottom_nav.nutrition',
+      iconPath: IconPath.hwFood,
+    ),
+    MilonNavItem(
+      titleKey: 'common.bottom_nav.progress',
+      iconPath: IconPath.hwChart,
+    ),
+    MilonNavItem(
+      titleKey: 'common.bottom_nav.coach',
+      iconPath: IconPath.hwSpark,
+    ),
   ];
 
   final List<Widget> screens = const [

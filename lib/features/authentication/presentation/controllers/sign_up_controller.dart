@@ -15,24 +15,20 @@ class SignUpController extends GetxController {
 
   void setAgreed(bool value) => agreedToTerms.value = value;
 
-  void continueWithApple() => AppHelperFunctions.showSnackBar(
-    'Sign in with Apple is not connected yet.',
-  );
+  void continueWithApple() =>
+      AppHelperFunctions.showSnackBar('auth.social.apple_unavailable'.tr);
 
-  void continueWithGoogle() => AppHelperFunctions.showSnackBar(
-    'Sign in with Google is not connected yet.',
-  );
+  void continueWithGoogle() =>
+      AppHelperFunctions.showSnackBar('auth.social.google_unavailable'.tr);
 
   void createAccount() {
     final email = emailController.text.trim();
     final error =
         AppValidator.validateEmail(email) ??
         (passwordController.text.length < 8
-            ? 'Password must be at least 8 characters.'
+            ? 'auth.validation.password_min_length'.tr
             : null) ??
-        (agreedToTerms.value
-            ? null
-            : 'Please accept the Terms of Use and Privacy Policy.');
+        (agreedToTerms.value ? null : 'auth.sign_up.accept_terms_error'.tr);
     if (error != null) {
       AppHelperFunctions.showSnackBar(error);
       return;

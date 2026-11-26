@@ -25,4 +25,5 @@ export 'services/firebase/app_notification_initializer.dart';
 export 'services/firebase/notification_service.dart';
 export 'services/cache/storage_service.dart';
 export 'services/network/internet_service.dart';
-export 'localization/app_localizations.dart';
+export 'localization/app_translations.dart';
+export 'controllers/locale_controller.dart';

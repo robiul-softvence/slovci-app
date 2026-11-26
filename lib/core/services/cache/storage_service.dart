@@ -4,6 +4,7 @@ class StorageService {
   // Constants for preference keys
   static const String _tokenKey = 'token';
   static const String _idKey = 'userId';
+  static const String _languageKey = 'languageCode';
 
   // Singleton instance for SharedPreferences
   static SharedPreferences? _preferences;
@@ -31,6 +32,13 @@ class StorageService {
     await _preferences?.remove(_idKey);
     // Navigate to the login screen
     // Get.offAllNamed('/login');
+  }
+
+  // Saved app language code ('en' / 'fr'), null until the user picks one
+  static String? get languageCode => _preferences?.getString(_languageKey);
+
+  static Future<void> saveLanguageCode(String code) async {
+    await _preferences?.setString(_languageKey, code);
   }
 
   // Getter for user ID

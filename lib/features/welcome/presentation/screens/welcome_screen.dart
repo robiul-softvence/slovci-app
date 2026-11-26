@@ -34,7 +34,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'YOUR FITNESS & NUTRITION COACH',
+                            'common.welcome.eyebrow'.tr,
                             style: text.boldTextStyle(
                               fontSize: 11,
                               lineHeight: 14,
@@ -44,7 +44,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'Every day,\nstronger.',
+                            'common.welcome.title'.tr,
                             style: text.getTextStyle(
                               fontFamily: AppTextStyle.brandFont,
                               fontSize: 44,
@@ -54,8 +54,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'Workouts and meals built around your body, your '
-                            'schedule and your budget, progressing at your pace.',
+                            'common.welcome.subtitle'.tr,
                             style: text.regularTextStyle(
                               fontSize: AppTextStyle.lg,
                               lineHeight: 24,
@@ -73,7 +72,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
             ),
             BottomActionBar(
               primary: AppPrimaryButton(
-                label: 'Get Started',
+                label: 'common.welcome.get_started'.tr,
                 onPressed: controller.getStarted,
               ),
               secondary: GestureDetector(
@@ -82,7 +81,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
-                    'I already have an account',
+                    'common.welcome.have_account'.tr,
                     style: text.semiBoldTextStyle(
                       fontSize: AppTextStyle.md,
                       lineHeight: 20,

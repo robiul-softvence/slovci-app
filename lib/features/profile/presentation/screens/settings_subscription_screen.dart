@@ -11,11 +11,11 @@ import 'package:flutter_tamplate/features/profile/presentation/widgets/settings_
 class SettingsSubscriptionScreen extends GetView<ProfileController> {
   const SettingsSubscriptionScreen({super.key});
 
-  static const _included = [
-    'Unlimited workout & meal plans',
-    'Injury-adaptive programs',
-    'Grocery lists within budget',
-    'Post-workout analysis & 24/7 MILON Coach',
+  static const _includedKeys = [
+    'profile.subscription.included_unlimited_plans',
+    'profile.subscription.included_injury_adaptive',
+    'profile.subscription.included_grocery_lists',
+    'profile.subscription.included_coach',
   ];
 
   @override
@@ -23,7 +23,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
     final text = AppTextStyle(context);
 
     return SettingsScaffold(
-      title: 'Subscription',
+      title: 'profile.subscription.title'.tr,
       children: [
         // Dark Current Plan card
         Container(
@@ -40,7 +40,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'CURRENT PLAN',
+                    'profile.subscription.current_plan'.tr,
                     style: text.boldTextStyle(
                       fontSize: 11,
                       letterSpacing: 0.7,
@@ -57,7 +57,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
                       borderRadius: BorderRadius.circular(99.r),
                     ),
                     child: Text(
-                      'Active',
+                      'profile.subscription.active'.tr,
                       style: text.boldTextStyle(
                         fontSize: 11.5,
                         color: AppColors.ink,
@@ -68,11 +68,8 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
               ),
               Gap(10),
               Text(
-                'MILON Pro · Annual',
-                style: text.boldTextStyle(
-                  fontSize: 22,
-                  color: AppColors.white,
-                ),
+                'profile.subscription.plan_name'.tr,
+                style: text.boldTextStyle(fontSize: 22, color: AppColors.white),
               ),
               Gap(6),
               Row(
@@ -80,7 +77,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
                 textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
-                    '€214.90',
+                    'profile.subscription.price'.tr,
                     style: text.boldTextStyle(
                       fontSize: 32,
                       color: AppColors.white,
@@ -88,7 +85,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
                   ),
                   Gap.h(6),
                   Text(
-                    '/ year',
+                    'profile.subscription.per_year'.tr,
                     style: text.regularTextStyle(
                       fontSize: 14,
                       color: AppColors.white.withValues(alpha: 0.72),
@@ -98,7 +95,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
               ),
               Gap(10),
               Text(
-                'Renews Sep 12, 2027 · billed by Apple',
+                'profile.subscription.renews'.tr,
                 style: text.regularTextStyle(
                   fontSize: 12.5,
                   color: AppColors.white.withValues(alpha: 0.75),
@@ -106,7 +103,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
               ),
               Gap(4),
               Text(
-                '+ 30 free days from referrals, applied at renewal',
+                'profile.subscription.referral_days'.tr,
                 style: text.mediumTextStyle(
                   fontSize: 12.5,
                   color: AppColors.lime,
@@ -116,9 +113,9 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(22),
-        const SettingsSectionLabel('INCLUDED'),
+        SettingsSectionLabel('profile.subscription.section_included'.tr),
         SettingsCardGroup(
-          children: _included
+          children: _includedKeys
               .map(
                 (item) => Padding(
                   padding: EdgeInsets.symmetric(vertical: 9.h),
@@ -146,7 +143,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
                       Gap.h(12),
                       Expanded(
                         child: Text(
-                          item,
+                          item.tr,
                           style: text.regularTextStyle(
                             fontSize: 14,
                             color: AppColors.ink,
@@ -160,35 +157,35 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
               .toList(),
         ),
         Gap(22),
-        const SettingsSectionLabel('MANAGE'),
+        SettingsSectionLabel('profile.subscription.section_manage'.tr),
         SettingsCardGroup(
           children: [
             SettingsNavRow(
               iconPath: IconPath.nutRefresh,
-              title: 'Change plan',
-              subtitle: 'Monthly €19.90 · Quarterly €56.70 · Annual €214.90',
+              title: 'profile.subscription.change_plan'.tr,
+              subtitle: 'profile.subscription.change_plan_subtitle'.tr,
               onTap: controller.openPaywall,
             ),
             SettingsNavRow(
               iconPath: IconPath.prStore,
-              title: 'Manage in App Store',
-              subtitle: 'Cancel or update payment method',
+              title: 'profile.subscription.manage_app_store'.tr,
+              subtitle: 'profile.subscription.manage_app_store_subtitle'.tr,
               onTap: () => AppHelperFunctions.showSnackBar(
-                'Opening App Store subscriptions...',
+                'profile.subscription.opening_app_store'.tr,
               ),
             ),
             SettingsNavRow(
               iconPath: IconPath.nutRefresh,
-              title: 'Restore purchases',
-              subtitle: 'If you reinstalled the app',
+              title: 'profile.subscription.restore_purchases'.tr,
+              subtitle: 'profile.subscription.restore_purchases_subtitle'.tr,
               onTap: () => AppHelperFunctions.showSnackBar(
-                'Purchases restored!',
+                'profile.subscription.purchases_restored'.tr,
               ),
             ),
           ],
         ),
         Gap(22),
-        const SettingsSectionLabel('PROMO CODE'),
+        SettingsSectionLabel('profile.subscription.section_promo_code'.tr),
         Container(
           padding: EdgeInsets.fromLTRB(14.w, 6.h, 6.w, 6.h),
           decoration: BoxDecoration(
@@ -203,9 +200,12 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
               Expanded(
                 child: TextField(
                   controller: controller.promoCodeController,
-                  style: text.regularTextStyle(fontSize: 14, color: AppColors.ink),
+                  style: text.regularTextStyle(
+                    fontSize: 14,
+                    color: AppColors.ink,
+                  ),
                   decoration: InputDecoration(
-                    hintText: 'Enter a code',
+                    hintText: 'profile.subscription.enter_code'.tr,
                     hintStyle: text.regularTextStyle(
                       fontSize: 14,
                       color: AppColors.subtle,
@@ -221,7 +221,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   onTap: () => AppHelperFunctions.showSnackBar(
-                    'Promo code applied!',
+                    'profile.subscription.promo_code_applied'.tr,
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
@@ -229,7 +229,7 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
                       vertical: 10.h,
                     ),
                     child: Text(
-                      'Apply',
+                      'profile.subscription.apply'.tr,
                       style: text.semiBoldTextStyle(
                         fontSize: 13.5,
                         color: AppColors.white,
@@ -242,11 +242,10 @@ class SettingsSubscriptionScreen extends GetView<ProfileController> {
           ),
         ),
         Gap(16),
-        const OnboardingInfoBanner(
+        OnboardingInfoBanner(
           backgroundColor: AppColors.infoSoft,
           textColor: AppColors.ink,
-          text:
-              'Cancelling stops renewal at the end of your current period. You keep Pro until Sep 12, 2027.',
+          text: 'profile.subscription.cancel_info'.tr,
         ),
       ],
     );

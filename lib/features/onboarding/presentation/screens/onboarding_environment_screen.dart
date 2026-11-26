@@ -26,18 +26,20 @@ class OnboardingEnvironmentScreen extends GetView<OnboardingController> {
   Widget build(BuildContext context) {
     return OnboardingScaffold(
       stepIndex: 4,
-      eyebrow: 'STEP 4 · ENVIRONMENT',
-      title: 'Where will you train?',
-      subtitle: 'Your program only uses the equipment you actually have.',
+      eyebrow: 'onboarding.environment.eyebrow'.tr,
+      title: 'onboarding.environment.title'.tr,
+      subtitle: 'onboarding.environment.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Continue',
+          label: 'onboarding.common.continue'.tr,
           onPressed: controller.goToSchedule,
         ),
       ),
       children: [
         Gap(22),
-        const OnboardingSectionTitle(title: 'Training environment'),
+        OnboardingSectionTitle(
+          title: 'onboarding.environment.environment_title'.tr,
+        ),
         Gap(12),
         Obx(
           () => Row(
@@ -45,8 +47,8 @@ class OnboardingEnvironmentScreen extends GetView<OnboardingController> {
             children: [
               Expanded(
                 child: _EnvironmentCard(
-                  title: 'Gym',
-                  subtitle: 'Full equipment',
+                  title: 'onboarding.env.gym'.tr,
+                  subtitle: 'onboarding.environment.gym_subtitle'.tr,
                   iconPath: IconPath.obBuilding,
                   selected:
                       controller.trainingEnvironment.value ==
@@ -58,8 +60,8 @@ class OnboardingEnvironmentScreen extends GetView<OnboardingController> {
               Gap.h(10),
               Expanded(
                 child: _EnvironmentCard(
-                  title: 'Home',
-                  subtitle: 'Minimal setup',
+                  title: 'onboarding.env.home'.tr,
+                  subtitle: 'onboarding.environment.home_subtitle'.tr,
                   iconPath: IconPath.obHome,
                   selected:
                       controller.trainingEnvironment.value ==
@@ -71,8 +73,8 @@ class OnboardingEnvironmentScreen extends GetView<OnboardingController> {
               Gap.h(10),
               Expanded(
                 child: _EnvironmentCard(
-                  title: 'Hybrid',
-                  subtitle: 'Mix of both',
+                  title: 'onboarding.env.hybrid'.tr,
+                  subtitle: 'onboarding.environment.hybrid_subtitle'.tr,
                   iconPath: IconPath.obRefresh,
                   selected:
                       controller.trainingEnvironment.value ==
@@ -85,10 +87,15 @@ class OnboardingEnvironmentScreen extends GetView<OnboardingController> {
           ),
         ),
         Gap(24),
-        const OnboardingSectionTitle(title: 'Available equipment'),
+        OnboardingSectionTitle(
+          title: 'onboarding.environment.equipment_title'.tr,
+        ),
         Gap(12),
-        Obx(
-          () => GridView.builder(
+        Obx(() {
+          // Read the RxList here, not in the lazy itemBuilder, so Obx
+          // registers it (itemBuilder runs outside Obx's tracking scope).
+          final selectedItems = controller.selectedEquipment.toSet();
+          return GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: OnboardingController.equipmentOptions.length,
@@ -100,22 +107,24 @@ class OnboardingEnvironmentScreen extends GetView<OnboardingController> {
             ),
             itemBuilder: (context, index) {
               final item = OnboardingController.equipmentOptions[index];
-              final selected = controller.selectedEquipment.contains(item);
               return _EquipmentCard(
-                label: item,
+                label: OnboardingController.optionLabel(item),
                 iconPath: _equipmentIcons[item] ?? IconPath.obDumbbell,
-                selected: selected,
+                selected: selectedItems.contains(item),
                 onTap: () => controller.toggleEquipment(item),
               );
             },
-          ),
-        ),
+          );
+        }),
         Gap(16),
         Obx(() {
           final count = controller.selectedEquipment.length;
           return OnboardingInfoBanner(
             text:
-                '$count ${count == 1 ? 'item' : 'items'} selected · You can update this anytime in Profile.',
+                (count == 1
+                        ? 'onboarding.environment.selected_one'
+                        : 'onboarding.environment.selected_other')
+                    .trParams({'count': '$count'}),
           );
         }),
       ],

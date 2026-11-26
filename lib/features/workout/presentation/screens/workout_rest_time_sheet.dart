@@ -51,7 +51,7 @@ class WorkoutRestTimeSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Rest time',
+                      'home_workout.rest_time.title'.tr,
                       style: text.boldTextStyle(
                         fontSize: 22,
                         lineHeight: 26,
@@ -60,7 +60,10 @@ class WorkoutRestTimeSheet extends StatelessWidget {
                     ),
                     Gap(2),
                     Text(
-                      'Goblet Squat · 3 sets',
+                      'home_workout.rest_time.subtitle'.trParams({
+                        'exercise': 'Goblet Squat',
+                        'sets': '3',
+                      }),
                       style: text.regularTextStyle(
                         fontSize: 13,
                         color: AppColors.muted,
@@ -111,7 +114,7 @@ class WorkoutRestTimeSheet extends StatelessWidget {
                           borderRadius: BorderRadius.circular(11.r),
                         ),
                         child: Text(
-                          'Same for all',
+                          'home_workout.rest_time.same_for_all'.tr,
                           textAlign: TextAlign.center,
                           style: text.semiBoldTextStyle(
                             fontSize: 14,
@@ -131,7 +134,7 @@ class WorkoutRestTimeSheet extends StatelessWidget {
                           borderRadius: BorderRadius.circular(11.r),
                         ),
                         child: Text(
-                          'Per set',
+                          'home_workout.rest_time.per_set'.tr,
                           textAlign: TextAlign.center,
                           style: text.semiBoldTextStyle(
                             fontSize: 14,
@@ -158,7 +161,9 @@ class WorkoutRestTimeSheet extends StatelessWidget {
                       SizedBox(
                         width: 52.w,
                         child: Text(
-                          'Set ${i + 1}',
+                          'home_workout.rest_time.set_number'.trParams({
+                            'number': '${i + 1}',
+                          }),
                           style: text.semiBoldTextStyle(
                             fontSize: 14.5,
                             color: AppColors.ink,
@@ -225,7 +230,7 @@ class WorkoutRestTimeSheet extends StatelessWidget {
                 Gap.h(10),
                 Expanded(
                   child: Text(
-                    'MILON suggests 1:30–2:00 for strength sets at this effort level.',
+                    'home_workout.rest_time.suggestion'.tr,
                     style: text.mediumTextStyle(
                       fontSize: 13,
                       lineHeight: 18,
@@ -238,7 +243,7 @@ class WorkoutRestTimeSheet extends StatelessWidget {
           ),
           Gap(20),
           AppPrimaryButton(
-            label: 'Save',
+            label: 'home_workout.rest_time.save'.tr,
             onPressed: () {
               controller.restSecondsLeft.value =
                   controller.perSetRestSeconds.first;

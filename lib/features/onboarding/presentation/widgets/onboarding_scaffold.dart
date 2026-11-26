@@ -68,10 +68,7 @@ class OnboardingScaffold extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (topWidget != null) ...[
-                          topWidget!,
-                          Gap(14),
-                        ],
+                        if (topWidget != null) ...[topWidget!, Gap(14)],
                         if (eyebrow != null) ...[
                           Text(
                             eyebrow!,
@@ -170,7 +167,9 @@ class OnboardingStepHeader extends StatelessWidget {
                 return Expanded(
                   child: Container(
                     height: 4.h,
-                    margin: EdgeInsets.only(right: i == totalSteps - 1 ? 0 : 6.w),
+                    margin: EdgeInsets.only(
+                      right: i == totalSteps - 1 ? 0 : 6.w,
+                    ),
                     decoration: BoxDecoration(
                       color: filled ? AppColors.coral : AppColors.line,
                       borderRadius: BorderRadius.circular(99.r),

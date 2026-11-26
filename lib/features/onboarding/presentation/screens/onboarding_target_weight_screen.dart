@@ -18,12 +18,12 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
 
     return OnboardingScaffold(
       stepIndex: 2,
-      eyebrow: 'STEP 2 · YOUR TARGET',
-      title: 'What weight are you aiming for?',
-      subtitle: 'Pick a realistic target. Steady progress lasts longer.',
+      eyebrow: 'onboarding.target_weight.eyebrow'.tr,
+      title: 'onboarding.target_weight.title'.tr,
+      subtitle: 'onboarding.target_weight.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Continue',
+          label: 'onboarding.common.continue'.tr,
           onPressed: controller.goToWithMilon,
         ),
       ),
@@ -42,8 +42,13 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
             final current = controller.currentWeightKg.value;
             final delta = controller.weightDeltaKg;
             final deltaLabel = delta == 0
-                ? 'Maintain current weight ($current kg)'
-                : '${delta > 0 ? '+' : '−'}${delta.abs()} kg from today ($current kg)';
+                ? 'onboarding.target_weight.delta_maintain'.trParams({
+                    'current': '$current',
+                  })
+                : 'onboarding.target_weight.delta_change'.trParams({
+                    'delta': '${delta > 0 ? '+' : '−'}${delta.abs()}',
+                    'current': '$current',
+                  });
 
             return Column(
               children: [
@@ -101,14 +106,16 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
           }),
         ),
         Gap(22),
-        const OnboardingSectionTitle(title: 'Your pace'),
+        OnboardingSectionTitle(title: 'onboarding.target_weight.pace_title'.tr),
         Gap(12),
         // Dark recommended pace card
         Obx(() {
           final pace = controller.weeklyPaceKg;
           final paceText = pace == 0
-              ? 'Steady maintenance pace for lasting results'
-              : '${pace < 0 ? '−' : '+'}${pace.abs().toStringAsFixed(1)} kg / week, the safest pace for lasting results';
+              ? 'onboarding.target_weight.pace_maintenance'.tr
+              : 'onboarding.target_weight.pace_change'.trParams({
+                  'pace': controller.weeklyPaceLabel,
+                });
 
           return Container(
             width: double.infinity,
@@ -120,7 +127,7 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
             child: Column(
               children: [
                 Text(
-                  'Recommended pace',
+                  'onboarding.target_weight.recommended_pace'.tr,
                   style: text.boldTextStyle(
                     fontSize: 15,
                     lineHeight: 20,
@@ -148,7 +155,7 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
           final current = controller.currentWeightKg.value;
           final weeks = controller.estimatedWeeks;
           final dateStr = controller.targetDateFormatted;
-          final pace = controller.weeklyPaceKg;
+          final paceLabel = controller.weeklyPaceLabel;
 
           return Container(
             width: double.infinity,
@@ -162,7 +169,10 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'You could reach $target kg around $dateStr',
+                  'onboarding.target_weight.reach_by'.trParams({
+                    'target': '$target',
+                    'date': dateStr,
+                  }),
                   style: text.boldTextStyle(
                     fontSize: 15,
                     lineHeight: 20,
@@ -176,7 +186,9 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Today · $current kg',
+                      'onboarding.target_weight.today_weight'.trParams({
+                        'current': '$current',
+                      }),
                       style: text.mediumTextStyle(
                         fontSize: 13,
                         lineHeight: 16,
@@ -184,7 +196,9 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
                       ),
                     ),
                     Text(
-                      '~$weeks weeks',
+                      'onboarding.common.weeks_approx'.trParams({
+                        'weeks': '$weeks',
+                      }),
                       style: text.boldTextStyle(
                         fontSize: 13,
                         lineHeight: 16,
@@ -195,7 +209,9 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
                 ),
                 Gap(10),
                 Text(
-                  'Estimate based on ${pace < 0 ? '−' : '+'}${pace.abs().toStringAsFixed(1)} kg per week. Faster loss is not recommended. We adjust every week.',
+                  'onboarding.target_weight.estimate_note'.trParams({
+                    'pace': paceLabel,
+                  }),
                   style: text.regularTextStyle(
                     fontSize: AppTextStyle.sm,
                     lineHeight: 17,
@@ -211,8 +227,10 @@ class OnboardingTargetWeightScreen extends GetView<OnboardingController> {
           () => OnboardingInfoBanner(
             backgroundColor: AppColors.infoSoft,
             textColor: AppColors.ink,
-            text:
-                'Healthy range for ${controller.heightCm.value} cm: ${controller.healthyRangeText}. MILON never sets your intake below 1,200 kcal/day.',
+            text: 'onboarding.target_weight.healthy_range'.trParams({
+              'height': '${controller.heightCm.value}',
+              'range': controller.healthyRangeText,
+            }),
           ),
         ),
       ],

@@ -11,7 +11,12 @@ import 'package:flutter_tamplate/features/progress/presentation/controllers/prog
 class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
   const ProgressWeeklyCheckinScreen({super.key});
 
-  static const _feelLabels = ['Too easy', 'Just right', 'Too hard'];
+  // Translation keys; translated with `.tr` at display time.
+  static const _feelLabels = [
+    'progress_coach.weekly_checkin.feel_too_easy',
+    'progress_coach.weekly_checkin.feel_just_right',
+    'progress_coach.weekly_checkin.feel_too_hard',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,7 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                     ),
                     Expanded(
                       child: Text(
-                        'Weekly Check-in',
+                        'progress_coach.weekly_checkin.title'.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 18,
@@ -69,7 +74,9 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'How was your week, Solène?',
+                        'progress_coach.weekly_checkin.heading'.trParams({
+                          'name': 'Solène',
+                        }),
                         style: text.boldTextStyle(
                           fontSize: 28,
                           lineHeight: 34,
@@ -79,7 +86,7 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                       ),
                       Gap(8),
                       Text(
-                        "No judgment. Honest answers help MILON adjust next week's plan. Takes 2 minutes.",
+                        'progress_coach.weekly_checkin.intro'.tr,
                         style: text.regularTextStyle(
                           fontSize: 14,
                           lineHeight: 20,
@@ -101,7 +108,8 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'THIS WEEK · AUTO-TRACKED',
+                                  'progress_coach.weekly_checkin.auto_tracked'
+                                      .tr,
                                   style: text.boldTextStyle(
                                     fontSize: 10.5,
                                     letterSpacing: 0.6,
@@ -109,7 +117,7 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                                   ),
                                 ),
                                 Text(
-                                  'Week 1 · Nov 16–22',
+                                  'progress_coach.weekly_checkin.week_range'.tr,
                                   style: text.regularTextStyle(
                                     fontSize: 11.5,
                                     color: AppColors.muted,
@@ -119,25 +127,31 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                             ),
                             Gap(10),
                             Row(
-                              children: const [
+                              children: [
                                 Expanded(
                                   child: _TrackedBox(
                                     value: '3 / 4',
-                                    label: 'workouts done',
+                                    label:
+                                        'progress_coach.weekly_checkin.workouts_done'
+                                            .tr,
                                   ),
                                 ),
                                 Gap.h(8),
                                 Expanded(
                                   child: _TrackedBox(
                                     value: '11 / 14',
-                                    label: 'planned meals',
+                                    label:
+                                        'progress_coach.weekly_checkin.planned_meals'
+                                            .tr,
                                   ),
                                 ),
                                 Gap.h(8),
                                 Expanded(
                                   child: _TrackedBox(
                                     value: '7h10',
-                                    label: 'avg sleep',
+                                    label:
+                                        'progress_coach.weekly_checkin.avg_sleep'
+                                            .tr,
                                   ),
                                 ),
                               ],
@@ -148,33 +162,40 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                       Gap(14),
                       _RatingScaleCard(
                         iconPath: IconPath.pcZap,
-                        title: 'Energy levels',
-                        leftLabel: 'Exhausted',
-                        rightLabel: 'Full of energy',
+                        title: 'progress_coach.weekly_checkin.energy_title'.tr,
+                        leftLabel:
+                            'progress_coach.weekly_checkin.energy_low'.tr,
+                        rightLabel:
+                            'progress_coach.weekly_checkin.energy_high'.tr,
                         ratingRx: controller.energyRating,
                       ),
                       Gap(12),
                       _RatingScaleCard(
                         iconPath: IconPath.hwFood,
-                        title: 'Hunger between meals',
-                        leftLabel: 'Never hungry',
-                        rightLabel: 'Always hungry',
+                        title: 'progress_coach.weekly_checkin.hunger_title'.tr,
+                        leftLabel:
+                            'progress_coach.weekly_checkin.hunger_low'.tr,
+                        rightLabel:
+                            'progress_coach.weekly_checkin.hunger_high'.tr,
                         ratingRx: controller.hungerRating,
                       ),
                       Gap(12),
                       _RatingScaleCard(
                         iconPath: IconPath.pcMoon,
-                        title: 'Sleep quality',
-                        leftLabel: 'Poor',
-                        rightLabel: 'Great',
+                        title: 'progress_coach.weekly_checkin.sleep_title'.tr,
+                        leftLabel: 'progress_coach.weekly_checkin.sleep_low'.tr,
+                        rightLabel:
+                            'progress_coach.weekly_checkin.sleep_high'.tr,
                         ratingRx: controller.sleepRating,
                       ),
                       Gap(12),
                       _RatingScaleCard(
                         iconPath: IconPath.pcHeart,
-                        title: 'Stress',
-                        leftLabel: 'Very calm',
-                        rightLabel: 'Very stressed',
+                        title: 'progress_coach.weekly_checkin.stress_title'.tr,
+                        leftLabel:
+                            'progress_coach.weekly_checkin.stress_low'.tr,
+                        rightLabel:
+                            'progress_coach.weekly_checkin.stress_high'.tr,
                         ratingRx: controller.stressRating,
                       ),
                       Gap(12),
@@ -195,7 +216,7 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                                 _PeachIconBadge(iconPath: IconPath.hwDumbbell),
                                 Gap.h(10),
                                 Text(
-                                  'How did your workouts feel?',
+                                  'progress_coach.weekly_checkin.feel_title'.tr,
                                   style: text.boldTextStyle(
                                     fontSize: 15,
                                     color: AppColors.ink,
@@ -206,7 +227,9 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                             Gap(12),
                             Obx(
                               () => Row(
-                                children: List.generate(_feelLabels.length, (i) {
+                                children: List.generate(_feelLabels.length, (
+                                  i,
+                                ) {
                                   final selected =
                                       controller.workoutFeelIndex.value == i;
                                   return Expanded(
@@ -231,7 +254,7 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                                             ),
                                           ),
                                           child: Text(
-                                            _feelLabels[i],
+                                            _feelLabels[i].tr,
                                             textAlign: TextAlign.center,
                                             style: text.semiBoldTextStyle(
                                               fontSize: 13,
@@ -269,14 +292,16 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Weight this morning',
+                                    'progress_coach.weekly_checkin.weight_title'
+                                        .tr,
                                     style: text.boldTextStyle(
                                       fontSize: 14.5,
                                       color: AppColors.ink,
                                     ),
                                   ),
                                   Text(
-                                    'Optional · same time each week',
+                                    'progress_coach.weekly_checkin.weight_hint'
+                                        .tr,
                                     style: text.regularTextStyle(
                                       fontSize: 11.5,
                                       color: AppColors.muted,
@@ -317,7 +342,7 @@ class ProgressWeeklyCheckinScreen extends GetView<ProgressController> {
               ),
               BottomActionBar(
                 primary: AppPrimaryButton(
-                  label: 'Submit Check-in',
+                  label: 'progress_coach.weekly_checkin.submit'.tr,
                   onPressed: controller.openWeek2Plan,
                 ),
               ),

@@ -1,17 +1,12 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:flutter_tamplate/core/core.dart';
 import 'package:flutter_tamplate/routes/app_routes.dart';
 
-enum AppLanguage { en, fr }
-
 class WelcomeController extends GetxController {
-  final Rx<AppLanguage> language = AppLanguage.en.obs;
+  Rx<AppLanguage> get language => LocaleController.to.language;
 
-  void selectLanguage(AppLanguage value) {
-    if (language.value == value) return;
-    language.value = value;
-    Get.updateLocale(Locale(value.name));
-  }
+  void selectLanguage(AppLanguage value) =>
+      LocaleController.to.setLanguage(value);
 
   void getStarted() => Get.toNamed(AppRoute.signUpScreen);
 

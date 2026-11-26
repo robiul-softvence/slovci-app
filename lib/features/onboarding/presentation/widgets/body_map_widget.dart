@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/core.dart';
 
 class _BodyHotspot {
@@ -111,7 +112,7 @@ class InjuryBodyMapCards extends StatelessWidget {
       children: [
         Expanded(
           child: _BodyMapPanel(
-            title: 'FRONT',
+            title: 'onboarding.body_map.front'.tr,
             svgPath: IconPath.obBodyMapFront,
             hotspots: _frontHotspots,
             selectedZones: selectedZones,
@@ -121,7 +122,7 @@ class InjuryBodyMapCards extends StatelessWidget {
         Gap.h(12),
         Expanded(
           child: _BodyMapPanel(
-            title: 'BACK',
+            title: 'onboarding.body_map.back'.tr,
             svgPath: IconPath.obBodyMapBack,
             hotspots: _backHotspots,
             selectedZones: selectedZones,
@@ -182,10 +183,7 @@ class _BodyMapPanel extends StatelessWidget {
                     Positioned.fill(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 6.w),
-                        child: SvgPicture.asset(
-                          svgPath,
-                          fit: BoxFit.contain,
-                        ),
+                        child: SvgPicture.asset(svgPath, fit: BoxFit.contain),
                       ),
                     ),
                     ...hotspots.map((spot) {

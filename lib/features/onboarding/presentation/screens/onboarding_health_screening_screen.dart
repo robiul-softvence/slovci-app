@@ -25,20 +25,15 @@ class OnboardingHealthScreeningScreen extends GetView<OnboardingController> {
           borderRadius: BorderRadius.circular(16.r),
         ),
         child: Center(
-          child: SvgPicture.asset(
-            IconPath.obShield,
-            width: 24.r,
-            height: 24.r,
-          ),
+          child: SvgPicture.asset(IconPath.obShield, width: 24.r, height: 24.r),
         ),
       ),
-      title: 'Your health',
-      subtitle:
-          "Answer honestly so we can adapt your program. MILON doesn't replace a doctor.",
+      title: 'onboarding.health.title'.tr,
+      subtitle: 'onboarding.health.subtitle'.tr,
       footer: BottomActionBar(
         primary: Obx(
           () => AppPrimaryButton(
-            label: 'Continue',
+            label: 'onboarding.common.continue'.tr,
             onPressed: controller.healthConsent.value
                 ? controller.goToAnythingToReport
                 : null,
@@ -58,9 +53,10 @@ class OnboardingHealthScreeningScreen extends GetView<OnboardingController> {
           ),
           child: Column(
             children: List.generate(
-              OnboardingController.healthConditionLabels.length,
+              OnboardingController.healthConditionKeys.length,
               (index) {
-                final label = OnboardingController.healthConditionLabels[index];
+                final label =
+                    OnboardingController.healthConditionKeys[index].tr;
                 return Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: Row(
@@ -105,14 +101,10 @@ class OnboardingHealthScreeningScreen extends GetView<OnboardingController> {
             children: [
               Row(
                 children: [
-                  SvgPicture.asset(
-                    IconPath.obAlert,
-                    width: 18.r,
-                    height: 18.r,
-                  ),
+                  SvgPicture.asset(IconPath.obAlert, width: 18.r, height: 18.r),
                   Gap.h(8),
                   Text(
-                    'If you switch one on, MILON adapts:',
+                    'onboarding.health.adapt_title'.tr,
                     style: text.boldTextStyle(
                       fontSize: 13,
                       lineHeight: 18,
@@ -123,9 +115,7 @@ class OnboardingHealthScreeningScreen extends GetView<OnboardingController> {
               ),
               Gap(8),
               Text(
-                '• Eating disorder → no calorie counting, habit-based coaching only\n'
-                '• Pregnancy → no weight-loss target, pregnancy-safe moves\n'
-                "• Heart, blood pressure, kidney, diabetes → we ask for your doctor's OK first",
+                'onboarding.health.adapt_rules'.tr,
                 style: text.regularTextStyle(
                   fontSize: 12.5,
                   lineHeight: 18,
@@ -183,7 +173,7 @@ class OnboardingHealthScreeningScreen extends GetView<OnboardingController> {
                   Gap.h(12),
                   Expanded(
                     child: Text(
-                      'I consent to MILON processing my health data to personalize my plan. I can withdraw anytime.',
+                      'onboarding.health.consent'.tr,
                       style: text.mediumTextStyle(
                         fontSize: 13.5,
                         lineHeight: 19,

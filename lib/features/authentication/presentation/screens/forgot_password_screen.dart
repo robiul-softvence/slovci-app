@@ -14,24 +14,23 @@ class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
-      title: 'Reset your password',
-      subtitle:
-          "Enter your account email and we'll send you a link to reset your password.",
+      title: 'auth.forgot_password.title'.tr,
+      subtitle: 'auth.forgot_password.subtitle'.tr,
       footer: BottomActionBar(
         primary: AppPrimaryButton(
-          label: 'Send Reset Link',
+          label: 'auth.forgot_password.button'.tr,
           onPressed: controller.sendResetLink,
         ),
         secondary: AuthFooterLink(
-          prompt: 'Remembered it?',
-          action: 'Log in',
+          prompt: 'auth.forgot_password.remembered_prompt'.tr,
+          action: 'auth.common.log_in_link'.tr,
           onTap: controller.backToSignIn,
         ),
       ),
       children: [
         const SizedBox(height: 20),
         AuthTextField(
-          label: 'Email',
+          label: 'auth.common.email_label'.tr,
           hint: 'you@example.com',
           icon: IconPath.mail,
           controller: controller.emailController,

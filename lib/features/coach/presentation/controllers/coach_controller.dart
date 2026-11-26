@@ -19,12 +19,14 @@ class CoachController extends GetxController {
   final inputController = TextEditingController();
   final RxBool savedWorkout = false.obs;
 
+  // Translation keys; translated with `.tr` at display/send time.
   final List<String> quickPrompts = const [
-    'Make it 30 min',
-    'Add a warm-up',
-    'Swap an exercise',
+    'progress_coach.coach.prompt_30_min',
+    'progress_coach.coach.prompt_warm_up',
+    'progress_coach.coach.prompt_swap_exercise',
   ];
 
+  // Mock AI-generated plan (backend content), intentionally not localized.
   final List<(String, String, String)> generatedWorkoutExercises = const [
     ('01', 'Leg Press', '4 × 10 · 80 kg'),
     ('02', 'Machine Chest Press · Neutral', '3 × 12 · 25 kg'),
@@ -33,6 +35,8 @@ class CoachController extends GetxController {
     ('05', 'Forearm Plank', '3 × 45 sec'),
   ];
 
+  // Demo conversation: mock content until the backend provides real chat
+  // history, so it is intentionally not localized.
   final RxList<CoachChatMessage> messages = <CoachChatMessage>[
     const CoachChatMessage(
       isUser: false,
@@ -41,8 +45,7 @@ class CoachController extends GetxController {
     ),
     const CoachChatMessage(
       isUser: true,
-      text:
-          'Create a 45-min Full Body gym workout that protects my wrists',
+      text: 'Create a 45-min Full Body gym workout that protects my wrists',
     ),
     const CoachChatMessage(
       isUser: false,
@@ -50,10 +53,7 @@ class CoachController extends GetxController {
           'Done! No direct wrist loading: neutral grips, straps and forearm-based core work only.',
       hasWorkoutPlan: true,
     ),
-    const CoachChatMessage(
-      isUser: true,
-      text: "What's the weather tomorrow?",
-    ),
+    const CoachChatMessage(isUser: true, text: "What's the weather tomorrow?"),
     const CoachChatMessage(
       isUser: false,
       text:
@@ -69,8 +69,7 @@ class CoachController extends GetxController {
     messages.add(
       CoachChatMessage(
         isUser: false,
-        text:
-            'Got it! I have updated your wrist-safe plan based on "$content". Ready when you are!',
+        text: 'progress_coach.coach.auto_reply'.trParams({'request': content}),
       ),
     );
   }
@@ -80,7 +79,9 @@ class CoachController extends GetxController {
   void toggleBookmark() {
     savedWorkout.toggle();
     AppHelperFunctions.showSnackBar(
-      savedWorkout.value ? 'Workout saved to favorites!' : 'Removed from saved.',
+      savedWorkout.value
+          ? 'progress_coach.coach.saved_snackbar'.tr
+          : 'progress_coach.coach.removed_snackbar'.tr,
     );
   }
 

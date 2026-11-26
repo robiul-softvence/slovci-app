@@ -104,7 +104,12 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                                           ),
                                           Gap.h(5),
                                           Text(
-                                            '${mult.toStringAsFixed(2)} PORTION · AUTO-ADJUSTED',
+                                            'nutrition.meal_plan.portion_badge'
+                                                .trParams({
+                                                  'portion': controller.amount(
+                                                    mult,
+                                                  ),
+                                                }),
                                             style: text.boldTextStyle(
                                               fontSize: 10.5,
                                               letterSpacing: 0.5,
@@ -128,7 +133,7 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              meal.timeLabel,
+                              meal.timeLabel.tr,
                               style: text.boldTextStyle(
                                 fontSize: 11,
                                 letterSpacing: 0.6,
@@ -137,7 +142,7 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                             ),
                             Gap(4),
                             Text(
-                              meal.title,
+                              meal.title.tr,
                               style: text.boldTextStyle(
                                 fontSize: 25,
                                 lineHeight: 30,
@@ -151,21 +156,21 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                               runSpacing: 4.h,
                               children: [
                                 Text(
-                                  meal.prepLabel,
+                                  controller.prepText(meal),
                                   style: text.regularTextStyle(
                                     fontSize: 12.5,
                                     color: AppColors.muted,
                                   ),
                                 ),
                                 Text(
-                                  '≈ €${meal.costEur.toStringAsFixed(2)}',
+                                  controller.approxPrice(meal.costEur),
                                   style: text.boldTextStyle(
                                     fontSize: 12.5,
                                     color: AppColors.emerald,
                                   ),
                                 ),
                                 Text(
-                                  meal.dietTags,
+                                  meal.dietTags.tr,
                                   style: text.regularTextStyle(
                                     fontSize: 12.5,
                                     color: AppColors.muted,
@@ -192,14 +197,17 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                                     child: Column(
                                       children: [
                                         Text(
-                                          '${mult.toStringAsFixed(2)} portion',
+                                          'nutrition.recipe.portion'.trParams({
+                                            'portion': controller.amount(mult),
+                                          }),
                                           style: text.boldTextStyle(
                                             fontSize: 15,
                                             color: AppColors.ink,
                                           ),
                                         ),
                                         Text(
-                                          'Adjusted to your 1,485 kcal target',
+                                          'nutrition.recipe.adjusted_to_target'
+                                              .trParams({'kcal': '1,485'}),
                                           style: text.regularTextStyle(
                                             fontSize: 11.5,
                                             color: AppColors.muted,
@@ -222,31 +230,31 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                                 Expanded(
                                   child: _SmallMacroTile(
                                     value: '$kcal',
-                                    label: 'kcal',
+                                    label: 'nutrition.common.kcal'.tr,
                                     color: AppColors.coral,
                                   ),
                                 ),
                                 Gap.h(8),
                                 Expanded(
                                   child: _SmallMacroTile(
-                                    value: '${pro}g',
-                                    label: 'Protein',
+                                    value: controller.grams(pro),
+                                    label: 'nutrition.common.protein'.tr,
                                     color: AppColors.coral,
                                   ),
                                 ),
                                 Gap.h(8),
                                 Expanded(
                                   child: _SmallMacroTile(
-                                    value: '${carb}g',
-                                    label: 'Carbs',
+                                    value: controller.grams(carb),
+                                    label: 'nutrition.common.carbs'.tr,
                                     color: AppColors.carbsBlue,
                                   ),
                                 ),
                                 Gap.h(8),
                                 Expanded(
                                   child: _SmallMacroTile(
-                                    value: '${fat}g',
-                                    label: 'Fats',
+                                    value: controller.grams(fat),
+                                    label: 'nutrition.common.fats'.tr,
                                     color: AppColors.amber,
                                   ),
                                 ),
@@ -258,7 +266,7 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Ingredients',
+                                  'nutrition.recipe.ingredients'.tr,
                                   style: text.boldTextStyle(
                                     fontSize: 18,
                                     color: AppColors.ink,
@@ -275,7 +283,12 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                                       ),
                                       Gap.h(5),
                                       Text(
-                                        '$inCartCount of ${controller.ingredients.length} in grocery list',
+                                        'nutrition.recipe.in_grocery_list'
+                                            .trParams({
+                                              'count': '$inCartCount',
+                                              'total':
+                                                  '${controller.ingredients.length}',
+                                            }),
                                         style: text.semiBoldTextStyle(
                                           fontSize: 12.5,
                                           color: AppColors.emerald,
@@ -323,7 +336,7 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                                             Gap.h(10),
                                             Expanded(
                                               child: Text(
-                                                ing.name,
+                                                ing.name.tr,
                                                 style: text.mediumTextStyle(
                                                   fontSize: 14,
                                                   color: AppColors.ink,
@@ -331,7 +344,7 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                                               ),
                                             ),
                                             Text(
-                                              ing.quantity,
+                                              ing.quantity.tr,
                                               style: text.boldTextStyle(
                                                 fontSize: 13.5,
                                                 color: AppColors.ink,
@@ -361,7 +374,7 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                             ),
                             Gap(22),
                             Text(
-                              'Steps',
+                              'nutrition.recipe.steps'.tr,
                               style: text.boldTextStyle(
                                 fontSize: 18,
                                 color: AppColors.ink,
@@ -387,7 +400,7 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        controller.recipeSteps[i],
+                                        controller.recipeSteps[i].tr,
                                         style: text.regularTextStyle(
                                           fontSize: 14,
                                           lineHeight: 20,
@@ -420,7 +433,7 @@ class NutritionRecipeDetailScreen extends GetView<NutritionController> {
                 children: [
                   Expanded(
                     child: AppPrimaryButton(
-                      label: 'Log as Eaten',
+                      label: 'nutrition.common.log_as_eaten'.tr,
                       onPressed: () {
                         controller.logFeaturedMealAsEaten();
                         Get.back();

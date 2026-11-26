@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' show Trans;
 
 
 import 'package:flutter_tamplate/core/services/cache/storage_service.dart';
@@ -250,7 +251,7 @@ class NetworkCaller {
         isSuccess: isSuccess,
         statusCode: status,
         responseData: data,
-        errorMessage: isSuccess ? '' : (data['message'] ?? 'Unknown error'),
+        errorMessage: isSuccess ? '' : (data['message'] ?? 'common.network.unknown_error'.tr),
       );
     }
 
@@ -267,15 +268,15 @@ class NetworkCaller {
       400 =>
         data is Map<String, dynamic>
             ? _joinErrorSources(data['errorSources'])
-            : 'Bad Request',
+            : 'common.network.bad_request'.tr,
       500 =>
         data is Map<String, dynamic>
-            ? (data['message'] ?? 'Internal Server Error')
-            : 'Internal Server Error',
+            ? (data['message'] ?? 'common.network.server_error'.tr)
+            : 'common.network.server_error'.tr,
       _ =>
         data is Map<String, dynamic>
-            ? (data['message'] ?? 'Unexpected error occurred')
-            : 'Unexpected error occurred',
+            ? (data['message'] ?? 'common.network.unexpected_error'.tr)
+            : 'common.network.unexpected_error'.tr,
     };
 
     return ResponseData(
@@ -287,9 +288,9 @@ class NetworkCaller {
   }
 
   String _joinErrorSources(dynamic errorSources) {
-    if (errorSources is! List) return 'Validation error';
+    if (errorSources is! List) return 'common.network.validation_error'.tr;
     return errorSources
-        .map((e) => (e as Map<String, dynamic>)['message'] ?? 'Unknown error')
+        .map((e) => (e as Map<String, dynamic>)['message'] ?? 'common.network.unknown_error'.tr)
         .join(', ');
   }
 
@@ -342,30 +343,30 @@ class NetworkCaller {
     log('NetworkCaller error: $error');
 
     if (error is! DioException) {
-      return _errorResponse(500, 'Unknown error occurred.');
+      return _errorResponse(500, 'common.network.unknown_error_occurred'.tr);
     }
 
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.sendTimeout:
-        return _errorResponse(408, 'Request timed out. Please try again.');
+        return _errorResponse(408, 'common.network.timeout'.tr);
 
       case DioExceptionType.connectionError:
         return _errorResponse(
           500,
-          'No internet connection. Please check your network.',
+          'common.network.no_internet'.tr,
         );
 
       case DioExceptionType.badResponse:
         return _badResponseError(error);
 
       case DioExceptionType.cancel:
-        return _errorResponse(499, 'Request was cancelled.');
+        return _errorResponse(499, 'common.network.cancelled'.tr);
 
       case DioExceptionType.badCertificate:
       case DioExceptionType.unknown:
-        return _errorResponse(500, 'An unexpected error occurred.');
+        return _errorResponse(500, 'common.network.an_unexpected_error'.tr);
     }
   }
 

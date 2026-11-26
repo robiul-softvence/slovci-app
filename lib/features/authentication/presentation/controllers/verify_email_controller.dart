@@ -64,12 +64,12 @@ class VerifyEmailController extends GetxController {
     // TODO(milon): call the resend-code use case once the auth API is ready.
     codeController.clear();
     _startTimer();
-    AppHelperFunctions.showSnackBar('A new code is on its way.');
+    AppHelperFunctions.showSnackBar('auth.verify_email.code_resent'.tr);
   }
 
   void verify() {
     if (!isComplete) {
-      AppHelperFunctions.showSnackBar('Enter the 6-digit code.');
+      AppHelperFunctions.showSnackBar('auth.verify_email.code_incomplete'.tr);
       return;
     }
 

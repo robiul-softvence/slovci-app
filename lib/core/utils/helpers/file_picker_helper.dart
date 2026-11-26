@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_tamplate/core/utils/constants/enums.dart';
 
@@ -20,34 +21,34 @@ class MediaPicker {
           /// PHOTO ONLY
           case PickerType.photo:
             return _buildDialog(
-              title: "Select Photo",
+              title: 'common.picker.select_photo'.tr,
               items: [
-                _item("Take Photo", () => _pickImage(dialogContext, ImageSource.camera, onPicked)),
-                _item("Choose from Gallery", () => _pickImage(dialogContext, ImageSource.gallery, onPicked)),
+                _item('common.picker.take_photo'.tr, () => _pickImage(dialogContext, ImageSource.camera, onPicked)),
+                _item('common.picker.choose_gallery'.tr, () => _pickImage(dialogContext, ImageSource.gallery, onPicked)),
               ],
             );
 
           /// VIDEO ONLY
           case PickerType.video:
             return _buildDialog(
-              title: "Select Video",
+              title: 'common.picker.select_video'.tr,
               items: [
-                _item("Record Video", () => _pickVideo(dialogContext, ImageSource.camera, onPicked)),
-                _item("Choose from Gallery", () => _pickVideo(dialogContext, ImageSource.gallery, onPicked)),
+                _item('common.picker.record_video'.tr, () => _pickVideo(dialogContext, ImageSource.camera, onPicked)),
+                _item('common.picker.choose_gallery'.tr, () => _pickVideo(dialogContext, ImageSource.gallery, onPicked)),
               ],
             );
 
           /// BOTH
           case PickerType.both:
             return _buildDialog(
-              title: "Select Media",
+              title: 'common.picker.select_media'.tr,
               items: [
-                _item("Use Camera", () async {
+                _item('common.picker.use_camera'.tr, () async {
                   Navigator.pop(dialogContext);
                   await Future.delayed(const Duration(milliseconds: 200));
                   _showSubDialog(context, true, onPicked);
                 }),
-                _item("Choose from Gallery", () async {
+                _item('common.picker.choose_gallery'.tr, () async {
                   Navigator.pop(dialogContext);
                   await Future.delayed(const Duration(milliseconds: 200));
                   _showSubDialog(context, false, onPicked);
@@ -68,14 +69,14 @@ class MediaPicker {
     showDialog(
       context: context,
       builder: (ctx) => _buildDialog(
-        title: isCamera ? "Camera" : "Gallery",
+        title: isCamera ? 'common.picker.camera'.tr : 'common.picker.gallery'.tr,
         items: [
           _item(
-            isCamera ? "Take Photo" : "Pick Image",
+            isCamera ? 'common.picker.take_photo'.tr : 'common.picker.pick_image'.tr,
             () => _pickImage(ctx, isCamera ? ImageSource.camera : ImageSource.gallery, onPicked),
           ),
           _item(
-            isCamera ? "Record Video" : "Pick Video",
+            isCamera ? 'common.picker.record_video'.tr : 'common.picker.pick_video'.tr,
             () => _pickVideo(ctx, isCamera ? ImageSource.camera : ImageSource.gallery, onPicked),
           ),
         ],

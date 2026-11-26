@@ -58,7 +58,12 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                             return Column(
                               children: [
                                 Text(
-                                  'EXERCISE ${idx + 1} OF ${controller.exercises.length}',
+                                  'home_workout.active_set.exercise_of'
+                                      .trParams({
+                                        'current': '${idx + 1}',
+                                        'total':
+                                            '${controller.exercises.length}',
+                                      }),
                                   style: text.boldTextStyle(
                                     fontSize: 10.5,
                                     letterSpacing: 0.7,
@@ -153,6 +158,10 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                             controller.exercises[controller
                                 .activeExerciseIdx
                                 .value];
+                        final recommendedValue = ex.recommendedKg > 0
+                            ? 'home_workout.active_set.recommended_kg'
+                                  .trParams({'kg': '${ex.recommendedKg}'})
+                            : 'home_workout.active_set.bodyweight'.tr;
                         return Row(
                           children: [
                             GestureDetector(
@@ -202,7 +211,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Target · 3 sets × 12 reps',
+                                    'home_workout.active_set.target'.tr,
                                     style: text.regularTextStyle(
                                       fontSize: 12.5,
                                       color: AppColors.muted,
@@ -210,7 +219,8 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                   ),
                                   Gap(4),
                                   Text(
-                                    'Recommended ${ex.recommendedKg > 0 ? '${ex.recommendedKg} kg' : 'Bodyweight'}',
+                                    'home_workout.active_set.recommended'
+                                        .trParams({'value': recommendedValue}),
                                     style: text.boldTextStyle(
                                       fontSize: 19,
                                       lineHeight: 23,
@@ -242,7 +252,8 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                         Gap.h(5),
                                         Flexible(
                                           child: Text(
-                                            'MILON: +1 kg if the set feels easy',
+                                            'home_workout.active_set.milon_tip'
+                                                .tr,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: text.semiBoldTextStyle(
@@ -262,7 +273,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                       }),
                       Gap(22),
                       Text(
-                        'Log your sets',
+                        'home_workout.active_set.log_sets'.tr,
                         style: text.boldTextStyle(
                           fontSize: 18,
                           lineHeight: 22,
@@ -290,7 +301,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                   SizedBox(
                                     width: 30.w,
                                     child: Text(
-                                      'SET',
+                                      'home_workout.active_set.col_set'.tr,
                                       style: text.boldTextStyle(
                                         fontSize: 10.5,
                                         color: AppColors.subtle,
@@ -299,7 +310,8 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      'PREVIOUS',
+                                      'home_workout.active_set.col_previous'
+                                          .tr,
                                       style: text.boldTextStyle(
                                         fontSize: 10.5,
                                         color: AppColors.subtle,
@@ -309,7 +321,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                   SizedBox(
                                     width: 64.w,
                                     child: Text(
-                                      'KG',
+                                      'home_workout.active_set.col_kg'.tr,
                                       textAlign: TextAlign.center,
                                       style: text.boldTextStyle(
                                         fontSize: 10.5,
@@ -321,7 +333,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                   SizedBox(
                                     width: 64.w,
                                     child: Text(
-                                      'REPS',
+                                      'home_workout.active_set.col_reps'.tr,
                                       textAlign: TextAlign.center,
                                       style: text.boldTextStyle(
                                         fontSize: 10.5,
@@ -458,7 +470,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                     ),
                                     Gap.h(6),
                                     Text(
-                                      'Add Set',
+                                      'home_workout.active_set.add_set'.tr,
                                       style: text.semiBoldTextStyle(
                                         fontSize: 13.5,
                                         color: AppColors.cta,
@@ -498,7 +510,8 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                     ),
                                     Gap.h(6),
                                     Text(
-                                      'Rest timer',
+                                      'home_workout.active_set.rest_timer'
+                                          .tr,
                                       style: text.boldTextStyle(
                                         fontSize: 14.5,
                                         color: AppColors.ink,
@@ -509,7 +522,8 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                 GestureDetector(
                                   onTap: () => WorkoutRestTimeSheet.show(context),
                                   child: Text(
-                                    'Per-set · customizable',
+                                    'home_workout.active_set.per_set_custom'
+                                        .tr,
                                     style: text.mediumTextStyle(
                                       fontSize: 12,
                                       color: AppColors.muted,
@@ -531,7 +545,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   _RestStepChip(
-                                    label: '−15s',
+                                    label: 'home_workout.common.minus_15s'.tr,
                                     onTap: () => controller.adjustRestTimer(-15),
                                   ),
                                   SizedBox.square(
@@ -557,7 +571,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                               ),
                                             ),
                                             Text(
-                                              'REST',
+                                              'home_workout.common.rest'.tr,
                                               style: text.boldTextStyle(
                                                 fontSize: 10,
                                                 letterSpacing: 0.8,
@@ -570,7 +584,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                                     ),
                                   ),
                                   _RestStepChip(
-                                    label: '+15s',
+                                    label: 'home_workout.common.plus_15s'.tr,
                                     onTap: () => controller.adjustRestTimer(15),
                                   ),
                                 ],
@@ -580,7 +594,7 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                             GestureDetector(
                               onTap: controller.skipRest,
                               child: Text(
-                                'Skip rest',
+                                'home_workout.active_set.skip_rest'.tr,
                                 style: text.semiBoldTextStyle(
                                   fontSize: 13.5,
                                   color: AppColors.cta,
@@ -612,7 +626,8 @@ class WorkoutActiveSetScreen extends GetView<WorkoutController> {
                     Gap.h(12),
                     Expanded(
                       child: AppPrimaryButton(
-                        label: 'Complete Set 3',
+                        label: 'home_workout.active_set.complete_set'
+                            .trParams({'number': '3'}),
                         onPressed: () => WorkoutRpeFeedbackSheet.show(context),
                       ),
                     ),

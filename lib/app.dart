@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tamplate/core/services/network/error_funtionality.dart';
 import 'core/bindings/controller_binder.dart';
+import 'core/controllers/locale_controller.dart';
 import 'core/controllers/theme_controller.dart';
+import 'core/localization/app_translations.dart';
 import 'core/utils/theme/theme.dart';
 import 'core/utils/constants/sizer.dart'; // Assuming this provides the Sizer widget
 import 'routes/app_routes.dart';
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
           initialRoute: AppRoute.getSplashScreen(),
           getPages: AppRoute.routes,
           initialBinding: ControllerBinder(),
+          translations: AppTranslations(),
+          locale: LocaleController.to.locale,
+          fallbackLocale: LocaleController.fallbackLocale,
           themeMode: ThemeController.to.themeMode,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,

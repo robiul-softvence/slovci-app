@@ -10,15 +10,16 @@ import 'package:flutter_tamplate/routes/app_routes.dart';
 /// Figma "S2 · State — Error".
 /// Reusable full-screen error state with retry CTA and support link.
 class StateErrorScreen extends StatelessWidget {
+  /// String defaults are translation keys; every text is resolved with `.tr`
+  /// at build time (plain strings passed by callers are shown unchanged).
   const StateErrorScreen({
     super.key,
-    this.headerTitle = 'Your Plan',
-    this.title = "We couldn't generate your plan",
-    this.subtitle =
-        "The service didn't respond. Your answers are saved, nothing is lost.",
-    this.errorCode = 'Error code: PLAN_TIMEOUT',
-    this.primaryLabel = 'Try Again',
-    this.secondaryLabel = 'Contact support',
+    this.headerTitle = 'system_states.error.header_title',
+    this.title = 'system_states.error.title',
+    this.subtitle = 'system_states.error.subtitle',
+    this.errorCode = 'system_states.error.error_code',
+    this.primaryLabel = 'system_states.error.try_again',
+    this.secondaryLabel = 'system_states.error.contact_support',
     this.onBack,
     this.onTryAgain,
     this.onContactSupport,
@@ -76,7 +77,7 @@ class StateErrorScreen extends StatelessWidget {
                     Gap.h(12),
                     Expanded(
                       child: Text(
-                        headerTitle,
+                        headerTitle.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 18,
@@ -115,7 +116,7 @@ class StateErrorScreen extends StatelessWidget {
                       ),
                       Gap(16),
                       Text(
-                        title,
+                        title.tr,
                         textAlign: TextAlign.center,
                         style: text.boldTextStyle(
                           fontSize: 22,
@@ -125,7 +126,7 @@ class StateErrorScreen extends StatelessWidget {
                       ),
                       Gap(16),
                       Text(
-                        subtitle,
+                        subtitle.tr,
                         textAlign: TextAlign.center,
                         style: text.regularTextStyle(
                           fontSize: 14,
@@ -153,7 +154,7 @@ class StateErrorScreen extends StatelessWidget {
                             ),
                             Gap.h(6),
                             Text(
-                              errorCode,
+                              errorCode.tr,
                               style: text.mediumTextStyle(
                                 fontSize: 12,
                                 lineHeight: 16,
@@ -189,7 +190,7 @@ class StateErrorScreen extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                primaryLabel,
+                                primaryLabel.tr,
                                 style: text.boldTextStyle(
                                   fontSize: 16,
                                   lineHeight: 20,
@@ -213,7 +214,7 @@ class StateErrorScreen extends StatelessWidget {
                           vertical: 4.h,
                         ),
                         child: Text(
-                          secondaryLabel,
+                          secondaryLabel.tr,
                           style: text.semiBoldTextStyle(
                             fontSize: 14,
                             lineHeight: 20,
